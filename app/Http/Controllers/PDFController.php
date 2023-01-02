@@ -173,7 +173,11 @@ class PDFController extends Controller
         * variable data cn la informacion de la cotizacion
         */
         if(session("Company") == "mbr"){
-          $pdf = PDF::loadView('pdf.'.session('Company').'_quotation_'.$Quotation->formato.'_'.$Quotation->lang, compact('data'))->setPaper('a4');
+          if(empty($Quotation->formato)){
+            $pdf = PDF::loadView('pdf.'.session('Company').'_quotation_'.$Quotation->lang, compact('data'))->setPaper('a4');
+          }else{
+            $pdf = PDF::loadView('pdf.'.session('Company').'_quotation_'.$Quotation->formato.'_'.$Quotation->lang, compact('data'))->setPaper('a4');
+          }
         }else{
           $pdf = PDF::loadView('pdf.'.session('Company').'_quotation', compact('data'))->setPaper('a4');
         }

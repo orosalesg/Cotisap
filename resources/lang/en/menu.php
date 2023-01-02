@@ -48,6 +48,7 @@ return [
     'puntosmbrParent' => 'Puntos MBR',
     'registrar-cliente' => 'Registrar Venta',
     'entregasParent' => 'Entregas',
-    'showCrearHE' => 'Registrar entregas'
-
+    'showCrearHE' => 'Registrar entregas',
+    'syscomParent' => 'Syscom',
+    'Syscomindex' => 'Buscar Productos'
 ];

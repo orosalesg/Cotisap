@@ -118,6 +118,8 @@ class CotizacionController extends Controller
         /** tipo de formato de la cotizacion */
         $cotizacion->formato = $Request->formato ? $Request->formato : 'comp';
         $cotizacion->lang = $Request->datosCotizacion['language'] ? $Request->datosCotizacion['language'] : 'esp';
+
+        $cotizacion->banners = isset($Request->banners) ? $Request->banners : null;
         
         if(session('domain') == 'gruposim.com'){
             //$cotizacion->autorized = $Request->datosCotizacion['autorized'] ? $Request->datosCotizacion['autorized'] : 0;
@@ -505,6 +507,7 @@ class CotizacionController extends Controller
                     "ItemCode" => $body->producto_id,
                     "ItemName" => $body->titulo,
                     "SalUnitMsr" => $body->unidad_de_medida->nombre,
+                    "LastPurPrc" => $body->precios->precio_descuento,
                     "LastPurCur" => "USD",
                     "Currency" => "USD",
                     "Price" => $body->precios->precio_lista ?? "0.00",

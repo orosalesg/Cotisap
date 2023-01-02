@@ -447,6 +447,31 @@
             </div>
         </div>
     </div>
+    <div class="col-md-6" id="bannersCoti">
+        <div class="an-single-component with-shadow h-100">
+            <div class="an-component-header">
+                <h5>Banners de cotizacion</h5>
+            </div>
+            <div class="an-component-body">
+                <div class="an-helper-block">
+                    <div id="listbnrs">
+                        <div id="bnr1">
+                            <span>Incluir promociones Meraki</span>
+                            <input type="checkbox" name="bnrMeraki" id="bnrMeraki" data-name="meraki" class="chkMarca"> 
+                        </div>
+                        <div id="bnr2">
+                            <span>Incluir promociones Verkada</span>
+                            <input type="checkbox" name="bnrVerkada" id="bnrVerkada" data-name="meraki" class="chkMarca">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<div class="row">
     <div class="col-md-6" id="comentariosdiv">
         <div class="an-single-component with-shadow">
             <div class="an-component-header">
@@ -1521,6 +1546,7 @@ $(document).ready(function() {
     /**** Guardar cotizacion ****/
 
     $("#success").click(function() {
+        //console.log(getbanners());
 
         if (!validarCotizacionCliente())
             return;
@@ -1561,6 +1587,26 @@ $(document).ready(function() {
             "#numCotizacionResult").html();
     });
 
+    function getbanners(){
+
+        var arrBanners = new Array();
+
+        $("[id^='bnr']").each(function(index,element){
+            console.log(this);
+
+            arrBanners.push({
+                name: $(this).find(".chkMarca").find("[data-name^='']").val(),
+                checked: $(this).find(".chkMarca").is("checked")
+            });
+
+        });
+
+        arrBanners.pop();
+
+        return arrBanners;
+
+    }
+
     function obtenerDatosCotizacion() {
 
         datos = {
@@ -1581,7 +1627,8 @@ $(document).ready(function() {
             correoEntrega: $("#cotiEntregaEmail").val(),
             direccionEntrega: $("#cotiEntregaDireccion").val(),
             fleteraEntrega: $("#cotiEntregaFletera").val(),
-            language: $("#langCoti").val()
+            language: $("#langCoti").val(),
+            banners: getbanners()
         };
 
         return datos;

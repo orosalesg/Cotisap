@@ -1393,6 +1393,10 @@ $("#contenerdor-products").find(".item-id").each(function(key, item){
             $('#item-product\\[' + Number(key+1) +'\\]').attr("data-producto", result.articulos[key].id);
           });
 
+          setTimeout(function(){
+            window.location.reload(1);
+          }, 5000);
+
 
         },
         error: function(){

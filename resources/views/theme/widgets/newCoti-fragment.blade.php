@@ -150,62 +150,56 @@
     -->
 
             <div class="an-component-header">
-                <div class="col-md-2">
-                    <div class="an-input-group">
-                        <h6>{{ 'Productos a cotizar' }}</h6>
+                <div class="row" style="padding-top:15px;">
+                    <div class="col-md-2" style="border-right:1px solid #adadad; height:100%;">
+                        <div class="an-input-group">
+                            <h6>{{ 'Productos a cotizar' }}</h6>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="an-input-group">
-                        
-                        <div class="col-md-12" style="display: inline;">
-                            <div>
-                                <span> {{ 'Formato de cotizacion' }} :</span>
+                    <div class="col-md-3" style="border-right:1px solid #adadad; height:100%;">
+                        <div class="an-input-group">
+                            
+                            <div class="col-md-12" style="display: inline;">
+                                <div>
+                                    <span> {{ 'Formato de cotizacion' }} :</span>
+                                </div>
+                                <select id="formatoCoti" class="">
+                                    <option value="comp">CON IVA</option>
+                                    <option value="opc">OPCIONES</option>
+                                    <option value="siva">SIN IVA</option>
+                                </select>
+                                <button id="formatorescomp" class="btn" data-toggle="formatorescomp"><i class="gg-info"></i></button>
+                                <button id="formatoresopc" class="btn" data-toggle="formatoresopc" style="display: none;"><i class="gg-info"></i></button>
+                                <button id="formatoressiva" class="btn" data-toggle="formatoressiva" style="display: none;"><i class="gg-info"></i></button>
                             </div>
-                            <select id="formatoCoti" class="">
-                                <option value="comp">CON IVA</option>
-                                <option value="opc">OPCIONES</option>
-                                <option value="siva">SIN IVA</option>
-                            </select>
-                            <button id="formatorescomp" class="btn" data-toggle="formatorescomp"><i class="gg-info"></i></button>
-                            <button id="formatoresopc" class="btn" data-toggle="formatoresopc" style="display: none;"><i class="gg-info"></i></button>
-                            <button id="formatoressiva" class="btn" data-toggle="formatoressiva" style="display: none;"><i class="gg-info"></i></button>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-2">
-                    <div class="an-input-group">
-                        <span>Idioma</span>
-                        <select id="langCoti" class="">
-                            <option value="esp">Español</option>
-                            <option value="eng">Inglés</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="an-input-group">
-                        <div class="col-md-6 text-right">
-                            <span> {{ 'Tipo de Cambio' }} :</span>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" id="tipodecambio" class="an-form-control" style="padding-left:5;"
-                                value="{{ isset($monedas[1]->Rate) ? $monedas[1]->Rate : '0' }}">
-                            <!--<input type="text" id="tipodecambio" class="tipodecambio an-form-control" value="$monedas[1]->Rate ?? '0'">-->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="an-input-group">
-                        <div class="col-md-8 text-right">
-                            <span> {{ 'Selecciona moneda' }} :</span>
-                        </div>
-                        <div class="col-md-4">
-                            <select id="modenaGeneral" class="an-form-control">
-                                @foreach($monedas as $moneda)
-                                <option value="{{ $moneda->Rate }}">{{ $moneda->ISOCurrCod }}</option>
-                                @endforeach
+                    <div class="col-md-2" style="border-right:1px solid #adadad; height:100%;">
+                        <div class="an-input-group">
+                            <span>Idioma</span>
+                            <select id="langCoti" class="an-form-control">
+                                <option value="esp">Español</option>
+                                <option value="eng">Inglés</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3" style="border-right:1px solid #adadad; height:100%;">
+                        <div class="an-input-group">
+                                <span> {{ 'Tipo de Cambio' }} :</span>
+                                <input type="text" id="tipodecambio" class="an-form-control" style="padding-left:5;"
+                                    value="{{ isset($monedas[1]->Rate) ? $monedas[1]->Rate : '0' }}">
+                                <!--<input type="text" id="tipodecambio" class="tipodecambio an-form-control" value="$monedas[1]->Rate ?? '0'">-->
+                        </div>
+                    </div>
+                    <div class="col-md-2" style="border-right:1px solid #adadad; height:100%;">
+                        <div class="an-input-group">
+                                <span> {{ 'Selecciona moneda' }} :</span>
+                                <select id="modenaGeneral" class="an-form-control">
+                                    @foreach($monedas as $moneda)
+                                    <option value="{{ $moneda->Rate }}">{{ $moneda->ISOCurrCod }}</option>
+                                    @endforeach
+                                </select>
                         </div>
                     </div>
                 </div>
@@ -454,14 +448,14 @@
             </div>
             <div class="an-component-body">
                 <div class="an-helper-block">
-                    <div id="listbnrs">
+                    <div id="list-banners">
                         <div id="bnr1">
                             <span>Incluir promociones Meraki</span>
-                            <input type="checkbox" name="bnrMeraki" id="bnrMeraki" data-name="meraki" class="chkMarca"> 
+                            <input type="checkbox" name="brMeraki" id="brMeraki" data-name="meraki" class="chkMarca"> 
                         </div>
                         <div id="bnr2">
                             <span>Incluir promociones Verkada</span>
-                            <input type="checkbox" name="bnrVerkada" id="bnrVerkada" data-name="meraki" class="chkMarca">
+                            <input type="checkbox" name="brVerkada" id="brVerkada" data-name="verkada" class="chkMarca">
                         </div>
                     </div>
                 </div>
@@ -1546,7 +1540,7 @@ $(document).ready(function() {
     /**** Guardar cotizacion ****/
 
     $("#success").click(function() {
-        //console.log(getbanners());
+        console.log(getbanners());
 
         if (!validarCotizacionCliente())
             return;
@@ -1591,17 +1585,23 @@ $(document).ready(function() {
 
         var arrBanners = new Array();
 
+        console.log($("[id^='bnr']").length)
+
         $("[id^='bnr']").each(function(index,element){
-            console.log(this);
+            
+            //var chkx = $(this).find("input:checkbox").attr("data-name");
+
+            //console.log();
+
+            var nombre = $(this).find("input").attr("data-name");
 
             arrBanners.push({
-                name: $(this).find(".chkMarca").find("[data-name^='']").val(),
-                checked: $(this).find(".chkMarca").is("checked")
+                name: nombre,
+                checked: $(this).find("input").prop("checked")
             });
 
         });
 
-        arrBanners.pop();
 
         return arrBanners;
 
@@ -1628,7 +1628,7 @@ $(document).ready(function() {
             direccionEntrega: $("#cotiEntregaDireccion").val(),
             fleteraEntrega: $("#cotiEntregaFletera").val(),
             language: $("#langCoti").val(),
-            banners: getbanners()
+            bannersConfig: JSON.stringify(getbanners())
         };
 
         return datos;

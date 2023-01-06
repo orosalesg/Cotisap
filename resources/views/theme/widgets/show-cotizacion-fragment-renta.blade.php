@@ -290,66 +290,68 @@
 
 <!-- Operaciones sobre la cotizacion -->
 
-<div class="col-md-12">
-    <div class="an-single-component with-shadow">
+<div class="row">
+    <div class="col-md-12">
+        <div class="an-single-component with-shadow">
 
-        <!--
-  ______                          _                                _                 _            _             _   _         _           
- |  ____|                        | |                              | |               | |          | |           | | (_)       | |          
- | |__     _ __     ___    __ _  | |__     ___   ____   __ _    __| |   ___       __| |   ___    | |   __ _    | |  _   ___  | |_    __ _ 
- |  __|   | '_ \   / __|  / _` | | '_ \   / _ \ |_  /  / _` |  / _` |  / _ \     / _` |  / _ \   | |  / _` |   | | | | / __| | __|  / _` |
- | |____  | | | | | (__  | (_| | | |_) | |  __/  / /  | (_| | | (_| | | (_) |   | (_| | |  __/   | | | (_| |   | | | | \__ \ | |_  | (_| |
- |______| |_| |_|  \___|  \__,_| |_.__/   \___| /___|  \__,_|  \__,_|  \___/     \__,_|  \___|   |_|  \__,_|   |_| |_| |___/  \__|  \__,_|
--->
+            <!--
+    ______                          _                                _                 _            _             _   _         _           
+    |  ____|                        | |                              | |               | |          | |           | | (_)       | |          
+    | |__     _ __     ___    __ _  | |__     ___   ____   __ _    __| |   ___       __| |   ___    | |   __ _    | |  _   ___  | |_    __ _ 
+    |  __|   | '_ \   / __|  / _` | | '_ \   / _ \ |_  /  / _` |  / _` |  / _ \     / _` |  / _ \   | |  / _` |   | | | | / __| | __|  / _` |
+    | |____  | | | | | (__  | (_| | | |_) | |  __/  / /  | (_| | | (_| | | (_) |   | (_| | |  __/   | | | (_| |   | | | | \__ \ | |_  | (_| |
+    |______| |_| |_|  \___|  \__,_| |_.__/   \___| /___|  \__,_|  \__,_|  \___/     \__,_|  \___|   |_|  \__,_|   |_| |_| |___/  \__|  \__,_|
+    -->
+
+
 
 
         <div class="an-component-header">
-            <div class="col-md-3">
-                <h6>{{ 'Productos cotizados' }}</h6>
-            </div>
-            <div class="col-md-3">
-                <div class="an-input-group" style="padding: 15px 0;">
-                    <div class="col-md-6 text-right">
-                        <span>{{ 'Mensualidad' }}</span>
-                    </div>
-                    <div class="col-md-6">
-                        <select id="mesesRenta" name="mesesRenta" class="an-form-control disabledA" disabled>
-                            <option selected>{{ $cotizacion['Quotations'][0]->mensualidad }}</option>
-                        </select>
+            <div class="row" style="padding-top:15px;">
+
+            
+                <div class="col-md-3" style="border-right:1px solid #adadad; height:100%;padding: 15px;">
+                    <h6>{{ 'Equipo Propuesto' }}</h6>
+                </div>
+                <div class="col-md-3" style="border-right:1px solid #adadad; height:100%;">
+                    <div class="an-input-group" style="padding: 15px 0;">
+                        <div class="col-md-12">
+                            <span>{{ 'Mensualidad' }}</span>
+                            <select id="mesesRenta" name="mesesRenta" class="an-form-control disabledA" disabled>
+                                <option selected>{{ $cotizacion['Quotations'][0]->mensualidad }}</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="an-input-group" style="padding: 15px 0;">
-                    <div class="col-md-6 text-right">
-                        <span> {{ 'Tipo de Cambio al momento de cotizar' }} :</span>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" id="tipodecambio" class="tipodecambio an-form-control disabledA"
-                            value="{{ $cotizacion['Quotations'][0]->tipodecambio }}" readonly>
+                <div class="col-md-3" style="border-right:1px solid #adadad; height:100%;">
+                    <div class="an-input-group" style="padding: 15px 0;">
+                        <div class="col-md-12">
+                            <span> {{ 'Tipo de Cambio' }} :</span>
+                            <input type="text" id="tipodecambio" class="tipodecambio an-form-control disabledA"
+                                value="{{ $cotizacion['Quotations'][0]->tipodecambio }}" readonly>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="an-input-group" style="padding: 15px 0;">
-                    <div class="col-md-7 text-right">
-                        <span> {{ 'Selecciona moneda' }} :</span>
-                    </div>
-                    <div class="col-md-5">
-                        <select id="modenaGeneral" class="an-form-control">
-                            @foreach($monedas as $moneda)
-                            @if(!strcmp($moneda->ISOCurrCod, $cotizacion['Quotations'][0]->Moneda))
-                            <option value="{{ $moneda->Rate }}" selected="selected">{{ $moneda->ISOCurrCod }}</option>
-                            @else
-                            <option value="{{ $moneda->Rate }}">{{ $moneda->ISOCurrCod }}</option>
-                            @endif
-                            @endforeach
-                        </select>
+                <div class="col-md-3">
+                    <div class="an-input-group" style="padding: 15px 0;">
+                        <div class="col-md-12">
+                            <span> {{ 'Selecciona moneda' }} :</span>
+                            <select id="modenaGeneral" class="an-form-control">
+                                @foreach($monedas as $moneda)
+                                @if(!strcmp($moneda->ISOCurrCod, $cotizacion['Quotations'][0]->Moneda))
+                                <option value="{{ $moneda->Rate }}" selected="selected">{{ $moneda->ISOCurrCod }}</option>
+                                @else
+                                <option value="{{ $moneda->Rate }}">{{ $moneda->ISOCurrCod }}</option>
+                                @endif
+                                @endforeach
+                            </select>
 
 
 
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -451,6 +453,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <div class="row">
@@ -1135,6 +1138,14 @@ $(document).ready(function() {
 
 
     $("#update").click(function() {
+        
+
+        if( !validarCotizacionCliente() )
+        return;
+
+        if( !validarCotizacionArticulos() )
+        return;
+
         $("#loading").show();
 
         $.ajax({

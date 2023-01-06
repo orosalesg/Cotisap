@@ -225,7 +225,7 @@
                     P. Unitario
                 </th>
                 <th>
-                    Monto
+                    Subtotal
                 </th>
             </tr>
         </thead>
@@ -271,7 +271,7 @@
                                     SUBTOTAL
                                 </td>
                                 <td>
-                                    {{ $data['Totals']['subtotal'] }}
+                                    $ {{ $data['Totals']['subtotal'] }}
                                 </td>
                             </tr>
                             <tr>
@@ -279,7 +279,7 @@
                                     IVA {{ '16' }}%
                                 </td>
                                 <td>
-                                    {{ $data['Totals']['totalIVA'] }}
+                                    $ {{ $data['Totals']['totalIVA'] }}
                                 </td>
                             </tr>
                             <tr>
@@ -287,7 +287,7 @@
                                     <b>Total {{ $data['Moneda'] }} Pago Inicial</b>
                                 </td>
                                 <td>
-                                    $ {{ $data['Totals']['MXN'] }} {{ $data['Moneda'] }}
+                                    $ {{ $data['Totals']['totalPI'] }} {{ $data['Moneda'] }}
                                 </td>
                             </tr>
                         </tbody>
@@ -301,17 +301,33 @@
                         <thead>
                             <tr>
                                 <th colspan="2">
-                                    Renta Mensual Antes de IVA
+                                    Mensualidades Restantes Antes de Iva
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>
-                                    {{ $data['Quotation']->mensualidad }} mensualidades
+                                    {{ $data['QtyMensualidades'] }} mensualidades
                                 </td>
                                 <td>
-                                    $ {{ $data['Mensualidades'] }}
+                                    $ {{ $data['Totals']['Mensubtotal'] }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    IVA {{ '16' }}%
+                                </td>
+                                <td>
+                                    $ {{ $data['Totals']['MenstotalIVA'] }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Total {{ $data['Moneda'] }} Mensualidades</b>
+                                </td>
+                                <td>
+                                    $ {{ $data['Totals']['mensualidades'] }} {{ $data['Moneda'] }}
                                 </td>
                             </tr>
                         </tbody>
@@ -354,7 +370,7 @@
     <!-- Conciones y notas comerciales aviso -->
 
     <p class="text2">
-        *** Checar condiciones y notas comerciales
+        *** Revisar condiciones y notas comerciales
     </p>
 
     <br>

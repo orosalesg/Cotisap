@@ -1540,7 +1540,7 @@ $(document).ready(function() {
     /**** Guardar cotizacion ****/
 
     $("#success").click(function() {
-        console.log(getbanners());
+        //console.log(getbanners());
 
         if (!validarCotizacionCliente())
             return;
@@ -1630,6 +1630,7 @@ $(document).ready(function() {
             language: $("#langCoti").val(),
             bannersConfig: JSON.stringify(getbanners())
         };
+        console.log(datos);
 
         return datos;
 
@@ -1665,6 +1666,8 @@ $(document).ready(function() {
         });
 
         arrArticulos.pop();
+
+        console.log(arrArticulos);
 
         return arrArticulos;
     }

@@ -119,12 +119,13 @@ class CotizacionController extends Controller
         $cotizacion->formato = $Request->formato ? $Request->formato : 'comp';
         $cotizacion->lang = $Request->datosCotizacion['language'] ? $Request->datosCotizacion['language'] : 'esp';
 
-        $cotizacion->banners = isset($Request->banners) ? $Request->banners : null;
+        $cotizacion->banners = isset($Request->datosCotizacion['bannersConfig']) ? $Request->datosCotizacion['bannersConfig'] : null;
         
         if(session('domain') == 'gruposim.com'){
             //$cotizacion->autorized = $Request->datosCotizacion['autorized'] ? $Request->datosCotizacion['autorized'] : 0;
             $cotizacion->autorized = 0;
         }
+        
         $cotizacion->especificaciones = json_encode($Request->especificaciones);
         
         foreach ($Request->obtenerDatosArticulos as $product) {

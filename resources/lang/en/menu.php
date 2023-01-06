@@ -16,7 +16,7 @@ return [
     'cotizacionesParent' => 'Cotizaciones',
     'nueva-cotizacion' => 'Nueva cotización',
     'buscar-cotizacion' => 'Buscar cotizaciones',
-    'nueva-cotizacionPRUEBASrenta' => 'Pruebas Nueva Cotizacion Renta',
+    'nueva-cotizacionPRUEBASrenta' => 'Nueva Cotizacion Renta',
     'nueva-cotizacionPRUEBAS' => 'Pruebas Nueva Cotizacion',
     'alta-cliente' => 'Alta cliente',
     'nuevo-articulo' => 'Nuevo artículo',

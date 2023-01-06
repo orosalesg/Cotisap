@@ -23,13 +23,13 @@
             <ol class="breadcrumb">
               <li><a href="#">{{ 'Inicio' }}</a></li>
               <li><a href="#">{{ 'Cotizaciones' }}</a></li>
-              <li class="active">{{ 'Nueva cotizacióte;n' }}</li>
+              <li class="active">{{ 'Nueva cotización Renta' }}</li>
             </ol>
           </div>
 
           <div class="an-body-topbar wow fadeIn">
             <div class="an-page-title">
-              <h2 id="TitleCotizacion">Nueva cotizacióte;n PRUEBAS renta</h2>
+              <h2 id="TitleCotizacion">Nueva cotización renta</h2>
             </div>
           </div>
 

@@ -179,41 +179,19 @@ class PDFControllerPRUEBAS extends Controller
         $Vendedor = User::where('email', $Quotation->idVendedor)->first();   
         $Notes = Notes::find($Quotation->notasCotizacion);
         
+        $qtymensualidades = (int)$Quotation->mensualidad - 1 ;
         $mensualidades = $CondComerciales[1]->monto;
+
         
         $rowArts = [];
-        //$usd_Rate = self::getUSDRate();
         
-        //$total_cotizacion_usd = 0;
-        //$total_cotizacion_mxn = 0;
-        
-        foreach($ArtQuotation as $aq){/*
-          $aux_descuento = empty($aq->desc) ? 0.0 : floatval($aq->desc);
-          $aux_pu = $aq->PrecioVenta;
-          $aux_iva = $aux_pu * $aq->factor / 100 * $aq->cantidad;
-          $aux_subtotal = $aux_pu * intval($aq->cantidad);
-          $aux_total = $aux_subtotal + $aux_iva;
-          $aux_total_mxn = $aux_total;
-          //$aux_total_usd = $aq->moneda == 'MXN' ? $aux_total / $usd_Rate : $aux_total;
-
-          $total_cotizacion_mxn += $aux_total_mxn;
-          //$total_cotizacion_usd += $aux_total_usd;*/
+        foreach($ArtQuotation as $aq){
 
           $rowArts[] = 
             [
               'cantidad' => $aq->cantidad,
               'descripcion' => $aq->descripcion
             ];
-            /*
-            'cantidad' => $aq->cantidad,
-              'precio_lista' => number_format($aq->precioLista, 2, '.', ','),
-              'descuento' => number_format($aux_descuento, 2, '.', ','),
-              'precio_unitario' => number_format($aux_pu, 2, '.', ','),
-              'subtotal' => number_format($aux_subtotal, 2, '.', ','),
-              'iva' => number_format($aux_iva, 2, '.', ','),
-              'total_mxn' => number_format($aux_total_mxn, 2, '.', ','),
-              //'total_dolares' => number_format($aux_total_usd, 2, '.', ',')
-            */
         }
         
         $total_condicion_mxn = 0;
@@ -237,8 +215,12 @@ class PDFControllerPRUEBAS extends Controller
         //Calculamos el iva
         $totalIVA = $total_condicion_mxn * (16/100);
         //calculamos total + iva
-        $totalMXN = $total_condicion_mxn + $totalIVA; 
-        
+        $totalMXN = $total_condicion_mxn + $totalIVA;
+
+        //calculamos total * (mensualidades - primer mensualidad)
+        $totalmensualidades = $mensualidades;
+        $MenstotalIVA = $totalmensualidades * (16/100);
+
         $email = Auth::user()->email;
 
         $company = Company::where('dominio' ,explode('@', $email)[1])
@@ -308,11 +290,20 @@ class PDFControllerPRUEBAS extends Controller
             'Articles' => $rowArts,
             'Condiciones' => $rowArts2,
             'Mensualidades' => $mensualidades,
+            'QtyMensualidades' => $qtymensualidades,
             'Moneda' => $Quotation->Moneda,
             'Totals' => [
               'subtotal' => number_format($total_condicion_mxn, 2, '.', ','),
+              //Total Iva Pago Inicial
               'totalIVA' => number_format($totalIVA, 2, '.', ','),
-              'MXN' => number_format($totalMXN, 2, '.', ',')
+              //Total pago inicial
+              'totalPI' => number_format($totalMXN, 2, '.', ','),
+              //Subtotal mensualidades
+              'Mensubtotal' => number_format($totalmensualidades, 2, '.', ','),
+              //Total Mensualidades + IVA
+              'mensualidades' => number_format($totalmensualidades + $MenstotalIVA, 2, '.', ','),
+              //Total Iva Mensualidades
+              'MenstotalIVA' => number_format($MenstotalIVA, 2, '.', ','),
               //'USD' => number_format($total_cotizacion_usd, 2, '.', ',')
             ],
             'Notes' => $Notes,

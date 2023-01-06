@@ -46,20 +46,6 @@ table tr td {
   text-align: left;
 }
 </style>
-<div class="row justify-content-end">
-    <div class="col-md-9">
-
-    </div>
-    <div class="col-md-3">
-        <div class="an-single-component with-shadow">
-            <div class="an-component-body">
-                <div class="an-helper-block">
-                    <input type="button" id="btnRenta" class="btn btn-success" value="Cotizacion Renta">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="row">
     <div class="col-md-3">
         <input type="hidden" id="maxdescsession" value="{{ $maxdesc }}">
@@ -179,48 +165,48 @@ table tr td {
 
 
             <div class="an-component-header">
-                <div class="col-md-2">
-                    <h6><b>{{ 'Equipo propuesto' }}</b></h6>
-                </div>
-                <div class="col-md-3">
-                    <div class="an-input-group" style="padding: 15px 0;">
-                        <div class="col-md-6 text-right">
-                            <span><b>{{ 'Mensualidad' }}</b></span>
-                        </div>
-                        <div class="col-md-6">
-                            <select id="mesesRenta" name="mesesRenta" class="an-form-control"
-                                style="padding: 0px 0px 0px 3px">
-                                <option>24</option>
-                                <option>36</option>
-                                <option>48</option>
-                            </select>
+                <div class="row" style="padding-top:15px;">
+
+                
+                    <div class="col-md-2" style="border-right:1px solid #adadad; height:100%;padding: 15px;">
+                        <h6>{{ 'Equipo propuesto' }}</h6>
+                    </div>
+                    <div class="col-md-3" style="border-right:1px solid #adadad; height:100%;">
+                        <div class="an-input-group" style="padding: 15px 0;">
+                            <div class="col-md-12">
+                                <span>{{ 'Mensualidad' }}</span>
+                                <select id="mesesRenta" name="mesesRenta" class="an-form-control"
+                                    style="padding: 0px 0px 0px 3px">
+                                    <option>12</option>
+                                    <option>24</option>
+                                    <option>36</option>
+                                    <option>48</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="an-input-group" style="padding: 15px 0;">
-                        <div class="col-md-6 text-right">
-                            <span><b>{{ 'Tipo de Cambio' }} :</b></span>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" id="tipodecambio" class="tipodecambio an-form-control"
-                                value="{{ $monedas[1]->Rate ?? '0' }}">
+                    <div class="col-md-4" style="border-right:1px solid #adadad; height:100%;">
+                        <div class="an-input-group" style="padding: 15px 0;">
+                            <div class="col-md-12">
+                                <span>{{ 'Tipo de Cambio' }}:</span>
+                                <input type="text" id="tipodecambio" class="tipodecambio an-form-control"
+                                    value="{{ $monedas[1]->Rate ?? '0' }}">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="an-input-group">
-                        <div class="col-md-8 text-right">
-                            <span><b>{{ 'Selecciona moneda' }} :</b></span>
-                        </div>
-                        <div class="col-md-4">
-                            <select id="modenaGeneral" class="an-form-control">
-                                @foreach($monedas as $moneda)
-                                <option value="{{ $moneda->Rate }}">{{ $moneda->ISOCurrCod }}</option>
-                                @endforeach
-                            </select>
+                    <div class="col-md-3">
+                        <div class="an-input-group" style="padding: 15px 0;">
+                            <div class="col-md-12">
+                                <span>{{ 'Selecciona moneda' }}:</span>
+                                <select id="modenaGeneral" class="an-form-control">
+                                    @foreach($monedas as $moneda)
+                                    <option value="{{ $moneda->Rate }}">{{ $moneda->ISOCurrCod }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -422,7 +408,11 @@ table tr td {
     <div class="col-md-6">
         <div class="an-single-component with-shadow h-100">
             <div class="an-component-header">
-                <h6><b>{{ 'Pago Inicial' }}</b></h6>
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <h6><b>{{ 'Primer Pago Mensual' }}</b></h6>
+                </div>
+                <div class="col-md-3"></div>
             </div>
             <div class="an-component-body">
                 <div class="an-helper-block">
@@ -482,10 +472,10 @@ table tr td {
     <div class="col-md-6">
         <div class="an-single-component with-shadow h-100" >
             <div class="an-component-header text-right">
-                <div class="col-md-4 text-left">
-                    <h6><b>{{ 'Renta Mensual' }}</b></h6>
+                <div class="col-md-5 text-left">
+                    <h6><b>{{ 'Mensualidades Restantes Antes de IVA' }}</b></h6>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
 
                 </div>
                 <div class="col-md-4">
@@ -506,6 +496,14 @@ table tr td {
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <tr>
+                                        <td>
+                                            <span id="mesesRNumber12">12</span>{{ ' meses' }}
+                                        </td>
+                                        <td>
+                                            $<span id="totalmensualidad12"></span>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td>
                                             <span id="mesesRNumber24">24</span>{{ ' meses' }}
@@ -1528,9 +1526,10 @@ $(document).ready(function() {
 
         var totalRenta = $("#itemMonto\\[" + 2 + "\\]").text();
         console.log(totalRenta);
-        $("#totalmensualidad24").text(Number(totalRenta).toFixed(2) * 24);
-        $("#totalmensualidad36").text(Number(totalRenta).toFixed(2) * 36);
-        $("#totalmensualidad48").text(Number(totalRenta).toFixed(2) * 48);
+        $("#totalmensualidad12").text(Number(totalRenta).toFixed(2) * 11);
+        $("#totalmensualidad24").text(Number(totalRenta).toFixed(2) * 23);
+        $("#totalmensualidad36").text(Number(totalRenta).toFixed(2) * 35);
+        $("#totalmensualidad48").text(Number(totalRenta).toFixed(2) * 47);
     }
 
     function calculoTotalCotizacion() {

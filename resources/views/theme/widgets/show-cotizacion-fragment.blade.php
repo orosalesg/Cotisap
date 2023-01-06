@@ -27,6 +27,7 @@
             </div>
         </div>
     </div>
+
     <div class="col-md-6">
         <div class="an-single-component with-shadow">
             <div class="an-component-header">
@@ -66,6 +67,32 @@
                             <div class="an-input-group">
                                 <button id="update" class="an-btn btn-success block-icon"><i class="ion-check"></i>
                                     Actualizar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Informacion banners de cotizacion -->
+
+        <div class="row">
+            <div class="col-md-12" id="bannersCoti">
+                <div class="an-single-component with-shadow h-100">
+                    <div class="an-component-header">
+                        <h5>Banners de cotizacion</h5>
+                    </div>
+                    <div class="an-component-body">
+                        <div class="an-helper-block">
+                            <div id="list-banners">
+                                <div id="bnr1">
+                                    <span>Incluir promociones Meraki</span>
+                                    <input type="checkbox" name="brMeraki" id="brMeraki" data-name="meraki" class="chkMarca"> 
+                                </div>
+                                <div id="bnr2">
+                                    <span>Incluir promociones Verkada</span>
+                                    <input type="checkbox" name="brVerkada" id="brVerkada" data-name="verkada" class="chkMarca">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -132,6 +159,9 @@
         </div>
     </div>
 </div>
+
+
+
 
 <!-- Informacion de pago -->
 
@@ -696,6 +726,8 @@
 
 </div>
 
+
+
 <!--
   ______   _                                     _                                            _   _                 
  |  ____| | |                                   | |                                          | | | |                
@@ -1051,21 +1083,13 @@ var token = "{!! Session::get('access_token')['access_token'] !!}";
 
 
 @if(count($cotizacion['ArtQuotation']) > 0)
-var productos = {
-    {
-        count($cotizacion['ArtQuotation']) + 1
-    }
-}
+var productos = {{ count($cotizacion['ArtQuotation']) + 1}}
 @else
 var productos = 1;
 @endif
 
 @if(count($getPayment) > 0)
-var pago = {
-    {
-        count($getPayment) + 1
-    }
-}
+var pago = {{ count($getPayment) + 1 }}
 @else
 var pago = 1;
 @endif
@@ -1116,11 +1140,7 @@ $(document).ready(function() {
             type: 'POST',
             url: '{{ URL::route("updateCotizacion") }}',
             data: {
-                id: {
-                    {
-                        $cotizacion['Quotations'][0] - > id
-                    }
-                },
+                id: {{ $cotizacion['Quotations'][0] -> id }},
                 numCotizacion: "{{ $cotizacion['Quotations'][0]->numCotizacion }}",
                 obtenerDatosArticulos: obtenerDatosArticulos(),
                 obtenerDatosCotizacion: obtenerDatosCotizacion(),
@@ -1141,18 +1161,10 @@ $(document).ready(function() {
                     type: 'post',
                     url: '{{ URL::route("sendmailgrant") }}',
                     data: {
-                        id: {
-                            {
-                                $cotizacion['Quotations'][0] - > id
-                            }
-                        },
+                        id: {{ $cotizacion['Quotations'][0] -> id }},
                         creador: '{{$cotizacion['
                         Quotations '][0]->idVendedor}}',
-                        msg: 'La cotizacion ' + {
-                            {
-                                $cotizacion['Quotations'][0] - > id
-                            }
-                        } + ' ha sido autorizada',
+                        msg: 'La cotizacion ' + {{ $cotizacion['Quotations'][0] -> id }} + ' ha sido autorizada',
                     },
                     success: function(result3) {
                         console.log(result3);
@@ -1407,11 +1419,7 @@ $(document).ready(function() {
             type: 'post',
             url: '{{ URL::route("updateCotizacion") }}',
             data: {
-                id: {
-                    {
-                        $cotizacion['Quotations'][0] - > id
-                    }
-                },
+                id: {{ $cotizacion['Quotations'][0] -> id }},
                 numCotizacion: "{{ $cotizacion['Quotations'][0]->numCotizacion }}",
                 obtenerDatosArticulos: obtenerDatosArticulos(),
                 obtenerDatosCotizacion: obtenerDatosCotizacion()

@@ -17,6 +17,8 @@ use Laravel\Socialite\Facades\Socialite;
 use Microsoft\Graph\Graph;
 use Session;
 
+use Barryvdh\Debugbar\Facade as Debugbar;
+
 
 class AuthController extends Controller
 {
@@ -295,23 +297,6 @@ class AuthController extends Controller
         $azemail = $azureuser->email;
         $aztoken = $azureuser->token;
         $azrefToken = $azureuser->refreshToken;
-        //$newarray = array_merge($azid,$azname,$azemail,$aztoken,$azrefToken);
-        //dd($azid);
-
-       /* $user = User::where('azureid',$azureuser->id)->first();
-            
-        if ($user !== null){
-            $user->update([
-                'email' => $azureuser->id
-                ])
-        }else{
-            $user = User::create([
-                'name' => ,
-                'email' => ,
-                'azure_token' => ,
-                'azur_refresh_token' => ,
-            ])
-        }*/
 
         $user = User::updateOrCreate([
             'email' => strval($azemail),

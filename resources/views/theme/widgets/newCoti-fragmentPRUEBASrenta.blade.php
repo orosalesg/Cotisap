@@ -1781,7 +1781,51 @@ $(document).ready(function() {
 
         var status = true;
 
-        $("#contenerdor-products").find("[id^='item-renta']").each(function(index, element) {
+        $("#contenerdor-products").find("[id^='item-product']").each(function(index, element) {
+            console.log("Item Product")
+            console.log($(this));
+            
+            var articulo = $(this).find(".item-id").text();
+
+            if (($(this).find("[name^='itemCantidadProd']").val() == null || $(this).find(
+                    "[name^='itemCantidadProd']").val() == "")) {
+
+                $(this).find("[name^='itemCantidadProd']").focus();
+                toastr["error"]("Cantidad de Equipo Propuesto [" + articulo + "]","Campo requerido * ");
+                status = false;
+            }
+
+            if (($(this).find("[name^='itemDesc']").val() == null || $(this).find("[name^='itemDesc']")
+                    .val() == "")) {
+                
+                        $(this).find("[name^='itemDesc']").focus();
+                toastr["error"]("Descripcion de Equipo Propuesto [" + articulo + "]","Campo requerido * ");
+                status = false;
+            }
+
+            if (($(this).find("[name^='itemCostoRenta']").val() == null || $(this).find(
+                    "[name^='itemCostoRenta']").val() == "")) {
+                
+                        $(this).find("[name^='itemCostoRenta']").focus();
+                toastr["error"]("Costo de Renta [" + articulo + "]","Campo requerido * ");
+                status = false;
+            }
+
+            if (($(this).find("[name^='itemCostoInicial']").val() == null || $(this).find(
+                    "[name^='itemCostoInicial']").val() == "")) {
+                
+                $(this).find("[name^='itemCostoInicial']").focus();
+                toastr["error"]("Costo Inicial [" + articulo + "]","Campo requerido * ");
+                status = false;
+            }
+
+            return status;
+        });
+
+        $("#contenerdor-products-renta").find("[id^='item-renta']").each(function(index, element) {
+
+            console.log("Item Product renta")
+            console.log($(this));
 
             var articulo = $(this).find(".item-id").text();
 
@@ -1790,6 +1834,8 @@ $(document).ready(function() {
 
             if ($(this).find("[name^='itemCantidadProd']").val() == "" || $(this).find(
                     "[name^='itemCantidadProd']").val() == null) {
+
+                        $(this).find("[name^='itemCantidadProd']").focus();
                 toastr["error"]("Cantidad de Equipo Propuesto [" + articulo + "]",
                 "Campo requerido * ");
                 status = false;
@@ -1797,6 +1843,8 @@ $(document).ready(function() {
 
             if ($(this).find("[name^='itemDesc']").val() == "" || $(this).find("[name^='itemDesc']")
                 .val() == null) {
+                    
+                    $(this).find("[name^='itemDesc']").focus()
                 toastr["error"]("Descripcion de Equipo Propuesto [" + articulo + "]",
                     "Campo requerido * ");
                 status = false;
@@ -1804,6 +1852,8 @@ $(document).ready(function() {
 
             if ($(this).find("[name^='itemDescripcion']").val() == "" || $(this).find(
                     "[name^='itemDescripcion']").val() == null) {
+
+                        $(this).find("[name^='itemDescripcion']").focus()
                 toastr["error"]("Descripcion de Condiciones Comerciales [" + articulo + "]",
                     "Campo requerido * ");
                 status = false;
@@ -1811,6 +1861,8 @@ $(document).ready(function() {
 
             if ($(this).find("[name^='itemNoParte']").val() == "" || $(this).find(
                     "[name^='itemNoParte']").val() == null) {
+
+                        $(this).find("[name^='itemNoParte']").focus()
                 toastr["error"]("No. de Parte de Condiciones Comerciales [" + articulo + "]",
                     "Campo requerido * ");
                 status = false;
@@ -1818,6 +1870,8 @@ $(document).ready(function() {
 
             if ($(this).find("[name^='itemCantidad']").val() == "" || $(this).find(
                     "[name^='itemCantidad']").val() == null) {
+
+                        $(this).find("[name^='itemCantidad']").focus()
                 toastr["error"]("Cantidad de Condiciones Comerciales [" + articulo + "]",
                     "Campo requerido * ");
                 status = false;
@@ -1825,27 +1879,23 @@ $(document).ready(function() {
 
             if ($(this).find("[name^='itemPUnitario']").val() == "" || $(this).find(
                     "[name^='itemPUnitario']").val() == null) {
+
+                        $(this).find("[name^='itemPUnitario']").focus()
                 toastr["error"]("Precio Unitario de Condiciones Comerciales [" + articulo + "]",
                     "Campo requerido * ");
                 status = false;
             }
 
+            return status;
+
         });
+
+
 
         if ($("#notes").val() == null || $("#notes").val() == "") {
             toastr["error"]("Notas comerciales de la cotizacion", "Campo requerido * ");
             status = false;
         }
-
-        /*if($("#accounts").val() == null){
-          toastr["error"]("Cuenta de pago de la cotizacion", "Campo requerido * ");
-          status = false;
-        }
-        
-        if($("#tipo-entrega").val() == null){
-          toastr["error"]("Información de entrega de la cotizacion", "Campo requerido * ");
-          status = false;
-        }*/
 
 
         return status;

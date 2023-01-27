@@ -313,10 +313,19 @@
 
                     <div class="row">
                         <div class="col-md-8">
+                            <span>{{ 'IVA' }}:</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span id="totalCotiIva"></span><i class="moneda"></i>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8">
                             <span>{{ 'Total' }}:</span>
                         </div>
                         <div class="col-md-4">
-                            <span id="totalCoti">NaN</span><i class="moneda"></i>
+                            <span id="totalCoti"></span><i class="moneda"></i>
                         </div>
                     </div>
 
@@ -1451,6 +1460,9 @@ $(document).ready(function() {
             antesSubTotalCoti += Number($(this).text());
         }).promise().done(function() {
 
+            var totalCotiIva = Number(antesSubTotalCoti) / 1.16 *.16;
+
+            $("#totalCotiIva").text(Number(totalCotiIva).toFixed(2));
             $("#totalCoti").text(Number(antesSubTotalCoti).toFixed(2));
 
         });

@@ -1006,9 +1006,9 @@ var Resiltado;
 
 $(document).ready(function() {
 
-    /********************
+    /**************************
      * Cargar modulos visibles
-     *********************/
+     *************************/
 
     $.ajax({
         url: "{{ URL::route('getCotConfig') }}",
@@ -1038,6 +1038,14 @@ $(document).ready(function() {
             });
 
         }
+    });
+
+    /****************************************
+     * Validar un solo checkbox seleccionado
+     ***************************************/
+
+     $("#list-banners").find('input[type="checkbox"]').on('change', function() {
+        $("#list-banners").find('input[type="checkbox"]').not(this).prop('checked', false);
     });
 
     $('[data-toggle="detalleCliente"]').popover({
@@ -1460,7 +1468,7 @@ $(document).ready(function() {
             antesSubTotalCoti += Number($(this).text());
         }).promise().done(function() {
 
-            var totalCotiIva = Number(antesSubTotalCoti) / 1.16 *.16;
+            var totalCotiIva = Number(antesSubTotalCoti) / 1.16 * .16;
 
             $("#totalCotiIva").text(Number(totalCotiIva).toFixed(2));
             $("#totalCoti").text(Number(antesSubTotalCoti).toFixed(2));

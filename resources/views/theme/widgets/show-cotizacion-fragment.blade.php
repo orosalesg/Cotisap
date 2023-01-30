@@ -85,14 +85,16 @@
                     <div class="an-component-body">
                         <div class="an-helper-block">
                             <div id="list-banners">
-                                <div id="bnr1">
-                                    <span>Incluir promociones Meraki</span>
-                                    <input type="checkbox" name="brMeraki" id="brMeraki" data-name="meraki" class="chkMarca"> 
+                            
+                            @foreach(json_decode($cotizacion['Quotations'][0]->banners) as $banner)
+                                
+                                <div id="bnr{{ $loop->iteration }}">
+                                    <span>Incluir promociones {{ $banner->name }}</span>
+                                    <input type="checkbox" name="br{{ $banner->name }}" id="br{{ $banner->name }}" 
+                                    data-name="{{ $banner->name }}" class="chkMarca" @if($banner->checked) {{ "checked" }} @endif> 
                                 </div>
-                                <div id="bnr2">
-                                    <span>Incluir promociones Verkada</span>
-                                    <input type="checkbox" name="brVerkada" id="brVerkada" data-name="verkada" class="chkMarca">
-                                </div>
+
+                            @endforeach
                             </div>
                         </div>
                     </div>
@@ -111,9 +113,12 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <h4 style="color: #E91E63;">{{ 'Total' }} : <span id="totalCoti">
+                            <h4 style="color: #E91E63;">{{ 'Total' }} : $<span id="totalCoti">
                                     {{ $cotizacion['Quotations'][0]->total}} </span> <i class="moneda">
                                     {{ $cotizacion['Quotations'][0]->Moneda}}</i></h4>
+                            <h4 style="color: #E91E63;">{{ 'IVA' }} : $<span id="totalCotiIva">
+                                    {{ number_format( (float)$cotizacion['Quotations'][0]->total / 1.16 * .16, 2, '.', '') }} </span></h4>
+                                    <br>
                             <h5 style="color: #E91E63;">{{ 'Total de pagos' }} : <span id="totalpagos"></span></h5>
                             <h5 style="color: #E91E63;">{{ 'Restante' }} : <span id="restante"></span></h5>
                         </div>
@@ -1179,6 +1184,7 @@ $(document).ready(function() {
             }
         });
     });
+
     $("#contenerdor-products").find(".item-id").each(function(key, item) {
 
         var producIni = key + 1;
@@ -1206,6 +1212,13 @@ $(document).ready(function() {
         });
     });
 
+    /**
+     * Validar un solo checkbox seleccionado
+     */
+
+    $("#list-banners").find('input[type="checkbox"]').on('change', function() {
+        $("#list-banners").find('input[type="checkbox"]').not(this).prop('checked', false);
+    });
 
     $('[data-toggle="tooltip"]').tooltip();
 
@@ -1472,7 +1485,7 @@ $(document).ready(function() {
 
     function calculoTipoCambioMG(prod) {
         var productItem = prod;
-        var monedaLabel = $("#modenaGeneral option:selected").text();
+        var monedaLabel = $("#modenaGeneral option:selected").text().trim();
         var tc = $("#tipodecambio").val();
 
         //si la moneda seleccionada es igual a mxn multiplica el total (que se toma como usd) por el tipo de cambio, si es usd multiplica el total (se toma como en mxn) por el tipo de cambio
@@ -1721,6 +1734,10 @@ $(document).ready(function() {
             antesSubTotalCoti += Number($(this).text());
         }).promise().done(function() {
 
+            var totalcotiva = Number(antesSubTotalCoti) / 1.16 * .16;
+
+            $("#totalCotiIva").text(Number(totalcotiva).toFixed(2));
+
             $("#totalCoti").text(Number(antesSubTotalCoti).toFixed(2));
 
         });
@@ -1806,6 +1823,25 @@ $(document).ready(function() {
         return arrArticulos;
     }
 
+    function getbanners(){
+
+        var arrBanners = new Array();
+
+        console.log($("[id^='bnr']").length)
+
+        $("[id^='bnr']").each(function(index,element){
+
+            var nombre = $(this).find("input").attr("data-name");
+
+            arrBanners.push({
+                name: nombre,
+                checked: $(this).find("input").prop("checked")
+            });
+
+        });
+        return arrBanners;
+    }
+
     function obtenerDatosCotizacion() {
 
         datos = {
@@ -1815,7 +1851,8 @@ $(document).ready(function() {
             total: Number($("#totalCoti").text()),
             comentarios: $("#coments").val(),
             formato: $("#formatoCoti").val(),
-            language: $("#langCoti").val()
+            language: $("#langCoti").val(),
+            bannersConfig: JSON.stringify(getbanners())
         };
         console.log(datos);
         return datos;
@@ -1844,6 +1881,10 @@ $(document).ready(function() {
                 success: function(response) {
                     $("#item-product\\[" + idContent + "\\]")
                         .remove();
+
+                    var totalcotiva = Number(response.data) / 1.16 * .16;
+
+                    $("#totalCotiIva").text(totalcotiva);
 
                     $("#totalCoti").text(response.data);
 
@@ -1989,9 +2030,7 @@ $(document).ready(function() {
     // **** Crear en SAP
 
 
-    {
-        {
-            --$("#makeSAP").click(function() {
+    {{--$("#makeSAP").click(function() {
                 if (!$(this).hasClass('disabled')) {
                     $.ajax({
                         method: "post",
@@ -2023,9 +2062,7 @@ $(document).ready(function() {
                 }
 
             });
-            --
-        }
-    }
+            --}}
 
 
 

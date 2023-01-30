@@ -119,7 +119,7 @@ class CotizacionController extends Controller
         $cotizacion->formato = $Request->formato ? $Request->formato : 'comp';
         $cotizacion->lang = $Request->datosCotizacion['language'] ? $Request->datosCotizacion['language'] : 'esp';
 
-        $cotizacion->banners = isset($Request->datosCotizacion['bannersConfig']) ? $Request->datosCotizacion['bannersConfig'] : null;
+        $cotizacion->banners = isset($Request->datosCotizacion['bannersConfig']) ? $Request->datosCotizacion['bannersConfig'] : "";
         
         if(session('domain') == 'gruposim.com'){
             //$cotizacion->autorized = $Request->datosCotizacion['autorized'] ? $Request->datosCotizacion['autorized'] : 0;
@@ -954,6 +954,9 @@ class CotizacionController extends Controller
         $cotizacion->formato =  $request->obtenerDatosCotizacion['formato'];
         $cotizacion->lang =  $request->obtenerDatosCotizacion['language'];
         $cotizacion->comentarios = isset($request->obtenerDatosCotizacion['comentarios']) ? $request->obtenerDatosCotizacion['comentarios'] : '' ;
+
+        $cotizacion->banners = isset($request->obtenerDatosCotizacion['bannersConfig']) ? $request->obtenerDatosCotizacion['bannersConfig'] : "";
+
         if(session('domain') == 'gruposim.com'){
             $cotizacion->autorized = $request->autorized ? $request->autorized : 0;
         }

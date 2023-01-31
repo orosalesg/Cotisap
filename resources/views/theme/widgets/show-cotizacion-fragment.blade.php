@@ -128,32 +128,67 @@
                         <div class="col-md-12">
                             <br>
                             @if(session('domain') == 'gruposim.com' && $cotizacion['Quotations'][0]->autorized == 0)
-                            <h5 class="text-danger">*Cotizacion pendiente de autorizacion*</h5>
-                            @foreach($cotizacion['ArtQuotation'] as $articulo)
-                            <div class="row bg-danger d-none">
-                                descuento articulo: {{$articulo->desc}}
-                                descuentp maximo usuraio: {{ $maxdesc }}
-                            </div>
-                            @if($maxdesc > $articulo->desc)
-                            <br>
-                            <button id="saveandupd" class="an-btn an-btn-warning btn-block">Autorizar y
-                                Actualizar</button>
-                            @break
-                            @endif
-                            @endforeach
-                            <br>
-                            <a><button class="an-btn an-btn-primary btn-block disabled">Ver en PDF</button></a>
-                            <br>
-                            <button class="an-btn an-btn-success btn-block disabled">Enviar e-mail</button>
+                                <h5 class="text-danger">*Cotizacion pendiente de autorizacion*</h5>
+                                @foreach($cotizacion['ArtQuotation'] as $articulo)
+                                    <div class="row bg-danger d-none">
+                                        descuento articulo: {{$articulo->desc}}
+                                        descuentp maximo usuraio: {{ $maxdesc }}
+                                    </div>
+                                    @if($maxdesc > $articulo->desc)
+                                        <br>
+                                        <button id="saveandupd" class="an-btn an-btn-warning btn-block">Autorizar y
+                                            Actualizar</button>
+                                        @break
+                                    @endif
+                                @endforeach
+                                <br>
+                                <a><button class="an-btn an-btn-primary btn-block disabled">Ver en PDF</button></a>
+                                <br>
+                                <button class="an-btn an-btn-success btn-block disabled">Enviar e-mail</button>
                             @else
-                            <a target="_blank" href="{{ URL::route('pdfQuotation', $id) }}"><button
-                                    class="an-btn an-btn-primary btn-block">Ver en PDF</button></a>
-                            <br>
-                            <button class="an-btn an-btn-success  btn-block ">Enviar e-mail</button>
+                                
+                                <br>
+                                
                             @endif
-                            <br>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:5px;margin-bottom:5px;">
+                        <div class="col-md-12">
+
+                            <a target="_blank" href="{{ URL::route('pdfQuotation', $id) }}"><button
+                                        class="an-btn an-btn-primary btn-block">Ver en PDF</button></a>
+
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:5px;margin-bottom:5px;">
+                        <div class="col-md-12">
+
+                            <button class="an-btn an-btn-warning btn-block">Duplicar Cotizacion</button>
+
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:5px;margin-bottom:5px;">
+                        <div class="col-md-12">
+
+                            <button class="an-btn an-btn-success  btn-block ">Enviar e-mail</button>
+
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:5px;margin-bottom:5px;">
+                        <div class="col-md-12">
+
                             <button id="makeSAP" class="an-btn an-btn-info disabled btn-block">Crear en SAP</button>
-                            <br>
+
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:5px;margin-bottom:5px;">
+                        <div class="col-md-12">
+
                             <button class="an-btn an-btn-danger disabled btn-block">Solicitar pedido</button>
 
                         </div>
@@ -1128,6 +1163,15 @@ $(document).ready(function() {
 
     var totalint = 0;
 
+    var onChangeDOM = 0;
+
+    $("input, select, textarea").on("change",document,function(){
+        onChangeDOM += 1;
+        $(window).bind('beforeunload', function(){
+            return 'Are you sure you want to leave?';
+        });
+    });
+
     $("#container-pay").find("[id^='formMonto']").each(function(key, obj) {
         totalint += Number($(obj).val());
     });
@@ -1152,7 +1196,6 @@ $(document).ready(function() {
                 autorized: 1
             },
             success: function(result) {
-                console.log(result);
                 $("#loading").hide();
 
 
@@ -1172,7 +1215,6 @@ $(document).ready(function() {
                         msg: 'La cotizacion ' + {{ $cotizacion['Quotations'][0] -> id }} + ' ha sido autorizada',
                     },
                     success: function(result3) {
-                        console.log(result3);
                     },
                     error: function(result4) {
                         console.log("Error sendemail" + result2);
@@ -1438,8 +1480,6 @@ $(document).ready(function() {
                 obtenerDatosCotizacion: obtenerDatosCotizacion()
             },
             success: function(result) {
-                console.log("Resultado: ");
-                console.log(result);
                 $("#loading").hide();
                 toastr.success('Cotizacion actualizada correctamente',
                     'Actualizado correctamente');
@@ -1450,6 +1490,8 @@ $(document).ready(function() {
                     $('#item-product\\[' + Number(key + 1) + '\\]').attr(
                         "data-producto", result.articulos[key].id);
                 });
+
+                $(window).unbind('beforeunload');
 
                 setTimeout(function() {
                     window.location.reload(1);
@@ -1535,10 +1577,6 @@ $(document).ready(function() {
                 $(this).html(itemprod);
 
             });
-
-            /*$("#contenerdor-products").empty();
-            console.log(itemprod);
-            $("#contenerdor-products").append(itemprod);*/
 
             productos = count + 1;
         });
@@ -1683,21 +1721,12 @@ $(document).ready(function() {
 
         $('#itemMoneda\\[' + productItem + '\\]').text(monedaLabel);
 
-        console.log(productItem);
-
         var cantidad = $('#itemCantidad\\[' + productItem + '\\]').val();
         var precioLista = $('#itemPlista\\[' + productItem + '\\]').val();
         var itemPVenta = $('#itemPVenta\\[' + productItem + '\\]').text();
         var factor = $('#itemFactor\\[' + productItem + '\\]').val();
         var costo = $('#itemCosto\\[' + productItem + '\\]').text();
         var descuento = $('#itemDesc\\[' + productItem + '\\]').val();
-
-        console.log("Intem [ " + productItem + " ) : " + cantidad);
-        console.log("Intem [ " + productItem + " ) : " + precioLista);
-        console.log("Intem [ " + productItem + " ) : " + itemPVenta);
-        console.log("Intem [ " + productItem + " ) : " + factor);
-        console.log("Intem [ " + productItem + " ) : " + costo);
-        console.log("Intem [ " + productItem + " ) : " + descuento);
 
         $('#itemDescOto\\[' + productItem + '\\]').text(descuento + '%');
         //itemPVenta = Number( parseFloat( Number(precioLista) - Number( descuento * precioLista / 100) ) );
@@ -1719,10 +1748,6 @@ $(document).ready(function() {
         $('#itemImporteS\\[' + productItem + '\\]').text(Number(precioCantidad).toFixed(2));
 
         $('#itemImporteT\\[' + productItem + '\\] b').text(Number(precioCantidad).toFixed(2));
-
-        console.log("Precio de lista " + precioLista);
-        console.log("Precio de venta " + itemPVenta);
-        console.log("porcentaje a descontar " + Number(1 - descuento / 100).toFixed(2));
 
     }
 
@@ -1827,7 +1852,6 @@ $(document).ready(function() {
 
         var arrBanners = new Array();
 
-        console.log($("[id^='bnr']").length)
 
         $("[id^='bnr']").each(function(index,element){
 
@@ -1854,7 +1878,6 @@ $(document).ready(function() {
             language: $("#langCoti").val(),
             bannersConfig: JSON.stringify(getbanners())
         };
-        console.log(datos);
         return datos;
 
     }
@@ -2023,10 +2046,6 @@ $(document).ready(function() {
 
     }
 
-    console.log(obtenerDatosCotizacion());
-
-    console.log(obtenerDatosArticulosSAP());
-
     // **** Crear en SAP
 
 
@@ -2052,7 +2071,6 @@ $(document).ready(function() {
                             }]
                         },
                         success: function(data) {
-                            console.log(data);
                         },
                         error: function() {
                             console.log("Error :(");

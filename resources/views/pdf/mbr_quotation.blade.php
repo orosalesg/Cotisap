@@ -360,7 +360,10 @@
 	</div>
 
 	<div id='promocion'>
-		<img style="width: 100%;height: 150px;padding: 10px 20px;box-sizing: border-box;display: block; position:fixed; bottom:0;" src="assets/img/bannerscotizacion/{{ $data['NoImagen'] }}.jpg"></img>
+	<img style="width: 100%;height: 150px;padding: 10px 20px;box-sizing: border-box;display: block; 
+            position:absolute; bottom:0;margin-top:100%-150" 
+            src="{{ $data['rutaimg'] }}"></img>
+
 	</div>
 	<!--<img style="width: 100%;
 		height: 150px;

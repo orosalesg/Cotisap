@@ -45,8 +45,7 @@ class PDFController extends Controller
         $company = Company::where('dominio' ,explode('@', $email)[1])
                         ->get();
         $spectypes = SpecsType::all();
-        //Para imagen de cotizacion aleatoria
-        $imagen = rand(0, 4);
+        
         $rowArts = [];
 
         /**
@@ -146,6 +145,39 @@ class PDFController extends Controller
               break;
           }
         }
+
+        /**
+         * Para mostar ruta de imagen verada/meraki
+         */
+
+        $rutaimg = "";
+
+        foreach(json_decode($Quotation->banners) as $banner){
+            
+          if(!$banner->checked){
+            continue;
+          }
+
+          //Search for images inside {{banner->name}} folder
+          $imagesarr_glob = glob(dirname(__DIR__, 3) . "/public/assets/img/bannerscotizacion/" . $banner->name ."/*.{jpeg,jpg,gif,png}", GLOB_BRACE);
+
+          //Get qty of image files
+          $imagesqty = count($imagesarr_glob);
+
+          //Para imagen de cotizacion aleatoria
+          $imagen = rand(0, $imagesqty - 1);
+
+          //split file path to get file name
+          $imagearr = explode("/",$imagesarr_glob[$imagen]);
+          $imagearr_qty = count($imagearr);
+
+          $rutaimg = "assets/img/bannerscotizacion/" . $banner->name . "/" . $imagearr[$imagearr_qty - 1];
+          
+        }
+
+        /**
+         * Variable que contiene informacion de la cotizacion para enviar a vista pdf
+         */
         
         $data = [
             'nombrecotizacion' => $nombrecotizacion,
@@ -163,7 +195,7 @@ class PDFController extends Controller
               'MXN' => number_format($total_cotizacion_mxn, 2, '.', ','),
               //'USD' => number_format($total_cotizacion_usd, 2, '.', ',')
             ],
-            'NoImagen' => $imagen,
+            'rutaimg' => $rutaimg,
             'Notes' => $Notes,
             'Specs' => $types
         ];

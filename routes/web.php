@@ -131,9 +131,14 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'rol']], functio
         Route::post('nueva-cotizacion/getDataCotizacionReview', 'CotizacionController@getDataCotizacionReview')->name('getDataCotizacionReview');
         Route::post('nueva-cotizacion/getDataCotizacionReviewAll', 'CotizacionController@getDataCotizacionReviewAll')->name('getDataCotizacionReviewAll');
         Route::get('nueva-cotizacion/show/{id}', 'CotizacionController@show')->name('show-cotizacion');
+        //Duplicar la cotizacion
+        Route::post('nueva-cotizacion/duplicateCotizacion', 'CotizacionController@duplicateCotizacion')->name('duplicateCotizacion');
+        
         Route::post('nueva-cotizacion/show/payment', 'CotizacionController@setPayment')->name('setPayment');
         Route::post('nueva-cotizacion/deleteProduct', "CotizacionController@deleteProduct")->name('deleteProduct');
         Route::post('nueva-cotizacion/updateCotizacion', "CotizacionController@updateCotizacion")->name('updateCotizacion');
+        
+        
         Route::post('nueva-cotizacion/sendmailaut', 'CotizacionController@sendmailaut')->name('sendmailaut');
         Route::post('nueva-cotizacion/sendmailgrant', 'CotizacionController@sendmailgrant')->name('sendmailgrant');
         Route::get('/pdf/{numCotizacion}', 'PDFController@pdfQuotation')->name('pdfQuotation');

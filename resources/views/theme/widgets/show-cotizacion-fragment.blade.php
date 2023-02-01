@@ -165,7 +165,8 @@
                     <div class="row" style="margin-top:5px;margin-bottom:5px;">
                         <div class="col-md-12">
 
-                            <button class="an-btn an-btn-warning btn-block">Duplicar Cotizacion</button>
+                            <button class="an-btn an-btn-warning btn-block" id="btnDuplicate" name="btnDuplicate">
+                                Duplicar Cotizacion</button>
 
                         </div>
                     </div>
@@ -1108,6 +1109,36 @@
     </div>
 </div>
 
+<!-- Agregar nuevo registro -->
+<div class="modal fade primary" id="dupCoti" tabindex="-1" role="dialog" aria-labelledby="dupCoti">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="dupCotiLabel">{{ 'Cotizacion duplicada correctamente' }}</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    {{ 'La cotización se duplicó con exito con el siguiente numero de cotización' }}
+                    <br>
+                    <b>
+                        <a id="duplicatedCoti" target="_blank" href="">
+                            Cotización: <span id="numCotizacionResult"></span>
+                        </a>
+                    </b>
+                    <br>
+                    <i>Nota: Da click para abrir en una nueva ventana.</i><span id="DescMayor"></span>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href=""><button id="return-home" type="button" class="an-btn an-btn-danger"
+                        data-dismiss="modal">{{ 'Cerrar' }}</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--<div class="floatButtons">
     <button id="updateFloat" class="an-btn btn-success block-icon"><i class="ion-check"></i> Actualizar</button>
 </div>-->
@@ -1504,6 +1535,37 @@ $(document).ready(function() {
             }
         });
 
+
+    });
+
+    $("#btnDuplicate").click(function(){
+
+        $("#loading").show();
+
+        $.ajax({
+            type: "post",
+            url: "{{ URL::route('duplicateCotizacion') }}",
+            data: {
+                id: "{{ $cotizacion['Quotations'][0]->id }}"
+            },
+            success: function(result){
+
+                $("#dupCoti").modal("show");
+                
+                $("#duplicatedCoti").attr('href', "/dashboard/cotizaciones/nueva-cotizacion/show/" + result
+                    .numCotizacionMD5);
+
+                $("#numCotizacionResult").text(result.numCotizacion);
+
+                $("#loading").hide();
+            },
+            error: function(msg){
+
+                toastr["error"]("Error al duplicar", msg);
+
+                $("#loading").hide();
+            }
+        });
 
     });
 

@@ -164,6 +164,69 @@ class CotizacionController extends Controller
             ]);
     }   
 
+
+    /**
+     * 
+     * Duplicar cotizacion
+     * 
+     */
+
+    public function duplicateCotizacion(Request $request){
+/*
+        //buscamos la cotizacion a duplicar
+        $quote = Cotizacion::find($request->id);
+
+        //Llamamos la funcion replicate y lo asignamos a una nueva variable
+        $newquote = $quote->replicate();
+
+        //Obtenemos un nuevo numero de cotizacion
+        $numCotizacion = Lib::getGUID();
+
+        $newquote->numCotizacion = $numCotizacion;
+
+        //Obtenemos la fecha de hoy para los campos de created_at y updated_at
+        $newdate = new DateTime();
+
+        $newquote->created_at = $newdate;
+
+        $newquote->updated_at = $newdate;
+
+        //Guardamos la informacion gneral de la cotizacion duplicada
+        $newquote->save();
+*/
+        //Obtenemos una matriz con los articulos que coincidan con el numero de cotizacion
+        $articulosarr = Articulo::where('numCotizacion','=', "B0E39791-0BFF");
+
+        return response()->json([
+            'articulos' => $articulosarr,
+        ]);
+
+        foreach($articulosarr as $articulo){
+            //Buscamos cada articulo dentro de la matriz para duplicarlo y 
+            //cambiar los datos de referencia a la informacion general de la cotizacion
+            $articuloaux = Articulo::find($articulo->artiuclo->id);
+
+            $newarticulo = $articuloaux->replicate();
+
+            $newarticulo->numCotizacion = $numCotizacion;
+
+            $newarticulo->created_at = $newdate;
+
+            $newarticulo->updated_at = $newdate;
+
+            $newarticulo->save();
+
+        }
+
+        return response()->json([
+            'status' => true,
+            'numCotizacion' => $numCotizacion,
+        ]);
+
+
+
+    }
+    
     
     /**
      *
@@ -913,7 +976,9 @@ class CotizacionController extends Controller
     } 
 
 
-    // Delete Cotizacion
+    /**
+     * Delete Cotizacion
+     */
 
     public function deleteProduct(Request $request){
 
@@ -936,7 +1001,9 @@ class CotizacionController extends Controller
         ]) ;
     }
 
-    // Update Cotizacion 
+    /**
+     * Update Cotizacion
+     */
 
     public function updateCotizacion(Request $request){
         
@@ -1026,19 +1093,24 @@ class CotizacionController extends Controller
             "articulos" => $articulos,
         ]);
     }
+
+    
     /*
     **  Funcion para mandar email cuando el descuento es mayor al permitido
     */
+
     public function getMaxdesc(){
         $rolvalomar = Auth::user()->U_admin ? Auth::user()->U_admin : "V";
         $rolsessionomar = Rol::where('rol', $rolvalomar)->get();
         //$maxdesc = $rolsessionomar->maxdesc;
         return $rolsessionomar[0]->maxdesc;
     }
+
     public function sendmailaut(){
         //enviamos el numero de cotizacion y el usuario que lo cotizo
         Mail::send(new General());
     }
+
     public function sendmailgrant(){
         //enviamos el numero de cotizacion y el usuario que lo cotizo
         Mail::send(new General());

@@ -1553,7 +1553,7 @@ $(document).ready(function() {
                 $("#dupCoti").modal("show");
                 
                 $("#duplicatedCoti").attr('href', "/dashboard/cotizaciones/nueva-cotizacion/show/" + result
-                    .numCotizacionMD5);
+                    .numCotizacion);
 
                 $("#numCotizacionResult").text(result.numCotizacion);
 

@@ -347,13 +347,13 @@
                     <select id="notes" class="an-form-control">
                         <option value=""></option>
                         @if(session('domain') == 'gruposim.com')
-                        @foreach($notas as $nota)
-                        <option value="{{ $nota->id }}">{{ $nota->name }}</option>
-                        @endforeach
+                            @foreach($notas as $nota)
+                                <option value="{{ $nota->id }}">{{ $nota->name }}</option>
+                            @endforeach
                         @else
-                        @foreach($notas as $nota)
-                        <option value="{{ $nota->Code }}">{{ $nota->Name }}</option>
-                        @endforeach
+                            @foreach($notas as $nota)
+                                <option value="{{ $nota->Code }}">{{ $nota->Name }}</option>
+                            @endforeach
                         @endif
 
                     </select>

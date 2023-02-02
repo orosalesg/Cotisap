@@ -172,7 +172,7 @@ class CotizacionController extends Controller
      */
 
     public function duplicateCotizacion(Request $request){
-/*
+
         //buscamos la cotizacion a duplicar
         $quote = Cotizacion::find($request->id);
 
@@ -193,18 +193,14 @@ class CotizacionController extends Controller
 
         //Guardamos la informacion gneral de la cotizacion duplicada
         $newquote->save();
-*/
-        //Obtenemos una matriz con los articulos que coincidan con el numero de cotizacion
-        $articulosarr = Articulo::where('numCotizacion','=', "B0E39791-0BFF");
 
-        return response()->json([
-            'articulos' => $articulosarr,
-        ]);
+        //Obtenemos una matriz con los articulos que coincidan con el numero de cotizacion
+        $articulosarr = Articulo::where('numCotizacion','=', "B0E39791-0BFF")->get();
 
         foreach($articulosarr as $articulo){
             //Buscamos cada articulo dentro de la matriz para duplicarlo y 
             //cambiar los datos de referencia a la informacion general de la cotizacion
-            $articuloaux = Articulo::find($articulo->artiuclo->id);
+            $articuloaux = Articulo::find($articulo->id);
 
             $newarticulo = $articuloaux->replicate();
 

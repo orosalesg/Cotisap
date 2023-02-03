@@ -723,20 +723,32 @@
     </div>
 </div>
 
-
 <div class="row">
 
     <div class="col-md-6">
         <div class="an-single-component with-shadow ">
 
             <div class="an-component-header">
-                <h6>Notas comerciales</h6>
+                <div class="col-md-4">
+                    <h6>Notas comerciales</h6>
+                </div>
+                <div class="col-md-8">
+                    <select id="notes" class="an-form-control">
+                        <option value=""></option>
+                        @foreach($notas as $nota)
+                            <option value="{{ $nota->Code }}">{{ $nota->Name }}</option>
+                        @endforeach
+                    </select>
+                    
+                </div>
             </div>
 
             <div class="an-component-body">
                 <div class="an-helper-block">
 
-                    {!! $cotizacion['Notes']->condiciones ?? '' !!}
+                    <p id="notas-condiciones">
+                        {!! $cotizacion['Notes']->condiciones ?? '' !!}
+                    </p>
 
                 </div>
             </div>
@@ -2108,6 +2120,28 @@ $(document).ready(function() {
 
     }
 
+    /**
+     * Editar las notas comerciales
+     */
+
+    $('#notes').on('select2:select', function(e) {
+        var data = e.params.data;
+        console.log(data.id);
+        $.ajax({
+            url: '{{ URL::route("getNotasData") }}',
+            type: 'get',
+            data: {
+                q: data.id
+            },
+            success: function(result) {
+                $("#notas-condiciones").html(result[0].U_conditions);
+            },
+            error: function() {
+
+            }
+        });
+    });
+
     // **** Crear en SAP
 
 
@@ -2143,6 +2177,12 @@ $(document).ready(function() {
 
             });
             --}}
+    
+    /*** Iniciar Notas comerciales ***/
+
+    $("#notes").select2({
+        placeholder: 'Selecciona ...'
+    });
 
 
 

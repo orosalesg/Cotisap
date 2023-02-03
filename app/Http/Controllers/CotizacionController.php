@@ -78,7 +78,8 @@ class CotizacionController extends Controller
             'maxdesc' => self::getMaxdesc(),
             'getPayment' => self::getPayment($id),
             'especificacionesType' => self::getEspecificacionesTipo(),
-            'getEspecificaciones' => self::getEspecificaciones()
+            'getEspecificaciones' => self::getEspecificaciones(),
+            'notas' => self::getNotas(),
         ]);
     }
 

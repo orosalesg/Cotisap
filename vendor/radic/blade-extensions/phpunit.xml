@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--~
+  ~ Part of the Laradic PHP Packages.
+  ~
+  ~ Copyright (c) 2017. Robin Radic.
+  ~
+  ~ The license can be found in the package and online at https://laradic.mit-license.org.
+  ~
+  ~ @copyright Copyright 2017 (c) Robin Radic
+  ~ @license https://laradic.mit-license.org The MIT License
+  -->
+
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="tests/bootstrap.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnError="false"
+         stopOnFailure="false"
+         verbose="true"
+>
+    <testsuites>
+        <testsuite name="Blade Extensions Test Suite">
+            <directory suffix=".php">./tests/</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src</directory>
+        </whitelist>
+    </filter>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="QUEUE_DRIVER" value="sync"/>
+    </php>
+
+    <logging>
+        <!--<log type="coverage-html" target="ci/codeCoverage/html" charset="UTF-8" yui="true" highlight="false" lowUpperBound="35" highLowerBound="70"/>-->
+        <log type="coverage-clover" target="ci/codeCoverage/clover.xml"/>
+        <log type="coverage-xml" target="ci/codeCoverage/xml"/>
+        <!--<log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>-->
+        <!--<log type="testdox-text" target="php://stdout"/>-->
+        <log type="testdox-text" target="ci/codeCoverage/testdox/testdox.txt"/>
+        <log type="testdox-html" target="ci/codeCoverage/testdox/testdox.html"/>
+        <log type="junit" target="ci/codeCoverage/junit-logfile.xml"/>
+    </logging>
+
+</phpunit>
+
+

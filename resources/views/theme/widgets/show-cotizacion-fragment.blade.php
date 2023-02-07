@@ -736,6 +736,12 @@
                     <select id="notes" class="an-form-control">
                         <option value=""></option>
                         @foreach($notas as $nota)
+
+                            @if($cotizacion['Quotations'][0]->notasCotizacion == $nota->Code )
+                                <option value="{{ $nota->Code }}" selected>{{ $nota->Name }}</option>
+                                @next
+                            @endif
+
                             <option value="{{ $nota->Code }}">{{ $nota->Name }}</option>
                         @endforeach
                     </select>
@@ -761,13 +767,34 @@
         <div class="an-single-component with-shadow ">
 
             <div class="an-component-header">
-                <h6>Especificaciones </h6>
+                <div class="col-md-4">
+                    <h6>Especificaciones </h6>
+                </div>
+                <div class="col-md-8">
+                    <select name="speci" id="speci" class="an-form-control" multiple>
+                        @foreach($getEspecificaciones as $getEspecificacionesItem)
+
+                            {{-- Buscamos cada codigo de las especificaciones dentro del json guardado en la base 
+                                (las especificaciones seleccionadas)  --}}
+
+                            @if( in_array($getEspecificacionesItem->id, json_decode($cotizacion['Quotations'][0]->especificaciones), false) ) )
+
+                                <option value="{{ $getEspecificacionesItem->id }}" selected>
+                                {{ $getEspecificacionesItem->nombre }} </option>
+
+                                @next
+
+                            @endif
+
+                            <option value="{{ $getEspecificacionesItem->id }}" >
+                                {{ $getEspecificacionesItem->nombre }} </option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
 
             <div class="an-component-body">
                 <div class="an-helper-block">
-
-                    {!! $cotizacion['Notes']->condiciones ?? '' !!}
 
                 </div>
             </div>
@@ -1520,7 +1547,8 @@ $(document).ready(function() {
                 id: {{ $cotizacion['Quotations'][0] -> id }},
                 numCotizacion: "{{ $cotizacion['Quotations'][0]->numCotizacion }}",
                 obtenerDatosArticulos: obtenerDatosArticulos(),
-                obtenerDatosCotizacion: obtenerDatosCotizacion()
+                obtenerDatosCotizacion: obtenerDatosCotizacion(),
+                especificaciones: $("#speci").val(),
             },
             success: function(result) {
                 $("#loading").hide();
@@ -1950,6 +1978,7 @@ $(document).ready(function() {
             comentarios: $("#coments").val(),
             formato: $("#formatoCoti").val(),
             language: $("#langCoti").val(),
+            notas: $("#notes").val(),
             bannersConfig: JSON.stringify(getbanners())
         };
         return datos;
@@ -2182,6 +2211,11 @@ $(document).ready(function() {
 
     $("#notes").select2({
         placeholder: 'Selecciona ...'
+    });
+
+    $("#speci").select2({
+        placeholder: "Selecciona las especificaciones",
+        width: 'resolve'
     });
 
 

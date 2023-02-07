@@ -196,9 +196,10 @@ class CotizacionController extends Controller
         $newquote->save();
 
         //Obtenemos una matriz con los articulos que coincidan con el numero de cotizacion
-        $articulosarr = Articulo::where('numCotizacion','=', "B0E39791-0BFF")->get();
+        $articulosarr = Articulo::where('numCotizacion','=', $quote->numCotizacion)->get();
 
         foreach($articulosarr as $articulo){
+            
             //Buscamos cada articulo dentro de la matriz para duplicarlo y 
             //cambiar los datos de referencia a la informacion general de la cotizacion
             $articuloaux = Articulo::find($articulo->id);
@@ -1020,6 +1021,10 @@ class CotizacionController extends Controller
         $cotizacion->comentarios = isset($request->obtenerDatosCotizacion['comentarios']) ? $request->obtenerDatosCotizacion['comentarios'] : '' ;
 
         $cotizacion->banners = isset($request->obtenerDatosCotizacion['bannersConfig']) ? $request->obtenerDatosCotizacion['bannersConfig'] : "";
+
+        $cotizacion->notasCotizacion = isset($request->obtenerDatosCotizacion['notas']) ? $request->obtenerDatosCotizacion['notas'] : "";
+
+        $cotizacion->especificaciones = json_encode($request->especificaciones);
 
         if(session('domain') == 'gruposim.com'){
             $cotizacion->autorized = $request->autorized ? $request->autorized : 0;

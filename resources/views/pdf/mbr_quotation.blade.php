@@ -89,7 +89,7 @@
 		<table>
 		<tr>
 			<td>			
-				<img width="90" src="http://account.cotisap.com/assets/img/logo-mbr.png"><br><br>
+				<img width="90" src="https://account.cotisap.com/assets/img/logo-mbr.png"><br><br>
 					<font size="1">
 						{!! $data['Cliente'][0][0]->clienteNombre ?? $data['Quotation']->nombreCliente !!} <br>
 						{!! $data['Cliente'][0][0]->clienteRazon ?? '' !!}

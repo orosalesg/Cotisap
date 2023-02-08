@@ -135,7 +135,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
                 <h4 id="myModalLabel">{{ 'Agregar registro' }}</h4>
                 <h4 id="myModalLabel2" style="display: none;">{{ 'Actualizar registro' }}</h4>
               </div>

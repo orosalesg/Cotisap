@@ -7,7 +7,7 @@
           <div class="an-component-body">
             <div class="an-helper-block">
               
-              <label for="clienteCodigo">{{ 'C&oacute;digo de cliente' }}: </label>
+              <label for="clienteCodigo">{{ 'Código de cliente' }}: </label>
               <div class="an-input-group">
                 <div class="an-input-group-addon"><i class="ion-ios-checkmark-outline"></i></div>
                 <!--<input type="text" class="an-form-control ok" id="clienteCodigo" name="clienteCodigo" value="{{ $cotizacion['Quotations'][0]->numCliente }}">-->
@@ -26,14 +26,14 @@
   <div class="col-md-6">
         <div class="an-single-component with-shadow">
           <div class="an-component-header">
-            <h6>{{ 'Operaciones de la cotizaci&oacute;n' }}</h6>
+            <h6>{{ 'Operaciones de la cotización' }}</h6>
           </div>
           <div class="an-component-body">
             <div class="an-helper-block">
                 <div class="row">
                     <div class="col-md-6">
                       <p>
-                        {{ 'A continuaci&oacute;n puedes seleccionar el estatus de la cotizaci&oacute;n.' }}
+                        {{ 'A continuación puedes seleccionar el estatus de la cotización.' }}
                       </p>
                       <div class="an-input-group">
                         <label for="estatus">Estatus: </label><br>
@@ -45,7 +45,7 @@
                         </select>
                       </div>
                       <br>
-                      {{ 'Programar cotizaci&oacute;n' }} :
+                      {{ 'Programar cotización' }} :
                       <br>
 
                       <input type="text" name="quotationCron" id="quotationCron">
@@ -71,7 +71,7 @@
   <div class="col-md-3">       
       <div class="an-single-component with-shadow totales">
          <div class="an-component-header">
-           <h6>{{ 'Total de la cotizaci&oacute;n' }}</h6>
+           <h6>{{ 'Total de la cotización' }}</h6>
          </div>
          <div class="an-component-body">
            <div class="an-helper-block">
@@ -334,7 +334,7 @@
 
               <div class="row menu-product">
                   <div class="col-md-5">
-                    <span>{{ '# Art&iacute;culo *' }}<br><br></span>
+                    <span>{{ '# Artículo *' }}<br><br></span>
                   </div>
                   <div class="col-md-1 ">
                     <span>{{ 'P. Lista *' }}<br></span>

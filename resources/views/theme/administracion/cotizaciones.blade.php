@@ -26,14 +26,14 @@
           <div class="an-breadcrumb wow fadeInUp">
             <ol class="breadcrumb">
               <li><a href="#">{{ 'Inicio' }}</a></li>
-              <li><a href="#">{{ 'Administraci&oacute;n' }}</a></li>
+              <li><a href="#">{{ 'Administración' }}</a></li>
               <li class="active">{{ 'Cotizaciones' }}</li>
             </ol>
           </div>
 
           <div class="an-body-topbar wow fadeIn">
             <div class="an-page-title">
-              <h2>{{ 'Administraci&oacute;n de Cotizaciones' }}</h2>
+              <h2>{{ 'Administración de Cotizaciones' }}</h2>
             </div>
           </div>
 

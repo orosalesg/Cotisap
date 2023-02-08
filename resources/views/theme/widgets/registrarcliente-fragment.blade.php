@@ -10,7 +10,7 @@
                 <div class="an-helper-block">
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="clienteCodigo">C&oacute;digo/Nombre del cliente: </label>
+                            <label for="clienteCodigo">Código/Nombre del cliente: </label>
                             <div class="an-input-group">
                                 <select class="an-form-control" id="clienteCodigo" name="clienteCodigo" >
                                 </select>
@@ -116,12 +116,12 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
                     <h4 id="addCotizacionLabel">{{ 'Puntos Guardados correctamente' }}</h4>
                 </div>
                 <div class="modal-body">
                     <p>
-                        {{ 'Recuerda que los puntos tienen validez de un a&ntilde;o' }}
+                        {{ 'Recuerda que los puntos tienen validez de un año' }}
                         <br>
                             <b>
                                 <a id="pdfCoti" target="_blank" href="">

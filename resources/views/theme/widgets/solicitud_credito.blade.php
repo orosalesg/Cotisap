@@ -5,14 +5,14 @@
   <div class="col-md-6">
     <div class="an-single-component">
       <div class="an-component-header">
-        <h6>{{ 'Informaci&oacute;n general del solicitante' }}</h6>
+        <h6>{{ 'Información general del solicitante' }}</h6>
       </div>
       <div class="an-component-body">    
         <div class="an-helper-block">
 
           <div class="row">
             <div class="col-md-12">
-              <label for="numCuenta">{{ 'Buscar por Nombre o c&oacute;digo' }}</label>
+              <label for="numCuenta">{{ 'Buscar por Nombre o código' }}</label>
               <div class="an-input-group">
                 <div class="an-input-group-addon"><i></i></div>
                 <input type="text" id="numCuenta" class="an-form-control" name="numCuenta">
@@ -32,7 +32,7 @@
               </div>
             </div>
             <div class="col-md-4">
-              <label for="cCodigo">{{ 'C&oacute;digo' }}:</label>
+              <label for="cCodigo">{{ 'Código' }}:</label>
               <div class="an-input-group">
                 <div class="an-input-group-addon"><i></i></div>
                 <input type="text" id="cCodigo" class="an-form-control" name="cCodigo">
@@ -49,7 +49,7 @@
 
           <div class="row">
             <div class="col-md-4">
-              <label for="cTelefono">{{ 'Tel&eacute;fono' }}:</label>
+              <label for="cTelefono">{{ 'Teléfono' }}:</label>
               <div class="an-input-group">
                 <div class="an-input-group-addon"><i></i></div>
                 <input type="text" id="cTelefono" class="an-form-control" name="cTelefono">
@@ -93,7 +93,7 @@
               </div>
             </div>
             <div class="col-md-4">
-              <label for="pcTelefono">{{ 'Tel&eacute;fono' }}:</label>
+              <label for="pcTelefono">{{ 'Teléfono' }}:</label>
               <div class="an-input-group">
                 <div class="an-input-group-addon"><i></i></div>
                 <input type="text" id="pcTelefono" class="an-form-control" name="pcTelefono">
@@ -110,7 +110,7 @@
 
           <div class="row">
             <div class="col-md-12">
-              <h6><b>{{ 'Direcci&oacute;n fiscal' }}</b></h6>
+              <h6><b>{{ 'Dirección fiscal' }}</b></h6>
             </div>            
             <div class="col-md-4">
               <label for="dCalle">{{ 'Calle y número' }}:</label>
@@ -137,7 +137,7 @@
 
           <div class="row">
             <div class="col-md-4">
-              <label for="dMunicipio">{{ 'Municipio / Delegaci&oacute;n' }}:</label>
+              <label for="dMunicipio">{{ 'Municipio / Delegación' }}:</label>
               <div class="an-input-group">
                 <div class="an-input-group-addon"><i></i></div>
                 <input type="text" id="dMunicipio" class="an-form-control" name="dMunicipio">
@@ -151,7 +151,7 @@
               </div>                 
             </div>
             <div class="col-md-4">
-              <label for="dPais">{{ 'Pa&iacute;s' }}:</label>
+              <label for="dPais">{{ 'País' }}:</label>
               <div class="an-input-group">
                 <div class="an-input-group-addon"><i></i></div>
                 <input type="text" id="dPais" class="an-form-control" name="dPais">
@@ -161,7 +161,7 @@
 
           <div class="row">
             <div class="col-md-4">
-              <label for="dPostal">{{ 'C&oacute;digo postal' }}:</label>
+              <label for="dPostal">{{ 'Código postal' }}:</label>
               <div class="an-input-group">
                 <div class="an-input-group-addon"><i></i></div>
                 <input type="text" id="dPostal" class="an-form-control" name="dPostal">
@@ -175,7 +175,7 @@
 
           <div class="row">
             <div class="col-md-12">
-              <h6><b>{{ 'Direcci&oacute;n de env&iacute;o' }}</b></h6>
+              <h6><b>{{ 'Dirección de envío' }}</b></h6>
             </div>            
             <div class="col-md-4">
               <label for="deCalle">{{ 'Calle y número' }}:</label>
@@ -202,7 +202,7 @@
 
           <div class="row">
             <div class="col-md-4">
-              <label for="deMunicipio">{{ 'Municipio / Delegaci&oacute;n' }}:</label>
+              <label for="deMunicipio">{{ 'Municipio / Delegación' }}:</label>
               <div class="an-input-group">
                 <div class="an-input-group-addon"><i></i></div>
                 <input type="text" id="deMunicipio" class="an-form-control" name="deMunicipio">
@@ -216,7 +216,7 @@
               </div>                 
             </div>
             <div class="col-md-4">
-              <label for="dePais">{{ 'Pa&iacute;s' }}:</label>
+              <label for="dePais">{{ 'País' }}:</label>
               <div class="an-input-group">
                 <div class="an-input-group-addon"><i></i></div>
                 <input type="text" id="dePais" class="an-form-control" name="dePais">
@@ -226,7 +226,7 @@
 
           <div class="row">
             <div class="col-md-4">
-              <label for="deCodigo">{{ 'C&oacute;digo postal' }}:</label>
+              <label for="deCodigo">{{ 'Código postal' }}:</label>
               <div class="an-input-group">
                 <div class="an-input-group-addon"><i></i></div>
                 <input type="text" id="deCodigo" class="an-form-control" name="deCodigo">
@@ -251,7 +251,7 @@
 
     <div class="an-single-component">
       <div class="an-component-header">
-        <h6>{{ 'Cr&eacute;dito solicitado' }}</h6>
+        <h6>{{ 'Crédito solicitado' }}</h6>
       </div>
       <div class="an-component-body">    
         <div class="an-helper-block">
@@ -259,7 +259,7 @@
           <div class="row">
             
             <div class="col-md-4">
-              <label for="creMonto">{{ 'Monto de cr&eacute;dito solicitado (MN antes de IVA)' }}:</label>
+              <label for="creMonto">{{ 'Monto de crédito solicitado (MN antes de IVA)' }}:</label>
               <div class="an-input-group">
                 <div class="an-input-group-addon"><i></i></div>
                 <input type="text" id="creMonto" class="an-form-control" name="creMonto">
@@ -267,7 +267,7 @@
             </div>
             
             <div class="col-md-4">
-              <label for="crePlazo">{{ 'Plazo del cr&eacute;dito solicitado (d&iacute;as naturales)' }}:</label>
+              <label for="crePlazo">{{ 'Plazo del crédito solicitado (días naturales)' }}:</label>
               <div class="an-input-group">
                 <div class="an-input-group-addon"><i></i></div>
                 <input type="text" id="crePlazo" class="an-form-control" name="crePlazo">
@@ -286,7 +286,7 @@
 
           <div class="row">
             <div class="col-md-4">
-              <label for="creRegistro">{{ 'Registro de importador n&uacute;mero (si aplica)' }}:</label>
+              <label for="creRegistro">{{ 'Registro de importador número (si aplica)' }}:</label>
               <div class="an-input-group">
                 <div class="an-input-group-addon"><i></i></div>
                 <input type="text" id="creRegistro" class="an-form-control" name="creRegistro">
@@ -329,7 +329,7 @@
             </div>
             
             <div class="col-md-4">
-              <label for="creTipo">{{ 'Tel&eacute;fono(s)' }} (1) :</label>
+              <label for="creTipo">{{ 'Teléfono(s)' }} (1) :</label>
               <div class="an-input-group">
                 <div class="an-input-group-addon"><i></i></div>
                 <input type="text" id="creTipo" class="an-form-control" name="creTipo">
@@ -357,7 +357,7 @@
             </div>
             
             <div class="col-md-4">
-              <label for="creTipo">{{ 'Tel&eacute;fono(s)' }} (2) :</label>
+              <label for="creTipo">{{ 'Teléfono(s)' }} (2) :</label>
               <div class="an-input-group">
                 <div class="an-input-group-addon"><i></i></div>
                 <input type="text" id="creTipo" class="an-form-control" name="creTipo">
@@ -385,7 +385,7 @@
             </div>
             
             <div class="col-md-4">
-              <label for="creTipo">{{ 'Tel&eacute;fono(s)' }} (3) :</label>
+              <label for="creTipo">{{ 'Teléfono(s)' }} (3) :</label>
               <div class="an-input-group">
                 <div class="an-input-group-addon"><i></i></div>
                 <input type="text" id="creTipo" class="an-form-control" name="creTipo">

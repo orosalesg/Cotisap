@@ -86,7 +86,7 @@
                             <div class="col-md-7">
                             </div>
                             <div class="col-md-5 text-right">
-                              <h3>Cambiar contrase&ntilde;a</h3>  
+                              <h3>Cambiar contrase帽a</h3>  
                             </div>
                         </div>
                       <div class="an-tab-control listview">
@@ -107,17 +107,17 @@
                             
                         	<div class="row">
 	                          	<div class="col-md-6">
-									<label>{{ 'Contraseña' }}:</label>
+									<label>{{ 'Contrase帽a' }}:</label>
 									<div class="an-input-group">
 										<div class="an-input-group-addon"><i class=""></i></div>
-										<input type="text" id="pass" class="an-form-control" placeholder="Nueva contrase&ntilde;a">
+										<input type="text" id="pass" class="an-form-control" placeholder="Nueva contrase帽a">
 									</div>
 	                          	</div>
 	                          	<div class="col-md-6">
-									<label>{{ 'Repetir contraseña' }}:</label>
+									<label>{{ 'Repetir contrase帽a' }}:</label>
 									<div class="an-input-group">
 										<div class="an-input-group-addon"><i class=""></i></div>
-										<input type="text" id="passconf" class="an-form-control" placeholder="Repita nueva contrase&ntilde;a">
+										<input type="text" id="passconf" class="an-form-control" placeholder="Repita nueva contrase帽a">
 									</div>                          		
 	                          	</div>
                         	</div>
@@ -126,7 +126,7 @@
                         	    <div class="col-md-9">
                         	    </div>
                         	    <div class="col-md-3">
-                        	        <input type="submit" id="newPass" class="btn an-btn-primary" name="success" value="Cambiar Contrase&ntilde;a">
+                        	        <input type="submit" id="newPass" class="btn an-btn-primary" name="success" value="Cambiar Contrase帽a">
                         	        <img id="ajax-loader" src="{{ asset('assets/img/loading.gif') }}" height="20" style="display: none;"/></button>
                         	    </div>
                         	</div>

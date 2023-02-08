@@ -5,13 +5,13 @@
 	<div class="col-md-12">
 		<div class="an-single-component">
 			<div class="an-component-header">
-				<h6>{{ 'Informaci&oacute;n General' }}</h6>
+				<h6>{{ 'Información General' }}</h6>
 			</div>
 			<div class="an-component-body">
 				<div class="an-helper-block">
 					<div class="row">
 						<div class="col-md-6">
-							<label>{{ 'Nombre o raz&oacute;n social' }}</label>
+							<label>{{ 'Nombre o razón social' }}</label>
 							<div class="an-input-group">
 								<div class="an-input-group-addon"><i></i></div>
 								<input type="text" name="igNombre" id="nombre_gral" class="an-form-control not-null">
@@ -25,7 +25,7 @@
 							</div>								
 						</div>
 						<div class="col-md-3">
-							<label>{{ 'Tel&eacute;fono conmutador' }}</label>
+							<label>{{ 'Teléfono conmutador' }}</label>
 							<div class="an-input-group">
 								<div class="an-input-group-addon"><i></i></div>
 								<input type="text" name="igNombre" id="tel_gral" class="an-form-control">
@@ -67,13 +67,13 @@
 	<div class="col-md-6">
 		<div class="an-single-component">
 			<div class="an-component-header">
-				<h6>{{ 'Direcci&oacute;n fiscal' }}</h6>
+				<h6>{{ 'Dirección fiscal' }}</h6>
 			</div>
 			<div class="an-component-body">
 				<div class="an-helper-block">
 						<div class="row">
 							<div class="col-md-6">
-								<label>{{ 'Calle y n&uacute;mero' }}</label>
+								<label>{{ 'Calle y número' }}</label>
 								<div class="an-input-group">
 									<div class="an-input-group-addon"><i></i></div>
 									<input type="text" name="igNombre" id="calle-fiscal" class="an-form-control not-null">
@@ -96,7 +96,7 @@
 								</div>								
 							</div>														
 							<div class="col-md-6">
-								<label>{{ 'Municipio / Delegaci&oacute;n' }}</label>
+								<label>{{ 'Municipio / Delegación' }}</label>
 								<div class="an-input-group">
 									<div class="an-input-group-addon"><i></i></div>
 									<input type="text" name="igNombre" id="municipio-fiscal" class="an-form-control not-null">
@@ -105,14 +105,14 @@
 						</div>
 						<div class="row">
 							<div class="col-md-6">
-								<label>{{ 'Pa&iacute;s' }}</label>
+								<label>{{ 'País' }}</label>
 								<div class="an-input-group">
 									<div class="an-input-group-addon"><i></i></div>
 									<input type="text" name="igNombre" id="pais-fiscal" class="an-form-control not-null uppercase">
 								</div>								
 							</div>
 							<div class="col-md-6">
-								<label>{{ 'C&oacute;digo postal' }} <img id="cp-img-fiscal" hidden="hidden" height="18" src="{{ asset('assets/img/loading.gif') }}" /></label>
+								<label>{{ 'Código postal' }} <img id="cp-img-fiscal" hidden="hidden" height="18" src="{{ asset('assets/img/loading.gif') }}" /></label>
 								<div class="an-input-group">
 									<div class="an-input-group-addon"><i></i></div>
 									<input type="number" name="igNombre" id="cp-fiscal" class="an-form-control not-null">
@@ -130,7 +130,7 @@
 	<div class="col-md-6">
 		<div class="an-single-component">
 			<div class="an-component-header">
-				<h6>{{ 'Direcci&oacute;n de env&iacute;o' }}</h6>
+				<h6>{{ 'Dirección de envío' }}</h6>
             	<div class="component-header-right">
 	              <div class="btn-space">
 	                    <button id="copy-btn" class="an-btn an-btn-success block-icon"> <i class="ion-ios-copy-outline"></i>Copiar dirección fiscal</button>
@@ -141,7 +141,7 @@
 				<div class="an-helper-block">
 					<div class="row">
 						<div class="col-md-6">
-							<label>{{ 'Calle y n&uacute;mero' }}</label>
+							<label>{{ 'Calle y número' }}</label>
 							<div class="an-input-group">
 								<div class="an-input-group-addon"><i></i></div>
 								<input type="text" name="igNombre" id="calle-envio" class="an-form-control not-null">
@@ -164,7 +164,7 @@
 							</div>								
 						</div>
 						<div class="col-md-6">
-							<label>{{ 'Municipio / Delegaci&oacute;n' }}</label>
+							<label>{{ 'Municipio / Delegación' }}</label>
 							<div class="an-input-group">
 								<div class="an-input-group-addon"><i></i></div>
 								<input type="text" name="igNombre" id="municipio-envio" class="an-form-control not-null">
@@ -173,14 +173,14 @@
 					</div>
 					<div class="row">
 						<div class="col-md-6">
-							<label>{{ 'Pa&iacute;s' }}</label>
+							<label>{{ 'País' }}</label>
 							<div class="an-input-group">
 								<div class="an-input-group-addon"><i></i></div>
 								<input type="text" name="igNombre" id="pais-envio" class="an-form-control not-null uppercase">
 							</div>								
 						</div>
 						<div class="col-md-6">
-							<label>{{ 'C&oacute;digo postal' }} <img id="cp-img-envio" hidden="hidden" height="18" src="{{ asset('assets/img/loading.gif') }}" /></label>
+							<label>{{ 'Código postal' }} <img id="cp-img-envio" hidden="hidden" height="18" src="{{ asset('assets/img/loading.gif') }}" /></label>
 							<div class="an-input-group">
 								<div class="an-input-group-addon"><i></i></div>
 								<input type="number" name="igNombre" id="cp-envio" class="an-form-control not-null">
@@ -231,7 +231,7 @@
 
 						<div class="row">
 							<div class="col-md-4">
-								<label>{{ 'Recepci&oacute;n de Documentos' }}</label>
+								<label>{{ 'Recepción de Documentos' }}</label>
 								<div class="an-input-group">
 									<div class="an-input-group-addon"><i></i></div>
 									<input type="text" name="igNombre" id="nombre-docs" class="an-form-control not-null">

@@ -31,7 +31,7 @@
           <div class="an-breadcrumb wow fadeInUp">
             <ol class="breadcrumb">
               <li><a href="{{ URL::route('dashboard')}} ">Admin Panel</a></li>
-              <li><a>Adminitraci&oacute;n</a></li>
+              <li><a>Adminitración</a></li>
               <li class="active">Especificaciones</li>
             </ol>
           </div> <!-- end AN-BREADCRUMB -->

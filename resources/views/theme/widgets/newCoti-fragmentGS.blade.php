@@ -23,7 +23,7 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <a href="#" data-toggle="detalleCliente" >{{ 'M&aacute;s informaci&oacute;n del cliente' }}</a> 
+                  <a href="#" data-toggle="detalleCliente" >{{ 'Más información del cliente' }}</a> 
                 </div>
               </div>
             </div>
@@ -33,7 +33,7 @@
   <div class="col-md-9">
         <div class="an-single-component with-shadow">
           <div class="an-component-header">
-            <h6>{{ 'Informaci&oacute;n de cr&eacute;dito' }}</h6>
+            <h6>{{ 'Información de crédito' }}</h6>
           </div>
           <div class="an-component-body">
             <div class="an-helper-block">
@@ -41,7 +41,7 @@
               
             
               <div class="col-md-3">
-                <label for="cotiLimite">{{ 'Limite de cr&eacute;dito' }} (MXN)</label>
+                <label for="cotiLimite">{{ 'Limite de crédito' }} (MXN)</label>
                 <div class="an-input-group">
                   <div class="an-input-group-addon"><i></i></div>
                   <input type="text" id="cotiLimite" class="an-form-control dinero" name="cotiLimite" readonly="true">
@@ -57,7 +57,7 @@
               </div>
 
               <div class="col-md-3">
-                <label for="cotiDisp">{{ 'Cr&eacute;dito disponible'  }} (MXN)</label>
+                <label for="cotiDisp">{{ 'Crédito disponible'  }} (MXN)</label>
                 <div class="an-input-group">
                   <div class="an-input-group-addon"><i></i></div>
                   <input type="text" id="cotiDisp" class="an-form-control dinero" name="cotiDisp" readonly="true">
@@ -65,7 +65,7 @@
               </div>
 
               <div class="col-md-3">
-                <label for="cotiDias">{{ 'D&iacute;as de cr&eacute;dito' }}</label>
+                <label for="cotiDias">{{ 'Días de crédito' }}</label>
                 <div class="an-input-group">
                   <div class="an-input-group-addon"><i></i></div>
                   <input type="text" id="cotiDias" class="an-form-control" name="cotiDias" readonly="true">
@@ -73,7 +73,7 @@
               </div>
 
               <div class="col-md-3">
-                <label for="DocDate">{{ 'Fecha &uacute;ltimo pago' }}</label>
+                <label for="DocDate">{{ 'Fecha último pago' }}</label>
                 <div class="an-input-group">
                   <div class="an-input-group-addon"><i></i></div>
                   <input type="text" id="DocDate" class="an-form-control" name="DocDate" readonly="true">
@@ -81,7 +81,7 @@
               </div>
 
               <div class="col-md-3">
-                <label for="cotiMonto">{{ 'Monto &uacute;ltimo pago' }}</label>
+                <label for="cotiMonto">{{ 'Monto último pago' }}</label>
                 <div class="an-input-group">
                   <div class="an-input-group-addon"><i></i></div>
                   <input type="text" id="cotiMonto" class="an-form-control dinero" name="cotiMonto" readonly="true">
@@ -154,7 +154,7 @@
 
             <div class="row menu-product">
               <div class="col-md-5">
-                <span>{{ '# Art&iacute;culo *' }}<br><br></span>
+                <span>{{ '# Artículo *' }}<br><br></span>
               </div>
               <div class="col-md-1 ">
                 <span>{{ 'P. Lista *' }}<br></span>
@@ -232,7 +232,7 @@
   <div class="col-md-4">       
        <div class="an-single-component with-shadow totales">
           <div class="an-component-header">
-            <h6>{{ 'Total de la cotizaci&oacute;n' }}</h6>
+            <h6>{{ 'Total de la cotización' }}</h6>
           </div>
           <div class="an-component-body">
             <div class="an-helper-block">
@@ -323,14 +323,14 @@
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <label for="cotiEntregaDireccion">{{ 'Direcci&oacute;n de entrega' }}</label>
+                  <label for="cotiEntregaDireccion">{{ 'Dirección de entrega' }}</label>
                   <div class="an-input-group">
                     <div class="an-input-group-addon"><i></i></div>
                     <input type="text" id="cotiEntregaDireccion" class="an-form-control" name="cotiEntregaDireccion">
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <label for="cotiEntregaTele">{{ 'Tel&eacute;fono de contacto' }}</label>
+                  <label for="cotiEntregaTele">{{ 'Teléfono de contacto' }}</label>
                   <div class="an-input-group">
                     <div class="an-input-group-addon"><i></i></div>
                     <input type="text" id="cotiEntregaTele" class="an-form-control" name="cotiEntregaTele" >
@@ -622,7 +622,7 @@
               </div>
 
               <div class="col-md-4">
-                <label for="CardCode">{{ 'C&oacute;digo' }}</label>
+                <label for="CardCode">{{ 'Código' }}</label>
                 <div class="an-input-group">
                   <div class="an-input-group-addon"><i></i></div>
                   <input type="text" id="CardCode" class="an-form-control" name="CardCode" readonly="true">
@@ -638,7 +638,7 @@
               </div>
 
               <div class="col-md-4">
-                <label for="Phone1">{{ 'Tel&eacute;fono' }}</label>
+                <label for="Phone1">{{ 'Teléfono' }}</label>
                 <div class="an-input-group">
                   <div class="an-input-group-addon"><i></i></div>
                   <input type="text" id="Phone1" class="an-form-control" name="Phone1" readonly="true">
@@ -682,7 +682,7 @@
               </div>
 
               <div class="col-md-4">
-                <label for="cpPhone">{{ 'Tel&eacute;fono' }}</label>
+                <label for="cpPhone">{{ 'Teléfono' }}</label>
                 <div class="an-input-group">
                   <div class="an-input-group-addon"><i></i></div>
                   <input type="text" id="cpPhone" class="an-form-control" name="cpPhone" readonly="true">
@@ -698,7 +698,7 @@
               </div>
 
               <div class="col-md-12">
-                <h6><b>{{ 'Direcci&oacute;n fiscal' }}</b></h6>
+                <h6><b>{{ 'Dirección fiscal' }}</b></h6>
               </div>
 
               <div class="col-md-4">
@@ -726,7 +726,7 @@
               </div>
 
               <div class="col-md-4">
-                <label for="fCity2">{{ 'Municipio / Delegaci&oacute;n' }}</label>
+                <label for="fCity2">{{ 'Municipio / Delegación' }}</label>
                 <div class="an-input-group">
                   <div class="an-input-group-addon"><i></i></div>
                   <input type="text" id="fCity2" class="an-form-control" name="fCity2" readonly="true">
@@ -742,7 +742,7 @@
               </div>        
 
               <div class="col-md-4">
-                <label for="fCountry">{{ 'Pa&iacute;s' }}</label>
+                <label for="fCountry">{{ 'País' }}</label>
                 <div class="an-input-group">
                   <div class="an-input-group-addon"><i></i></div>
                   <input type="text" id="fCountry" class="an-form-control" name="fCountry" readonly="true">
@@ -750,7 +750,7 @@
               </div> 
 
               <div class="col-md-4">
-                <label for="fZip">{{ 'C&oacute;digo postal' }}</label>
+                <label for="fZip">{{ 'Código postal' }}</label>
                 <div class="an-input-group">
                   <div class="an-input-group-addon"><i></i></div>
                   <input type="text" id="fZip" class="an-form-control" name="fZip" readonly="true">
@@ -758,7 +758,7 @@
               </div>
 
               <div class="col-md-12">
-                <h6><b>{{ 'Direcci&oacute;n de env&iacute;o' }}</b></h6>
+                <h6><b>{{ 'Dirección de envío' }}</b></h6>
               </div>
 
               <div class="col-md-4">
@@ -786,7 +786,7 @@
               </div>
 
               <div class="col-md-4">
-                <label for="eCity2">{{ 'Municipio / Delegaci&oacute;n' }}</label>
+                <label for="eCity2">{{ 'Municipio / Delegación' }}</label>
                 <div class="an-input-group">
                   <div class="an-input-group-addon"><i></i></div>
                   <input type="text" id="eCity2" class="an-form-control" name="eCity2" readonly="true">
@@ -802,7 +802,7 @@
               </div>        
 
               <div class="col-md-4">
-                <label for="eCountry">{{ 'Pa&iacute;s' }}</label>
+                <label for="eCountry">{{ 'País' }}</label>
                 <div class="an-input-group">
                   <div class="an-input-group-addon"><i></i></div>
                   <input type="text" id="eCountry" class="an-form-control" name="eCountry" readonly="true">
@@ -810,7 +810,7 @@
               </div> 
 
               <div class="col-md-4">
-                <label for="eZip">{{ 'C&oacute;digo postal' }}</label>
+                <label for="eZip">{{ 'Código postal' }}</label>
                 <div class="an-input-group">
                   <div class="an-input-group-addon"><i></i></div>
                   <input type="text" id="eZip" class="an-form-control" name="eZip" readonly="true">
@@ -826,7 +826,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
           <h4 id="addCotizacionLabel">{{ 'Nueva cotización creada' }}</h4>
         </div>
         <div class="modal-body">

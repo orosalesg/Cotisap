@@ -361,363 +361,342 @@
 
 <!-- Operaciones sobre la cotizacion -->
 
-<div class="col-md-12">
-    <div class="an-single-component with-shadow">
+<div class="row">
+    <div class="col-md-12">
+        <div class="an-single-component with-shadow">
 
-        <!--
-  ______                          _                                _                 _            _             _   _         _           
- |  ____|                        | |                              | |               | |          | |           | | (_)       | |          
- | |__     _ __     ___    __ _  | |__     ___   ____   __ _    __| |   ___       __| |   ___    | |   __ _    | |  _   ___  | |_    __ _ 
- |  __|   | '_ \   / __|  / _` | | '_ \   / _ \ |_  /  / _` |  / _` |  / _ \     / _` |  / _ \   | |  / _` |   | | | | / __| | __|  / _` |
- | |____  | | | | | (__  | (_| | | |_) | |  __/  / /  | (_| | | (_| | | (_) |   | (_| | |  __/   | | | (_| |   | | | | \__ \ | |_  | (_| |
- |______| |_| |_|  \___|  \__,_| |_.__/   \___| /___|  \__,_|  \__,_|  \___/     \__,_|  \___|   |_|  \__,_|   |_| |_| |___/  \__|  \__,_|
--->
-
-
-        <div class="an-component-header" style="margin-bottom:15px;">
-            <div class="row" style="padding-top:15px;">
-                <div class="col-md-2" style="border-right:1px solid #adadad; height:100%;">
-                    <h6>{{ 'Productos cotizados' }}</h6>
-                </div>
-                <div class="col-md-3" style="border-right:1px solid #adadad; height:100%;">
-                    <div class="an-input-group">
-                            <span> {{ 'Formato de cotizacion' }} :</span>
-                            <select id="formatoCoti" class="an-form-control">
-                                <option value="comp" @if($cotizacion['Quotations'][0]->formato == 'comp')
-                                    {{ 'selected' }}
-                                    @endif>Comparativo</option>
-                                <option value="opc" @if($cotizacion['Quotations'][0]->formato == 'opc'){{ 'selected' }}
-                                    @endif>Opciones</option>
-                                <option value="siva" @if($cotizacion['Quotations'][0]->formato ==
-                                    'siva'){{ 'selected' }}
-                                    @endif>Sin Iva</option>
-                            </select>
+            <div class="an-component-header" style="margin-bottom:15px;">
+                <div class="row" style="padding-top:15px;">
+                    <div class="col-md-2" style="border-right:1px solid #adadad; height:100%;">
+                        <h6>{{ 'Productos cotizados' }}</h6>
                     </div>
-                </div>
-                <div class="col-md-2" style="border-right:1px solid #adadad; height:100%;">
-                    <div class="an-input-group">
-                        <span>Idioma</span>
-                        <select id="langCoti" class="an-form-control">
-                            <option value="esp" @if($cotizacion['Quotations'][0]->lang == 'esp') {{ 'selected' }}
-                                @endif>Español</option>
-                            <option value="eng" @if($cotizacion['Quotations'][0]->lang == 'eng') {{ 'selected' }}
-                                @endif>Inglés</option>
-                        </select>
+                    <div class="col-md-3" style="border-right:1px solid #adadad; height:100%;">
+                        <div class="an-input-group">
+                                <span> {{ 'Formato de cotizacion' }} :</span>
+                                <select id="formatoCoti" class="an-form-control">
+                                    <option value="comp" @if($cotizacion['Quotations'][0]->formato == 'comp')
+                                        {{ 'selected' }}
+                                        @endif>Comparativo</option>
+                                    <option value="opc" @if($cotizacion['Quotations'][0]->formato == 'opc'){{ 'selected' }}
+                                        @endif>Opciones</option>
+                                    <option value="siva" @if($cotizacion['Quotations'][0]->formato ==
+                                        'siva'){{ 'selected' }}
+                                        @endif>Sin Iva</option>
+                                </select>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3" style="border-right:1px solid #adadad; height:100%;">
-                        <span> {{ 'Tipo de Cambio' }} :</span>
-                        <input type="text" id="tipodecambio" class="tipodecambio an-form-control disabledA"
-                            value="{{ $cotizacion['Quotations'][0]->tipodecambio }}" readonly>
-                </div>
-                <div class="col-md-2">
-                    <div class="an-input-group">
-                            <span> {{ 'Moneda' }} :</span>
-                            <select id="modenaGeneral" class="an-form-control">
-                                @foreach($monedas as $moneda)
-                                @if(!strcmp($moneda->ISOCurrCod, $cotizacion['Quotations'][0]->Moneda))
-                                <option value="{{ $moneda->Rate }}" selected="selected">{{ $moneda->ISOCurrCod }}
-                                </option>
-                                @else
-                                <option value="{{ $moneda->Rate }}">{{ $moneda->ISOCurrCod }}</option>
-                                @endif
-                                @endforeach
+                    <div class="col-md-2" style="border-right:1px solid #adadad; height:100%;">
+                        <div class="an-input-group">
+                            <span>Idioma</span>
+                            <select id="langCoti" class="an-form-control">
+                                <option value="esp" @if($cotizacion['Quotations'][0]->lang == 'esp') {{ 'selected' }}
+                                    @endif>Español</option>
+                                <option value="eng" @if($cotizacion['Quotations'][0]->lang == 'eng') {{ 'selected' }}
+                                    @endif>Inglés</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3" style="border-right:1px solid #adadad; height:100%;">
+                            <span> {{ 'Tipo de Cambio' }} :</span>
+                            <input type="text" id="tipodecambio" class="tipodecambio an-form-control disabledA"
+                                value="{{ $cotizacion['Quotations'][0]->tipodecambio }}" readonly>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="an-input-group">
+                                <span> {{ 'Moneda' }} :</span>
+                                <select id="modenaGeneral" class="an-form-control">
+                                    @foreach($monedas as $moneda)
+                                    @if(!strcmp($moneda->ISOCurrCod, $cotizacion['Quotations'][0]->Moneda))
+                                    <option value="{{ $moneda->Rate }}" selected="selected">{{ $moneda->ISOCurrCod }}
+                                    </option>
+                                    @else
+                                    <option value="{{ $moneda->Rate }}">{{ $moneda->ISOCurrCod }}</option>
+                                    @endif
+                                    @endforeach
+                                </select>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+            <div class="an-component-body">
+                <div class="an-helper-block">
 
+                    <div class="row menu-product">
+                        <div class="col-md-2">
+                            <span>{{ '# Artículo *' }}<br><br></span>
+                        </div>
+                        <div class="col-md-3">
+                            <span>{{ 'Descripcion *' }}<br><br></span>
+                        </div>
+                        <div class="col-md-1 ">
+                            <span>{{ 'P. Lista *' }}<br></span>
+                        </div>
+                        <div class="col-md-1 ">
+                            <span>{{ 'Moneda *' }}<br></span>
+                        </div>
 
-        <!--
-  _        _         _                   _                                       _                  _                 
- | |      (_)       | |                 | |                                     | |                | |                
- | |       _   ___  | |_    __ _      __| |   ___     _ __    _ __    ___     __| |  _   _    ___  | |_    ___    ___ 
- | |      | | / __| | __|  / _` |    / _` |  / _ \   | '_ \  | '__|  / _ \   / _` | | | | |  / __| | __|  / _ \  / __|
- | |____  | | \__ \ | |_  | (_| |   | (_| | |  __/   | |_) | | |    | (_) | | (_| | | |_| | | (__  | |_  | (_) | \__ \
- |______| |_| |___/  \__|  \__,_|    \__,_|  \___|   | .__/  |_|     \___/   \__,_|  \__,_|  \___|  \__|  \___/  |___/
-                                                     | |                                                              
-                                                     |_|                                                              
--->
-
-        <div class="an-component-body">
-            <div class="an-helper-block">
-
-                <div class="row menu-product">
-                    <div class="col-md-2">
-                        <span>{{ '# Artículo *' }}<br><br></span>
+                        <div class="col-md-1 ">
+                            <span>{{ 'P.Venta' }}<br></span>
+                        </div>
+                        <div class="col-md-1 ">
+                            <span>{{ 'Cantidad *' }}<br></span>
+                        </div>
+                        <div class="col-md-1 ">
+                            <span>{{ 'IVA' }}<br></span>
+                        </div>
+                        <div class="col-md-1 ">
+                            <span>{{ 'Importe' }}<br></span>
+                        </div>
                     </div>
-                    <div class="col-md-3">
-                        <span>{{ 'Descripcion *' }}<br><br></span>
-                    </div>
-                    <div class="col-md-1 ">
-                        <span>{{ 'P. Lista *' }}<br></span>
-                    </div>
-                    <div class="col-md-1 ">
-                        <span>{{ 'Moneda *' }}<br></span>
-                    </div>
 
-                    <div class="col-md-1 ">
-                        <span>{{ 'P.Venta' }}<br></span>
-                    </div>
-                    <div class="col-md-1 ">
-                        <span>{{ 'Cantidad *' }}<br></span>
-                    </div>
-                    <div class="col-md-1 ">
-                        <span>{{ 'IVA' }}<br></span>
-                    </div>
-                    <div class="col-md-1 ">
-                        <span>{{ 'Importe' }}<br></span>
-                    </div>
-                </div>
-
-                <div id="contenerdor-products">
+                    <div id="contenerdor-products">
 
 
-                    @foreach($cotizacion['ArtQuotation'] as $articulo)
+                        @foreach($cotizacion['ArtQuotation'] as $articulo)
 
 
 
-                    <div id="item-product[{{ $loop->iteration }}]" class="item-product row" data-type="update"
-                        data-product="{{ $articulo->id }}">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="row">
-                                    <div class="col-md-1">
-                                        <span class="item-id">{{ $loop->iteration }}</span>
-                                    </div>
-                                    <!-- Codigo del articulo -->
-                                    <div class="col-md-4">
-                                        <div class="an-input-group">
-                                            <input type="text" id="itemCodigo[{{ $loop->iteration }}]"
-                                                name="itemCodigo[{{ $loop->iteration }}]"
-                                                class="itemCodigo an-form-control disabledA"
-                                                value="{{ $articulo->codigoArt }}" data-toggle="tooltip"
-                                                data-placement="top" title="{{ $articulo->codigoArt }}" readonly>
+                        <div id="item-product[{{ $loop->iteration }}]" class="item-product row" data-type="update"
+                            data-product="{{ $articulo->id }}">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            <span class="item-id">{{ $loop->iteration }}</span>
+                                        </div>
+                                        <!-- Codigo del articulo -->
+                                        <div class="col-md-4">
+                                            <div class="an-input-group">
+                                                <input type="text" id="itemCodigo[{{ $loop->iteration }}]"
+                                                    name="itemCodigo[{{ $loop->iteration }}]"
+                                                    class="itemCodigo an-form-control disabledA"
+                                                    value="{{ $articulo->codigoArt }}" data-toggle="tooltip"
+                                                    data-placement="top" title="{{ $articulo->codigoArt }}" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="an-input-group">
+                                                <textarea id="itemName[{{ $loop->iteration }}]"
+                                                    name="itemName[{{ $loop->iteration }}]" class="itemName an-form-control"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="{{ $articulo->nombreArt }}" cols="30"
+                                                    rows="10">{{ $articulo->nombreArt }}</textarea>
+                                                <!--<input type="text" 
+                    id="itemName[{{ $loop->iteration }}]" 
+                    name="itemName[{{ $loop->iteration }}]" 
+                    class="itemName an-form-control disabledA" 
+                    value="{{ $articulo->nombreArt }}"
+                    data-toggle="tooltip" data-placement="top" title="{{ $articulo->nombreArt }}"
+                    readonly>-->
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-7">
-                                        <div class="an-input-group">
-                                            <textarea id="itemName[{{ $loop->iteration }}]"
-                                                name="itemName[{{ $loop->iteration }}]" class="itemName an-form-control"
-                                                data-toggle="tooltip" data-placement="top"
-                                                title="{{ $articulo->nombreArt }}" cols="30"
-                                                rows="10">{{ $articulo->nombreArt }}</textarea>
-                                            <!--<input type="text" 
-                  id="itemName[{{ $loop->iteration }}]" 
-                  name="itemName[{{ $loop->iteration }}]" 
-                  class="itemName an-form-control disabledA" 
-                  value="{{ $articulo->nombreArt }}"
-                  data-toggle="tooltip" data-placement="top" title="{{ $articulo->nombreArt }}"
-                  readonly>-->
+                                </div>
+
+                                <div class="col-md-7">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="an-input-group">
+                                                <input type="text" id="itemPlista[{{ $loop->iteration }}]"
+                                                    name="itemPlista[{{ $loop->iteration }}]"
+                                                    class="itemPlista an-form-control dinero"
+                                                    value="{{ $articulo->precioLista }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div class="an-input-group">
+                                                <span id="itemMoneda[{{ $loop->iteration }}]"
+                                                    name="itemMoneda[{{ $loop->iteration }}]" class="itemMoneda ">
+                                                    {{ $articulo->moneda }}
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2 text-center">
+                                            <div class="an-input-group">
+                                                <span id="itemPVenta[{{ $loop->iteration }}]"
+                                                    name="itemPVenta[{{ $loop->iteration }}]" class="itemPVenta dinero">
+                                                    {{ $articulo->PrecioVenta }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="an-input-group">
+                                                <input type="number" id="itemCantidad[{{ $loop->iteration }}]"
+                                                    name="itemCantidad[{{ $loop->iteration }}]"
+                                                    class="itemCantidad an-form-control" value="{{ $articulo->cantidad }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="an-input-group">
+                                                <select id="itemFactor[{{ $loop->iteration }}]"
+                                                    name="itemFactor[{{ $loop->iteration }}]"
+                                                    class="itemFactor an-form-control">
+
+                                                    @if (!strcmp($articulo->factor, '16'))
+                                                    <option value="0">0</option>
+                                                    <option value="16" selected>16</option>
+                                                    @else
+                                                    <option value="0" selected>0</option>
+                                                    <option value="16">16</option>
+                                                    @endif
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 text-right">
+                                            <div class="an-input-group">
+                                                <span id="itemImporteS[{{ $loop->iteration }}]"
+                                                    name="itemImporteS[{{ $loop->iteration }}]" class="itemImporteS">
+                                                    {{ $articulo->importe }}
+                                                </span><i class="moneda">{{ $articulo->moneda }}</i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1 itemClose">
+                                            <span>
+                                                <i data-id="{{ $articulo->id }}" id="itemClose[{{ $loop->iteration }}]"
+                                                    class="ion-android-close"></i>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-7">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="an-input-group">
-                                            <input type="text" id="itemPlista[{{ $loop->iteration }}]"
-                                                name="itemPlista[{{ $loop->iteration }}]"
-                                                class="itemPlista an-form-control dinero"
-                                                value="{{ $articulo->precioLista }}">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="row">
+                                        <div class="col-md-1 text-right">
+                                            <label>UMV: </label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="an-input-group">
+                                                <input id="itemUMV[{{ $loop->iteration }}]"
+                                                    name="itemUMV[{{ $loop->iteration }}]"
+                                                    class="itemUMV an-form-control disabledA" value="{{ $articulo->UMV }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 text-right">
+                                            <label>Entrega: </label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="an-input-group">
+                                                <input type="text" id="itemEntrega[{{ $loop->iteration }}]"
+                                                    name="itemEntrega[{{ $loop->iteration }}]"
+                                                    class="itemEntrega an-form-control"
+                                                    value="{{ $articulo->tiempoEntrega }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="an-input-group">
+                                                <label>Marca: </label>
+                                                <span id="itemMarca[{{ $loop->iteration }}]"
+                                                    name="itemMarca[{{ $loop->iteration }}]">
+                                                    {{ $articulo->marca }}
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-1">
-                                        <div class="an-input-group">
-                                            <span id="itemMoneda[{{ $loop->iteration }}]"
-                                                name="itemMoneda[{{ $loop->iteration }}]" class="itemMoneda ">
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="row">
+                                        <div class="col-md-2 text-right">
+                                            <label>Descuentos a otorgar [%]: </label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="an-input-group">
+                                                <input type="number" id="itemDesc[{{ $loop->iteration }}]"
+                                                    name="itemDesc[{{ $loop->iteration }}]" class="itemDesc an-form-control"
+                                                    value="{{ $articulo->desc }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 text-right">
+                                            <span>Total sin IVA: </span>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <span id="itemPrecioC[{{ $loop->iteration }}]">
+                                                {{ $articulo->precioUnidad }}
+                                            </span>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="an-input-group">
+                                                <label>Utilidad: </label>
+                                                <span id="itemUtilidad[{{ $loop->iteration }}]"
+                                                    name="itemUtilidad[{{ $loop->iteration }}]" class="itemUtilidad">
+                                                    {{ $articulo->utilidad }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="row">
+                                        <div class="col-md-4 text-right">
+                                            <label>Comentario (250 Max.): </label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="an-input-group">
+                                                <input type="text" id="itemComentario[{{ $loop->iteration }}]"
+                                                    name="itemComentario[{{ $loop->iteration }}]"
+                                                    class="itemComentario an-form-control"
+                                                    value="{{ $articulo->observaciones }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="row">
+                                        <div class="col-md-1 d-none">
+                                            <span>Descuento otorgado: </span>
+                                            <span id="itemDescOto[{{ $loop->iteration }}]"></span>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="an-input-group">
+                                                <label>CostoPr: </label>
+                                                <span id="itemCosto[{{ $loop->iteration }}]"
+                                                    name="itemCosto[{{ $loop->iteration }}]"
+                                                    class="itemCosto">{{ $articulo->costo }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4"></div>
+                                        <div class="col-md-3">
+                                            <span>Importe Total: </span>
+                                            <span id="itemImporteT[{{ $loop->iteration }}]" class="itemImporteT">
+                                                <b>
+                                                    {{ $articulo->subTotalLinea }}
+                                                </b>
+                                            </span>
+                                            <i class="moneda">
                                                 {{ $articulo->moneda }}
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2 text-center">
-                                        <div class="an-input-group">
-                                            <span id="itemPVenta[{{ $loop->iteration }}]"
-                                                name="itemPVenta[{{ $loop->iteration }}]" class="itemPVenta dinero">
-                                                {{ $articulo->PrecioVenta }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="an-input-group">
-                                            <input type="number" id="itemCantidad[{{ $loop->iteration }}]"
-                                                name="itemCantidad[{{ $loop->iteration }}]"
-                                                class="itemCantidad an-form-control" value="{{ $articulo->cantidad }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="an-input-group">
-                                            <select id="itemFactor[{{ $loop->iteration }}]"
-                                                name="itemFactor[{{ $loop->iteration }}]"
-                                                class="itemFactor an-form-control">
-
-                                                @if (!strcmp($articulo->factor, '16'))
-                                                <option value="0">0</option>
-                                                <option value="16" selected>16</option>
-                                                @else
-                                                <option value="0" selected>0</option>
-                                                <option value="16">16</option>
-                                                @endif
-
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 text-right">
-                                        <div class="an-input-group">
-                                            <span id="itemImporteS[{{ $loop->iteration }}]"
-                                                name="itemImporteS[{{ $loop->iteration }}]" class="itemImporteS">
-                                                {{ $articulo->importe }}
-                                            </span><i class="moneda">{{ $articulo->moneda }}</i>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-1 itemClose">
-                                        <span>
-                                            <i data-id="{{ $articulo->id }}" id="itemClose[{{ $loop->iteration }}]"
-                                                class="ion-android-close"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="row">
-                                    <div class="col-md-1 text-right">
-                                        <label>UMV: </label>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="an-input-group">
-                                            <input id="itemUMV[{{ $loop->iteration }}]"
-                                                name="itemUMV[{{ $loop->iteration }}]"
-                                                class="itemUMV an-form-control disabledA" value="{{ $articulo->UMV }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 text-right">
-                                        <label>Entrega: </label>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="an-input-group">
-                                            <input type="text" id="itemEntrega[{{ $loop->iteration }}]"
-                                                name="itemEntrega[{{ $loop->iteration }}]"
-                                                class="itemEntrega an-form-control"
-                                                value="{{ $articulo->tiempoEntrega }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="an-input-group">
-                                            <label>Marca: </label>
-                                            <span id="itemMarca[{{ $loop->iteration }}]"
-                                                name="itemMarca[{{ $loop->iteration }}]">
-                                                {{ $articulo->marca }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-7">
-                                <div class="row">
-                                    <div class="col-md-2 text-right">
-                                        <label>Descuentos a otorgar [%]: </label>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="an-input-group">
-                                            <input type="number" id="itemDesc[{{ $loop->iteration }}]"
-                                                name="itemDesc[{{ $loop->iteration }}]" class="itemDesc an-form-control"
-                                                value="{{ $articulo->desc }}">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-3 text-right">
-                                        <span>Total sin IVA: </span>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <span id="itemPrecioC[{{ $loop->iteration }}]">
-                                            {{ $articulo->precioUnidad }}
-                                        </span>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="an-input-group">
-                                            <label>Utilidad: </label>
-                                            <span id="itemUtilidad[{{ $loop->iteration }}]"
-                                                name="itemUtilidad[{{ $loop->iteration }}]" class="itemUtilidad">
-                                                {{ $articulo->utilidad }}
-                                            </span>
+                                            </i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="row">
-                                    <div class="col-md-4 text-right">
-                                        <label>Comentario (250 Max.): </label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="an-input-group">
-                                            <input type="text" id="itemComentario[{{ $loop->iteration }}]"
-                                                name="itemComentario[{{ $loop->iteration }}]"
-                                                class="itemComentario an-form-control"
-                                                value="{{ $articulo->observaciones }}">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-7">
-                                <div class="row">
-                                    <div class="col-md-1 d-none">
-                                        <span>Descuento otorgado: </span>
-                                        <span id="itemDescOto[{{ $loop->iteration }}]"></span>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <div class="an-input-group">
-                                            <label>CostoPr: </label>
-                                            <span id="itemCosto[{{ $loop->iteration }}]"
-                                                name="itemCosto[{{ $loop->iteration }}]"
-                                                class="itemCosto">{{ $articulo->costo }}</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4"></div>
-                                    <div class="col-md-3">
-                                        <span>Importe Total: </span>
-                                        <span id="itemImporteT[{{ $loop->iteration }}]" class="itemImporteT">
-                                            <b>
-                                                {{ $articulo->subTotalLinea }}
-                                            </b>
-                                        </span>
-                                        <i class="moneda">
-                                            {{ $articulo->moneda }}
-                                        </i>
-                                    </div>
-                                </div>
-                            </div>
+
+
+
+
+                        @endforeach
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12 text-right">
+                            <button id="createProduct" class="an-btn an-btn-success block-icon"> <i
+                                    class="ion-plus-round"></i>Agregar artículo</button>
                         </div>
 
                     </div>
 
-
-
-
-                    @endforeach
-
                 </div>
-
-                <div class="row">
-
-                    <div class="col-md-12 text-right">
-                        <button id="createProduct" class="an-btn an-btn-success block-icon"> <i
-                                class="ion-plus-round"></i>Agregar artículo</button>
-                    </div>
-
-                </div>
-
             </div>
         </div>
     </div>
@@ -739,7 +718,7 @@
 
                             @if($cotizacion['Quotations'][0]->notasCotizacion == $nota->Code )
                                 <option value="{{ $nota->Code }}" selected>{{ $nota->Name }}</option>
-                                @next
+                                @continue
                             @endif
 
                             <option value="{{ $nota->Code }}">{{ $nota->Name }}</option>
@@ -782,7 +761,7 @@
                                 <option value="{{ $getEspecificacionesItem->id }}" selected>
                                 {{ $getEspecificacionesItem->nombre }} </option>
 
-                                @next
+                                @continue
 
                             @endif
 
@@ -1154,7 +1133,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
+                        aria-hidden="true">x</span></button>
                 <h4 class="modal-title" id="dupCotiLabel">{{ 'Cotizacion duplicada correctamente' }}</h4>
             </div>
             <div class="modal-body">

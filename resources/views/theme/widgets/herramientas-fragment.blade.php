@@ -146,7 +146,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
                 <h4 id="addRegLabel">{{ 'Agregar registro' }}</h4>
                 <h4 id="updateRegLabel" style="display: none;">{{ 'Actualizar registro' }}</h4>
               </div>

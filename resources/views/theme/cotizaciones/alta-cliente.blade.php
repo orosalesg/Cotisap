@@ -166,6 +166,10 @@
         });
         
         $(".not-null").on("focusout", checkInputEmptyness );
+        $(".email").on("focusout", checkInputEmail );
+        $(".phone").on("focusout", checkInputPhone );
+
+
         $("#registrar").on("click", registerClient)
         
         $("#clientesTable").DataTable({
@@ -251,9 +255,23 @@
     });
   function validateForm(){
     var valid_count = 0;
+
+    //validate emptyness
     $(".not-null").each(function(){
       checkInputEmptyness( $(this) ) ? null : valid_count-- ;
     });
+    
+    //validate email with correct string pattern
+    $(".email").each(function(){
+      checkInputEmail( $(this) ) ? null : valid_count-- ;
+    });
+
+    //validate phone val
+    $(".phone").each(function(){
+      checkInputPhone( $(this) ) ? null : valid_count-- ;
+    });
+
+
     return valid_count >= 0;
   }
   function clearForm(){

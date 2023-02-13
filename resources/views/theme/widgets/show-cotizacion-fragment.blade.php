@@ -752,16 +752,20 @@
                 <div class="col-md-8">
                     <select name="speci" id="speci" class="an-form-control" multiple>
                         @foreach($getEspecificaciones as $getEspecificacionesItem)
+                            
+                            @if(!is_null(json_decode($cotizacion['Quotations'][0]->especificaciones)))
+                            
+                                {{-- Buscamos cada codigo de las especificaciones dentro del json guardado en la base 
+                                    (las especificaciones seleccionadas)  --}}
 
-                            {{-- Buscamos cada codigo de las especificaciones dentro del json guardado en la base 
-                                (las especificaciones seleccionadas)  --}}
+                                @if( in_array($getEspecificacionesItem->id, json_decode($cotizacion['Quotations'][0]->especificaciones), false) ) )
 
-                            @if( in_array($getEspecificacionesItem->id, json_decode($cotizacion['Quotations'][0]->especificaciones), false) ) )
+                                    <option value="{{ $getEspecificacionesItem->id }}" selected>
+                                    {{ $getEspecificacionesItem->nombre }} </option>
 
-                                <option value="{{ $getEspecificacionesItem->id }}" selected>
-                                {{ $getEspecificacionesItem->nombre }} </option>
+                                    @continue
 
-                                @continue
+                                @endif
 
                             @endif
 

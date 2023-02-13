@@ -153,7 +153,8 @@
 				{{$a['codigo']}}
 			</td>
 			<td style="width:40%;">
-				{{$a['nombre']}}
+				{{$a['nombre']}}<br>
+				{{ "Entrega: " . $a['tiempoEntrega'] }}
 			</td>
 			<td class="text-center" style="width:10%;">
 				{{$a['cantidad']}}

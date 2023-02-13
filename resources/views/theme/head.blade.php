@@ -1,5 +1,7 @@
 <head>
 	<title> {{ strtoupper(Session::get('Company')) }} | COTISAP</title>
+
+    <link rel="shortcut icon" href="{{ asset('assets/img/cotisap/logosap.png') }}" type="image/x-icon">
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
     <link href="{{ asset('assets/css/animate.min.css') }}" rel="stylesheet">

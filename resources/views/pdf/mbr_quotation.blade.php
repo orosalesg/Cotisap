@@ -160,7 +160,8 @@
 						{{$a['codigo']}}
 					</td>
 					<td style="width:30%;">
-						{{$a['nombre']}}
+						{{$a['nombre']}} <br>
+						{{ "Delivery Time: " . $a['tiempoEntrega'] }}
 					</td>
 					<td>
 						{{$a['cantidad']}}

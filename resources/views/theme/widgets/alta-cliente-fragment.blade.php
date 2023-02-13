@@ -17,7 +17,7 @@
                               <label for="telCliente">{{ 'Teléfono' }}: </label>
                               <div class="an-input-group">
                                   <div class="an-input-group-addon"><i class="ion-ios-telephone"></i></div>
-                                  <input type="tel" id="telCliente" class="an-form-control not-null" name="telCliente"
+                                  <input type="tel" id="telCliente" class="an-form-control not-null phone" name="telCliente"
                                       placeholder="{{ 'Introduzca el teléfono' }}" maxlength="50" />
                               </div>
                           </div>
@@ -25,7 +25,7 @@
                               <label for="emailCliente">{{ 'Email' }}: </label>
                               <div class="an-input-group">
                                   <div class="an-input-group-addon"><i class="ion-at"></i></div>
-                                  <input type="email" id="emailCliente" class="an-form-control not-null"
+                                  <input type="email" id="emailCliente" class="an-form-control not-null email"
                                       name="emailCliente" placeholder="{{ 'Introduzca el email' }}" maxlength="50" />
                               </div>
                               <label for="razonCliente">{{ 'Razón social' }}: </label>

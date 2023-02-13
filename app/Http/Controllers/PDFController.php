@@ -90,6 +90,7 @@ class PDFController extends Controller
               'nombre' => $aq->nombreArt,
               'observaciones' => $aq->observaciones,
               'cantidad' => $aq->cantidad,
+              'tiempoEntrega' => $aq->tiempoEntrega,
               'precio_lista' => number_format($aq->precioLista, 2, '.', ','),
               'descuento' => number_format($aux_descuento, 2, '.', ','),
               'precio_unitario' => number_format($aux_pu, 2, '.', ','),

@@ -8,7 +8,7 @@
                   <div class="col-md-12">
                       <form id="alta-cliente-form">
                           <div class="col-md-6">
-                              <label for="pContacto">{{ 'Persona de contacto' }}: </label>
+                              <label for="pContacto">{{ 'Razón Social' }}: </label>
                               <div class="an-input-group">
                                   <div class="an-input-group-addon"><i class="ion-android-person"></i></div>
                                   <!--<input type="text" id="pContacto" class="an-form-control not-null" name="pContacto" placeholder="{{ 'Introduzca el nombre de la persona de contacto' }}" maxlength="50"/>-->
@@ -28,13 +28,13 @@
                                   <input type="email" id="emailCliente" class="an-form-control not-null email"
                                       name="emailCliente" placeholder="{{ 'Introduzca el email' }}" maxlength="50" />
                               </div>
-                              <label for="razonCliente">{{ 'Razón social' }}: </label>
+                              <!--<label for="razonCliente">{{ 'Razón social' }}: </label>
                               <div class="an-input-group">
                                   <div class="an-input-group-addon"><i class="ion-document-text"></i></div>
                                   <input type="email" id="razonCliente" class="an-form-control not-null"
                                       name="razonCliente" placeholder="{{'Introduzca la razón social del cliente'}}"
                                       maxlength="60" />
-                              </div>
+                              </div>-->
                           </div>
                           <div class="col-md-6">
                               <label for="emailCliente">{{ 'Domicilio' }}: </label>
@@ -85,10 +85,9 @@
                                   <thead>
                                       <tr>
                                           <th>ID</th>
-                                          <th>Persona de contacto</th>
+                                          <th>Razón Social / Nombre Cliente</th>
                                           <th>Telefono</th>
                                           <th>Email</th>
-                                          <th>Razon Social</th>
                                           <th>Editar</th>
                                           <th>Eliminar</th>
                                       </tr>
@@ -100,7 +99,6 @@
                                           <td>{{ $cliente->clienteNombre }}</td>
                                           <td>{{ $cliente->clienteTelefono }}</td>
                                           <td>{{ $cliente->clienteEmail }}</td>
-                                          <td>{{ $cliente->clienteRazon }}</td>
                                           <td>
                                               <button type="button" data-id="{{ $cliente->id }}" class="btn btn-sm edit"
                                                   style="font-size:.8em;">
@@ -149,7 +147,7 @@
                       </div>
                       <div class="row">
                           <div class="col-md-6">
-                              <label for="clienteNombre">Persona de Contacto :</label>
+                              <label for="clienteNombre">Razón Social / Nombre Cliente :</label>
                               <div class="an-input-group">
                                   <div class="an-input-group-addon" id="title-icon"><i class="ion-android-person"></i>
                                   </div>
@@ -158,7 +156,7 @@
                                       title="Persona de contacto" />
                               </div>
                           </div>
-                          <div class="col-md-6">
+                          <!--<div class="col-md-6">
                               <label for="clienteRazon">Razon Social :</label>
                               <div class="an-input-group">
                                   <div class="an-input-group-addon" id="title-icon"><i class="ion-document-text"></i>
@@ -166,7 +164,7 @@
                                   <input id="clienteRazon" type="text" class="an-form-control"
                                       placeholder="Razon Social" data-toggle="tooltip" title="Razon Social" />
                               </div>
-                          </div>
+                          </div>-->
                       </div>
 
                       <div class="row">
@@ -200,6 +198,79 @@
                                     cols="30" rows="10"></textarea>
                               </div>
                           </div>
+                      </div>
+
+                      <p class="an-small-doc-blcok" id="update-instr">Personas de Contacto.</p>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                            <label for="">Nombre</label>
+                            <div class="an-input-group">
+                                <div class="an-input-group-addon" id="title-icon"><i class="ion-home"></i>
+                                </div>
+                                <input id="cp_name" type="text" class="an-form-control"
+                                    placeholder="Nombre" data-toggle="tooltip" title="Nombre" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">Correo</label>
+                            <div class="an-input-group">
+                                <div class="an-input-group-addon" id="title-icon"><i class="ion-home"></i>
+                                </div>
+                                <input id="cp_email" type="text" class="an-form-control"
+                                    placeholder="" data-toggle="tooltip" title="Nombre" />
+                            </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                            <label for="">Telefono</label>
+                            <div class="an-input-group">
+                                <div class="an-input-group-addon" id="title-icon"><i class="ion-home"></i>
+                                </div>
+                                <input id="cp_phone" type="text" class="an-form-control"
+                                    placeholder="Nombre" data-toggle="tooltip" title="Nombre" />
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-5"></div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-2">
+                            <button class="btn btn-sm btn-success" id="btnSaveCP">Agregar persona</button>
+                        </div>
+                      </div>
+                    <br>
+
+                      <div class="row">
+                        <div class="col-md-12">
+                            <!-- ver assets/js/cntctperson.js para llenado de tabla-->
+                            <table id="cpTable" class="table-hover" style="width:100%;">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Nombre
+                                        </th>
+                                        <th>
+                                            Correo
+                                        </th>
+                                        <th>
+                                            Telefono
+                                        </th>
+                                        <th>
+                                            Actualizar
+                                        </th>
+                                        <th>
+                                            Eliminar
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+
+                        </div>
                       </div>
 
                   </div>

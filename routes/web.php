@@ -180,6 +180,16 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'rol']], functio
         })->name('alta-cliente');*/
         Route::get('alta-cliente', 'CotizacionController@altaCliente')->name('alta-cliente');
         Route::get('alta-clientepruebas', 'CotizacionController@altaClientepruebas')->name('alta-clientepruebas');
+
+
+        // Guardar Persona de contacto
+        Route::post('alta-cliente/storeCP','CntctPersonController@store')->name("storeCP");
+        // Actualizar persona de contacto
+        Route::post('alta-cliente/updateCP','CntctPersonController@updateCP')->name('update');
+        // Borrar Persona de contacto
+        Route::post('alta-cliente/deleteCP','CntctPersonController@deleteCP')->name("destroy");
+
+
         Route::post('editClienteData', 'CotizacionController@editClienteData')->name('editClienteData');
 
         //Ruta pára prueba de consulta de monedas

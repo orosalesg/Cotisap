@@ -1157,6 +1157,16 @@ $(document).ready(function() {
                 console.log("Cargando datos clienteData");
                 console.log(result);
                 if (result.length > 0) {
+
+                    
+                    if(result[0][0].isSAP == 'Y'){
+
+                        // Si es sap mostrar la lista de personas de contacto de esas personas
+                        
+
+                    }
+
+                    // Para llenar info del cliente
                     $.each(result, function(inx, arrx) {
                         $.each(arrx[0], function(index, value) {
                             $("#" + index).val(value);
@@ -1184,6 +1194,12 @@ $(document).ready(function() {
 
     });
     //var rol= {{ URL::route('dashboard') }};
+
+    function showCntctPerson(){
+
+        
+
+    }
 
 
     $('[data-toggle="tooltip"]').tooltip();

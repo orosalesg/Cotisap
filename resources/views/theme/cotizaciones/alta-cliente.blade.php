@@ -47,10 +47,21 @@
 
 
 @section('scripts')
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="{{ asset('assets/js/validation.js') }}" type="text/javascript"></script>
+
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
 <script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" type="text/javascript"></script>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script type="text/javascript">
+  var route = "{{Request::url()}}";
+  var edit_img_route = "{{asset('assets/img/edit.png')}}";
+  var delete_img_route = "{{asset('assets/img/delete.png')}}";
+  var ajax_loader_route = "{{ asset('assets/img/loading.gif') }}";
+</script>
+
+<script src="{{ asset('assets/js/cntctperson.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/validation.js') }}" type="text/javascript"></script>
 
 
 <script type="text/javascript">
@@ -125,7 +136,7 @@
                 		    "_token": "{{ csrf_token() }}",
                 		    id: $("#clienteId").val(),
                 		    nombre: $("#clienteNombre").val(),
-                		    razon: $("#clienteRazon").val(),
+                		    //razon: $("#clienteRazon").val(),
                 		    email: $("#clienteEmail").val(),
                 		    telefono: $("#clienteTelefono").val(),
                         domicilio: $("#clienteDomicilio").val(),
@@ -199,7 +210,7 @@
         		    //console.log(result);
         		    $("#clienteId").val(result.id);
         		    $("#clienteNombre").val(result.clienteNombre);
-        		    $("#clienteRazon").val(result.clienteRazon);
+        		    //$("#clienteRazon").val(result.clienteRazon);
         		    $("#clienteEmail").val(result.clienteEmail);
         		    $("#clienteTelefono").val(result.clienteTelefono);
                 $("#clienteDomicilio").val(result.clienteDomicilio);
@@ -285,7 +296,7 @@
           'name': $("#pContacto").val(),
           'tel': $("#telCliente").val(),
           'email': $("#emailCliente").val(),
-          'razon': $("#razonCliente").val(),
+          //'razon': $("#razonCliente").val(),
           'limiteCredito': $("#limiteCredito").val(),
           'domicilio': $("#domicilioCliente").val()
         },

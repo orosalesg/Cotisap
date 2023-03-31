@@ -54,7 +54,14 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script type="text/javascript">
-  var route = "{{Request::url()}}";
+  
+  var routeall = "{{ URL::route('allCP') }}";
+  var routestore = "{{ URL::route('storeCP') }}";
+  var routeupdate = "{{ URL::route('updateCP') }}";
+  var routedelete = "{{ URL::route('deleteCP') }}";
+  var routefind = "{{ URL::route('findCP') }}";
+
+
   var edit_img_route = "{{asset('assets/img/edit.png')}}";
   var delete_img_route = "{{asset('assets/img/delete.png')}}";
   var ajax_loader_route = "{{ asset('assets/img/loading.gif') }}";
@@ -192,6 +199,7 @@
         });
         
         $(".edit").click(function(){
+          
            var id = $(this).attr("data-id");
            console.log("edit " + id);
            //mostrar modal para editar cliente

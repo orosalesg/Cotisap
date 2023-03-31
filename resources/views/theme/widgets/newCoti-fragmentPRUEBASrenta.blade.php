@@ -1720,7 +1720,8 @@ $(document).ready(function() {
             fleteraEntrega: $("#cotiEntregaFletera").val(),
             conceptopago: $("#tituloPago").val(),
             mensualidad: $("#mesesRenta").val(),
-            mesesrenta: $("#omitirmeses").val()
+            mesesrenta: $("#omitirmeses").val(),
+            bannersConfig: JSON.stringify("[{'name':'meraki','checked':true},{'name':'verkada','checked':false}]"),
         };
         return datos;
 
@@ -1791,7 +1792,7 @@ $(document).ready(function() {
                     "[name^='itemCantidadProd']").val() == "")) {
 
                 $(this).find("[name^='itemCantidadProd']").focus();
-                toastr["error"]("Cantidad de Equipo Propuesto [" + articulo + "]","Campo requerido * ");
+                toastr["error"]("Debe ingresar la Cantidad de Equipo Propuesto [" + articulo + "]","Campo requerido * ");
                 status = false;
             }
 
@@ -1832,8 +1833,7 @@ $(document).ready(function() {
             if (articulo == 'Element')
                 return;
 
-            if ($(this).find("[name^='itemCantidadProd']").val() == "" || $(this).find(
-                    "[name^='itemCantidadProd']").val() == null) {
+            if ($(this).find("[name^='itemCantidadProd']").val() == "") {
 
                         $(this).find("[name^='itemCantidadProd']").focus();
                 toastr["error"]("Cantidad de Equipo Propuesto [" + articulo + "]",
@@ -1841,8 +1841,7 @@ $(document).ready(function() {
                 status = false;
             }
 
-            if ($(this).find("[name^='itemDesc']").val() == "" || $(this).find("[name^='itemDesc']")
-                .val() == null) {
+            if ($(this).find("[name^='itemDesc']").val() == "") {
                     
                     $(this).find("[name^='itemDesc']").focus()
                 toastr["error"]("Descripcion de Equipo Propuesto [" + articulo + "]",
@@ -1850,8 +1849,7 @@ $(document).ready(function() {
                 status = false;
             }
 
-            if ($(this).find("[name^='itemDescripcion']").val() == "" || $(this).find(
-                    "[name^='itemDescripcion']").val() == null) {
+            if ($(this).find("[name^='itemDescripcion']").val() == "") {
 
                         $(this).find("[name^='itemDescripcion']").focus()
                 toastr["error"]("Descripcion de Condiciones Comerciales [" + articulo + "]",
@@ -1859,8 +1857,7 @@ $(document).ready(function() {
                 status = false;
             }
 
-            if ($(this).find("[name^='itemNoParte']").val() == "" || $(this).find(
-                    "[name^='itemNoParte']").val() == null) {
+            if ($(this).find("[name^='itemNoParte']").val() == "") {
 
                         $(this).find("[name^='itemNoParte']").focus()
                 toastr["error"]("No. de Parte de Condiciones Comerciales [" + articulo + "]",
@@ -1868,8 +1865,7 @@ $(document).ready(function() {
                 status = false;
             }
 
-            if ($(this).find("[name^='itemCantidad']").val() == "" || $(this).find(
-                    "[name^='itemCantidad']").val() == null) {
+            if ($(this).find("[name^='itemCantidad']").val() == "") {
 
                         $(this).find("[name^='itemCantidad']").focus()
                 toastr["error"]("Cantidad de Condiciones Comerciales [" + articulo + "]",
@@ -1877,8 +1873,7 @@ $(document).ready(function() {
                 status = false;
             }
 
-            if ($(this).find("[name^='itemPUnitario']").val() == "" || $(this).find(
-                    "[name^='itemPUnitario']").val() == null) {
+            if ($(this).find("[name^='itemPUnitario']").val() == "") {
 
                         $(this).find("[name^='itemPUnitario']").focus()
                 toastr["error"]("Precio Unitario de Condiciones Comerciales [" + articulo + "]",

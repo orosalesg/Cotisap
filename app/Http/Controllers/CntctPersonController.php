@@ -46,7 +46,7 @@ class CntctPersonController extends Controller
         $cp = new CntctPerson();
 
         // Llenar los campos 
-        $cp->id_customer = $request->id;
+        $cp->id_customer = $request->id_customer;
         $cp->name = $request->name;
         $cp->email = isset($request->email) ? $request->email : "";
         $cp->phone = isset($request->phone) ? $request->phone : "";
@@ -126,5 +126,13 @@ class CntctPersonController extends Controller
         return response()->json([
             "status" => $cp->delete() === true ? true : false,
         ]);
+    }
+
+    public function findwhere(Request $request){
+
+        $cp = CntctPerson::where('id_customer',$request->id_customer)->get();
+
+        return response()->json($cp);
+
     }
 }

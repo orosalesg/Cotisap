@@ -202,6 +202,9 @@
 
                       <p class="an-small-doc-blcok" id="update-instr">Personas de Contacto.</p>
 
+                    <div class="cpdiv" style="border: 1px solid #000;padding: 5px 15px;">
+
+                      
                       <div class="row">
                         <div class="col-md-6">
                             <label for="">Nombre</label>
@@ -239,8 +242,11 @@
                         <div class="col-md-4"></div>
                         <div class="col-md-2">
                             <button class="btn btn-sm btn-success" id="btnSaveCP">Agregar persona</button>
+                            <img id="loader-cp" src="{{ asset('assets/img/loading.gif') }}" height="20"
+                              style="display: none;" /></button>
                         </div>
                       </div>
+                    </div>
                     <br>
 
                       <div class="row">

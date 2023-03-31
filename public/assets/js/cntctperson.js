@@ -28,14 +28,12 @@ $(document).ready(function(){
 	// Evento crear Persona de contacto
 	$("#btnSaveCP").on("click", storeCP );
 
-	// Llenar tabla con registros
-	getAllCP();
-
 	// Inicializar tabla de personas de contacto
 	$("#cpTable").DataTable({
 
 		"columnDefs": [
         	{"className": "dt-center", "targets": "_all"},
+			// este campo es del id del de la persona de contacto
 			{"render" : function(data, type, row){
 								return "<span class='cpid'>" + data + "</span>";
 						}, "targets" : 0 },
@@ -49,14 +47,15 @@ $(document).ready(function(){
 				        		return "<span class='cpphone'>" + data + "</span>";
 				   		}, "targets" : 3 },
         	{"render" : function(data, type, row){
-				        		return "<img data='" + data + "' class='cpedit' src='" + edit_img_route + "' height='30' width='30'/>";
+				        		return "<img data='" + data + "' class='editcp' src='" + edit_img_route + "' height='30' width='30'/>";
 				   		}, "targets" : 4 },
         	{"render" : function(data, type, row){
-				        		return "<img data='" + data + "' class='cpdelete' src='" + delete_img_route + "' height='30' width='30'/>";
+				        		return "<img data='" + data + "' class='deletecp' src='" + delete_img_route + "' height='30' width='30'/>";
 				   		}, "targets" : 5 }
       	],
 		language: lang_ES_EN,
 		columns : [
+			// este campo es del id del de la persona de contacto
 			{title : "ID"},
 			{title : "Nombre"},
 			{title : "Correo"},
@@ -65,24 +64,26 @@ $(document).ready(function(){
 			{title : "Eliminar"}
 		],
 		"fnDrawCallback": function( oSettings ) {
-			$(".delete").off();
-			$(".delete").on("click", deleteCP );
-			$(".edit").off();
-			$(".edit").on("click", setUpdateComponent );
+			$(".deletecp").off();
+			$(".deletecp").on("click", deleteCP );
+			$(".editcp").off();
+			$(".editcp").on("click", updateUser );
     	}
 	});
 
 }); // End doc ready
 
-
 // Obtener todas las personas de contacto
 function getAllCP(){
-	$.get({
-		url : route + "/all",
-		processData : false,
-		cache : false,
+
+	$.ajax({
+		method: "POST",
+		url : routefind,
+		data: {
+			"id_customer" : $("#clienteId").val(), 
+		},
 		success : function( response ){
-			var data = response.data;
+			var data = response;
 
 			// Mostrar las personas de contacto en la tabla
 			showCP( data );
@@ -93,11 +94,16 @@ function getAllCP(){
 }
 
 function showCP( data ){
+
+	console.log(data);
+
 	var TABLE = $("#cpTable").DataTable();
-	data.forEach(function(e){
+	$.each(data,function(e){
 		var array = new Array();
+		// este campo es del id del de la persona de contacto
 		array.push(e.id);
 		array.push(e.name);
+		array.push(e.email);
 		array.push(e.email);
 		array.push(e.id);
 		array.push(e.id);
@@ -105,111 +111,63 @@ function showCP( data ){
 	});
 	TABLE.draw();
 	$("#container").show();
+
+
 }
 
 
 function storeCP(){
-	$("#ajax-loader").show();
-	if( validateForm() ){
+	$("#loader-cp").show();
+	//if( validateForm() ){
 		$.ajax({
 			method : "POST",
-			url : route,
+			url : routestore,
 			data : {
+				// Id de cliente
 				"id_customer" : $("#clienteId").val(),
-				"name" : $("#name").val(),
-				"email" : $("#email").val(),
-				"phone" : $("#phone").val()
+				//  Estos input corresponden al formulario arriba de la tabla de personas de contacto
+				"name" : $("#cp_name").val(),
+				"email" : $("#cp_email").val(),
+				"phone" : $("#cp_phone").val()
 			},
 			success : function( response ){
 				if( response.status ){
-					swal("OK", "Persona de contacto creada correctamente", "success");
-					var TABLE = $("#usuariosTable").DataTable();
+					Swal.fire({
+						icon: 'success',
+						title: 'Persona de contacto',
+						text: 'Creada correctamente',
+						showCloseButton: true,
+						showCancelButton: false,
+					});
+
+					// Al ejecutarse correctamente la solicitud agregamos los datos a una nueva linea de la tabla
+					var TABLE = $("#cpTable").DataTable();
 					TABLE.row.add([
 						response.id,
-						$("#name").val(),
-						$("#email").val(),
-						$("#phone").val(),
-						$("#id").val(),
-						$("#id").val()
+						//  Estos input corresponden al formulario arriba de la tabla de personas de contacto
+						$("#cp_name").val(),
+						$("#cp_email").val(),
+						$("#cp_phone").val(),
+						$("#cp_id").val(),
+						$("#cp_id").val()
 					]);
-					$("#ajax-loader").hide();
-					$("#close").click();
+
+					// Detener el gif de carga
+					$("#loader-cp").hide();
 					TABLE.draw();
 				}
 			}
 		});
-	}
-}
-
-function setUpdateComponent(event){
-	clearForm();
-    
-	var id = $(event.currentTarget).parents("tr").find(".cpid").text();
-	var name = $(event.currentTarget).parents("tr").find(".cpname").text();
-	var email = $(event.currentTarget).parents("tr").find(".cpemail").text();
-	var phone = $(event.currentTarget).parents("tr").find(".cpphone").text();
-	$("#cp_id").val( id );
-	$("#cp_name").val( name );
-	$("#cp_email").val( email );
-	$("#cp_phone").val( phone );
-
-	//Buscamos los datos del usuario para cargalos en el modal
-	$.get({
-		url : route + "/" + $("#id").val(),
-		processData : false,
-		cache : false,
-		success : function( response ){
-		    var data = response.data;
-		    
-		    console.log(data);
-		    
-		    $("#slpcode").val( data.SlpCode );
-		    $("#commission").val( data.Commission );
-		    $("#groupcode").val( data.GroupCode );
-		    $("#locked").val( data.Locked );
-		    $("#datasource").val( data.DataSource );
-		    $("#usersign").val( data.UserSign );
-		    $("#empid").val( data.EmpID );
-		    $("#active").val( data.Active );
-		    $("#telephone").val( data.Telephone );
-		    $("#mobil").val( data.Mobil );
-		    $("#ubranch").val( data.U_branch );
-		    $("#usalt").val( data.U_salt );
-		    $("#upricelist").val( data.U_priceList );
-		    $("#umanager").val( data.U_manager );
-		    $("#uexport").val( data.U_export );
-		    $("#udiscounts").val( data.U_discounts );
-		    
-		    
-		    /*var TABLE = $("#usuariosTable").DataTable();
-        	data.forEach(function(e){
-        		var array = new Array();
-        		array.push(e.id);
-        		array.push(e.name);
-        		array.push(e.email);
-        		array.push(e.U_admin);
-        		array.push(e.id);
-        		array.push(e.id);
-        		TABLE.row.add( array );
-        	});
-        	TABLE.draw();
-        	$("#container").show();
-        	
-			var data = response.data;
-			$("#data-loader").remove();*/
-		}
-	});
-
-	$("#update-btn-trigger").click();
+	//}
 }
 
 // Por añadir
 function updateUser(){
-	$("#ajax-loader").show();
+	$("#loader-cp").show();
 	if( validateForm() ){
 		$.ajax({
 			method : "POST",
-			url : route + "/" + $("#id").val(),
+			url : routeupdate,
 			data : {
 				"name" : $("#cp_name").val(),
 				"email" : $("#cp_email").val(),
@@ -218,9 +176,11 @@ function updateUser(){
 			},
 			success : function( response ){
 				if( response.status ){
-					$("#ajax-loader").hide();
+					$("#loader-cp").hide();
 					swal("OK", "Usuario actualizada correctamente", "success");
-					var parents = $("#usuariosTable span:contains('" + $("#id").val() +  "')").parents("tr");
+
+					// Ajustar a nueva forma de actualizar
+					var parents = $("#cpTable span:contains('" + $("#id").val() +  "')").parents("tr");
 					parents.find(".name").text($("#cp_name").val());
 					parents.find(".email").text($("#cp_email").val());
 					parents.find(".phone").text($("#cp_phone").val());
@@ -237,7 +197,7 @@ function deleteCP(event){
 	$(event.currentTarget).attr("src", ajax_loader_route);
 	$.ajax({
 		method : "DELETE",
-		url : route + "/" + id,
+		url : routedelete,
 		success : function( response ){
 			if( response.status ){
 				swal("OK", "Persona de contacto eliminada correctamente", "success");
@@ -252,7 +212,7 @@ function deleteCP(event){
 
 function validateForm(){
 	var valid_count = 0;
-	$(".not-null").each(function(){
+	$("#cpdiv").find(".not-null").each(function(){
 		checkInputEmptyness( $(this) ) ? null : valid_count-- ;
 	});
 	return valid_count >= 0;

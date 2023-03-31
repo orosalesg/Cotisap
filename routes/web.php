@@ -182,12 +182,16 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'rol']], functio
         Route::get('alta-clientepruebas', 'CotizacionController@altaClientepruebas')->name('alta-clientepruebas');
 
 
+        // Obtener todos las personas de contacto
+        Route::get('alta-cliente/allCP','CntctPersonController@index')->name("allCP");
         // Guardar Persona de contacto
         Route::post('alta-cliente/storeCP','CntctPersonController@store')->name("storeCP");
         // Actualizar persona de contacto
-        Route::post('alta-cliente/updateCP','CntctPersonController@updateCP')->name('update');
+        Route::post('alta-cliente/updateCP','CntctPersonController@update')->name('updateCP');
         // Borrar Persona de contacto
-        Route::post('alta-cliente/deleteCP','CntctPersonController@deleteCP')->name("destroy");
+        Route::post('alta-cliente/deleteCP','CntctPersonController@delete')->name("deleteCP");
+        // Buscar por numero de cliente
+        Route::post('alta-cliente/findCP','CntctPersonController@findwhere')->name("findCP");
 
 
         Route::post('editClienteData', 'CotizacionController@editClienteData')->name('editClienteData');

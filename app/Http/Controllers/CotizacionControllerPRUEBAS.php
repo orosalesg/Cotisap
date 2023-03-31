@@ -268,6 +268,7 @@ class CotizacionControllerPRUEBAS extends Controller
             $cotizacion->autorized = $Request->datosCotizacion['autorized'] ? $Request->datosCotizacion['autorized'] : 0;
         }
         $cotizacion->especificaciones = json_encode($Request->especificaciones);
+        $cotizacion->banners = isset($Request->datosCotizacion['bannersConfig']) ? $Request->datosCotizacion['bannersConfig'] : "";
         
         foreach ($Request->obtenerDatosArticulos as $product) {
             $articulo = new ArtRenta();

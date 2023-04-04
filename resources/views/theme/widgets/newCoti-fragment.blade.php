@@ -136,6 +136,56 @@
     </div>
 </div>
 
+
+<div class="row mb-3">
+    <div id="cpContainer" class="col-md-6 d-none">
+
+        <div class="an-single-component with-shadow h-100">
+            <div class="an-component-header">
+                <h6>{{ 'Persona de Contacto' }}</h6>
+            </div>
+            <div class="an-component-body">
+                <div class="an-helper-block">
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <label for="cpName">{{ 'Nombre' }}:</label>
+                            <div class="an-input-group">
+                                <select class="an-form-control" id="cpName" name="cpName">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cpEmail">{{ 'Correo' }}: </label>
+                            <div class="an-input-group">
+                                <div class="an-input-group-addon"><i></i></div>
+                                <input type="text" id="cpEmail" class="an-form-control cpEmail" name="cpEmail"
+                                    data-toggle="tooltip" data-placement="top" 
+                                    title="Correo" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="cpPhone">{{ 'Telefono' }}: </label>
+                            <div class="an-input-group">
+                                <div class="an-input-group-addon"><i></i></div>
+                                <input type="text" id="cpPhone" class="an-form-control cpEmail" name="cpPhone"
+                                    data-toggle="tooltip" data-placement="top" 
+                                    title="{{ 'Telefono' }}" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <div class="row mb-3">
     <div class="col-md-12">
         <div class="an-single-component with-shadow h-100">
@@ -1156,15 +1206,18 @@ $(document).ready(function() {
             success: function(result) {
                 console.log("Cargando datos clienteData");
                 console.log(result);
-                if (result.length > 0) {
 
+                if(result[0][0].isSAP == 'Y'){
+                    // Si es sap ocultar la seccion de personas de contacto
+                    $("#cpContainer").hide();
+                }
+                else{
+                    // Si es no sap mostrar la seccion de personas de contacto
+                    $("#cpContainer").show();
+                }
                     
-                    if(result[0][0].isSAP == 'Y'){
 
-                        // Si es sap mostrar la lista de personas de contacto de esas personas
-                        
-
-                    }
+                if (result.length > 0) {
 
                     // Para llenar info del cliente
                     $.each(result, function(inx, arrx) {

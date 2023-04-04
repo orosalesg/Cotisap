@@ -192,6 +192,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'rol']], functio
         Route::post('alta-cliente/deleteCP','CntctPersonController@delete')->name("deleteCP");
         // Buscar por numero de cliente
         Route::post('alta-cliente/findCP','CntctPersonController@findwhere')->name("findCP");
+        // Buscar info de una sola persona de contacto
+        Route::post('alta-cliente/findsingleCP','CntctPersonController@findsingleCP')->name("findsingleCP");
 
 
         Route::post('editClienteData', 'CotizacionController@editClienteData')->name('editClienteData');

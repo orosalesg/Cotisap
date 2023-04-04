@@ -135,4 +135,18 @@ class CntctPersonController extends Controller
         return response()->json($cp);
 
     }
+
+    public function findsingleCP(Request $request){
+
+        $cp = CntctPerson::find($request->id);
+
+        if(!$cp){
+            return response()->json([
+                "msg" => "Sin datos"
+            ], 400);
+        }
+
+        return response()->json($cp);
+
+    }
 }

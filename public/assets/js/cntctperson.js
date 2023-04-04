@@ -28,6 +28,8 @@ $(document).ready(function(){
 	// Evento crear Persona de contacto
 	$("#btnSaveCP").on("click", storeCP );
 
+	$("#btnCleanCP").on("click", clearFormCP);
+
 	// Inicializar tabla de personas de contacto
 	$("#cpTable").DataTable({
 
@@ -53,7 +55,6 @@ $(document).ready(function(){
 				        		return "<img data='" + data + "' class='deletecp' src='" + delete_img_route + "' height='30' width='30'/>";
 				   		}, "targets" : 5 }
       	],
-		language: lang_ES_EN,
 		columns : [
 			// este campo es del id del de la persona de contacto
 			{title : "ID"},
@@ -67,53 +68,16 @@ $(document).ready(function(){
 			$(".deletecp").off();
 			$(".deletecp").on("click", deleteCP );
 			$(".editcp").off();
-			$(".editcp").on("click", updateUser );
+			$(".editcp").on("click", setUpdate );
     	}
 	});
 
+
+	$("#btnSaveCP").on("click", function(){
+		updateUser();
+	});
+
 }); // End doc ready
-
-// Obtener todas las personas de contacto
-function getAllCP(){
-
-	$.ajax({
-		method: "POST",
-		url : routefind,
-		data: {
-			"id_customer" : $("#clienteId").val(), 
-		},
-		success : function( response ){
-			var data = response;
-
-			// Mostrar las personas de contacto en la tabla
-			showCP( data );
-
-			$("#data-loader").remove();
-		}
-	});
-}
-
-function showCP( data ){
-
-	console.log(data);
-
-	var TABLE = $("#cpTable").DataTable();
-	$.each(data,function(e){
-		var array = new Array();
-		// este campo es del id del de la persona de contacto
-		array.push(e.id);
-		array.push(e.name);
-		array.push(e.email);
-		array.push(e.email);
-		array.push(e.id);
-		array.push(e.id);
-		TABLE.row.add( array );
-	});
-	TABLE.draw();
-	$("#container").show();
-
-
-}
 
 
 function storeCP(){
@@ -161,7 +125,30 @@ function storeCP(){
 	//}
 }
 
-// Por añadir
+function setUpdate(event){
+
+
+	var cpid = $(event.currentTarget).parents('tr').find(".cpid").html();
+
+	$.ajax({
+		method: "POST",
+		url : routegetCP,
+		data: {
+			"id" : cpid, 
+		},
+		success : function( response ){
+			console.log(response);	
+
+			$("#cp_id").val(response.id)
+			$("#cp_name").val(response.name)
+			$("#cp_email").val(response.email)
+			$("#cp_phone").val(response.phone)
+		}
+	});
+
+}
+
+// Al dar click de boton actualizar
 function updateUser(){
 	$("#loader-cp").show();
 	if( validateForm() ){
@@ -219,7 +206,8 @@ function validateForm(){
 }
 
 // Vaciar campos del formulario de personas de contacto
-function clearForm(){
+function clearFormCP(){
+	$("#cp_id").val("");
 	$("#cp_name").val("");
 	$("#cp_email").val("");
 	$("#cp_phone").val("");

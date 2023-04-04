@@ -59,7 +59,9 @@
   var routestore = "{{ URL::route('storeCP') }}";
   var routeupdate = "{{ URL::route('updateCP') }}";
   var routedelete = "{{ URL::route('deleteCP') }}";
-  var routefind = "{{ URL::route('findCP') }}";
+  var routefindCP = "{{ URL::route('findCP') }}";
+  // Get single CP info
+  var routegetCP = "{{ URL::route('findsingleCP') }}";
 
 
   var edit_img_route = "{{asset('assets/img/edit.png')}}";
@@ -222,6 +224,10 @@
         		    $("#clienteEmail").val(result.clienteEmail);
         		    $("#clienteTelefono").val(result.clienteTelefono);
                 $("#clienteDomicilio").val(result.clienteDomicilio);
+
+
+                // Al abrir modal traer los datos de las personas de contacto
+                getAllCP();
         		}
         	});
         });
@@ -270,8 +276,57 @@
             
         });
         
-        
+        $("#editCliente").on('hidden.bs.modal', function() {
+          
+          // Limpiar formulario de persona de contacto
+          clearFormCP();
+
+        });
     });
+
+    // Obtener todas las personas de contacto
+  function getAllCP(){
+
+    $.ajax({
+      method: "POST",
+      url : routefindCP,
+      data: {
+        "id_customer" : $("#clienteId").val(), 
+      },
+      success : function( response ){
+        var data = response;
+
+        // Mostrar las personas de contacto en la tabla
+        showCP( data );
+
+        $("#data-loader").remove();
+      }
+    });
+  }
+
+  function showCP( data ){
+
+    var TABLE = $("#cpTable").DataTable();
+    TABLE.clear();
+
+    $.each(data,function(index, element){
+      console.log(element);
+      var array = new Array();
+      // este campo es del id del de la persona de contacto
+      array.push(element.id);
+      array.push(element.name);
+      array.push(element.email);
+      array.push(element.email);
+      array.push(element.id);
+      array.push(element.id);
+      TABLE.row.add( array );
+    });
+    TABLE.draw();
+    $("#container").show();
+
+
+  }
+
   function validateForm(){
     var valid_count = 0;
 

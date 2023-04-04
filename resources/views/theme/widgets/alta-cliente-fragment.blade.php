@@ -207,6 +207,15 @@
                       
                       <div class="row">
                         <div class="col-md-6">
+                            <label for="">Id</label>
+                            <div class="an-input-group">
+                                <div class="an-input-group-addon" id="title-icon"><i class="ion-pound"></i>
+                                </div>
+                                <input id="cp_id" type="text" class="an-form-control disabled" disabled
+                                    placeholder="" data-toggle="tooltip" title="id" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
                             <label for="">Nombre</label>
                             <div class="an-input-group">
                                 <div class="an-input-group-addon" id="title-icon"><i class="ion-home"></i>
@@ -215,6 +224,8 @@
                                     placeholder="Nombre" data-toggle="tooltip" title="Nombre" />
                             </div>
                         </div>
+                      </div>
+                      <div class="row">
                         <div class="col-md-6">
                             <label for="">Correo</label>
                             <div class="an-input-group">
@@ -224,8 +235,6 @@
                                     placeholder="" data-toggle="tooltip" title="Nombre" />
                             </div>
                         </div>
-                      </div>
-                      <div class="row">
                         <div class="col-md-6">
                             <label for="">Telefono</label>
                             <div class="an-input-group">
@@ -238,10 +247,12 @@
                       </div>
 
                       <div class="row">
-                        <div class="col-md-5"></div>
-                        <div class="col-md-4"></div>
                         <div class="col-md-2">
-                            <button class="btn btn-sm btn-success" id="btnSaveCP">Agregar persona</button>
+                            <button class="btn btn-sm btn-success" id="btnCleanCP">Limpiar</button>
+                        </div>
+                        <div class="col-md-7"></div>
+                        <div class="col-md-2">
+                            <button class="btn btn-sm btn-success" id="btnSaveCP">Guardar</button>
                             <img id="loader-cp" src="{{ asset('assets/img/loading.gif') }}" height="20"
                               style="display: none;" /></button>
                         </div>

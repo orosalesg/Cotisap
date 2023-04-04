@@ -292,7 +292,7 @@ class CotizacionController extends Controller
         $SAP = Lib::querySQLSRV("SELECT CardCode as id, ( 'SAP - ' + CardCode + ' - ' + CardName) as text FROM 
         OCRD WHERE VatStatus = 'Y' AND CardType = 'C' AND ( CardCode LIKE ? OR CardName LIKE ? )", [ "%".$request->q."%", "%".$request->q."%" ]);
         
-        $noSAP = Lib::querySQLMYSQL("SELECT id as id, concat('NoSAP - ', id, ' - ', clienteNombre, ' - ', clienteRazon)  as text FROM 
+        $noSAP = Lib::querySQLMYSQL("SELECT id as id, concat('NoSAP - ', id, ' - ', ifnull(clienteNombre, ''), ' - ', ifnull(clienteRazon, '')) as text FROM 
         ".session('Company')."_customers WHERE clienteNombre LIKE ? OR clienteRazon LIKE ? OR id LIKE ? ", [ "%".$request->q."%", "%".$request->q."%", "%".$request->q."%"] );
 
 

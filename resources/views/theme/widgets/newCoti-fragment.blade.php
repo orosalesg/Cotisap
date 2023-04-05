@@ -1191,6 +1191,24 @@ $(document).ready(function() {
 
     });
 
+    $("#cpName").on("select2:select", function(e){
+
+        $.ajax({
+            method: 'GET',
+            url: "{{ URL::route('findsingleCP') }}",
+            data: {
+                q: data.id
+            },
+            success: function(result) {
+                
+            },
+            error: function(result) {
+                console.log(result);
+            }
+        });
+
+    });
+
     $('#clienteCodigo').on('select2:select', function(e) {
 
         var data = e.params.data;
@@ -1215,6 +1233,34 @@ $(document).ready(function() {
                     // Si es no sap mostrar la seccion de personas de contacto
                     $("#cpContainer").show();
                 }
+
+                /***************************
+                 * Persona de Contacto
+                 */
+
+                $("#cpName").select2({
+
+                    ajax: {
+                        method: "POST",
+                        url: "{{ URL::route('findCP') }}",
+                        data: {
+                            id_customer : data.id,
+                            // Para diferenciar 
+                            coti: 'Y',
+                        },
+                        processResults: function(data) {
+                            console.log("CP NAME PROCESS RESULTS");
+                            console.log(data);
+
+                            return {
+                                results: data
+                            };
+                        },
+                    },
+                    minimumResultsForSearch: -1,
+                    language: 'es',
+
+                });
                     
 
                 if (result.length > 0) {

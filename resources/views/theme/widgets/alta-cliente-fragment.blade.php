@@ -247,11 +247,11 @@
                       </div>
 
                       <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-sm-2">
                             <button class="btn btn-sm btn-success" id="btnCleanCP">Limpiar</button>
                         </div>
-                        <div class="col-md-7"></div>
-                        <div class="col-md-2">
+                        <div class="col-sm-7"></div>
+                        <div class="col-sm-2">
                             <button class="btn btn-sm btn-success" id="btnSaveCP">Guardar</button>
                             <img id="loader-cp" src="{{ asset('assets/img/loading.gif') }}" height="20"
                               style="display: none;" /></button>

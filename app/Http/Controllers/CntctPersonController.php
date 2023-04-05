@@ -132,6 +132,22 @@ class CntctPersonController extends Controller
 
         $cp = CntctPerson::where('id_customer',$request->id_customer)->get();
 
+        if(isset($request->coti)){
+
+            $results = array();
+            $i = 0;
+
+            foreach($cp as $person){
+                $results[$i]["id"] = $person->id;
+                $results[$i]["text"] = $person->name;
+
+                $i++;
+            }
+
+            return response()->json($results);
+
+        }
+
         return response()->json($cp);
 
     }

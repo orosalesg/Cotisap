@@ -26,6 +26,52 @@
                 </div>
             </div>
         </div>
+
+        <!-- Persona de contacto -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="an-single-component with-shadow h-100">
+                    <div class="an-component-header">
+                        <h6>Persona de Contacto</h6>
+                    </div>
+                    <div class="an-component-body">
+                        <div class="an-helper-block">
+                            <div class="row" id="cpContainer">
+
+                                <div class="col-md-6">
+                                    <label for="cpName">{{ 'Nombre' }}:</label>
+                                    <div class="an-input-group">
+                                        <select class="an-form-control" id="cpName" name="cpName">
+                                            <option value="{{ $cotizacion['CntctPrsn']->id }}" selected> {{ $cotizacion['CntctPrsn']->name }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="cpEmail">{{ 'Correo' }}: </label>
+                                    <div class="an-input-group">
+                                        <input type="text" id="cpEmail1" class="an-form-control disabled cpEmail1" name="cpEmail1"
+                                            data-toggle="tooltip" data-placement="top" value="{{ $cotizacion['CntctPrsn']->email }}"
+                                            title="{{ $cotizacion['CntctPrsn']->email }}" readonly style="padding: 5 0;">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="cpPhone">{{ 'Telefono' }}: </label>
+                                    <div class="an-input-group">
+                                        <input type="text" id="cpPhone1" class="an-form-control disabled cpPhone1" name="cpPhone1"
+                                            data-toggle="tooltip" data-placement="top" value="{{ $cotizacion['CntctPrsn']->phone }}"
+                                            title="{{ $cotizacion['CntctPrsn']->phone }}" readonly style="padding: 5 0;">
+                                    </div>
+                                </div>
+                                <div class="col-md-6"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="col-md-6">

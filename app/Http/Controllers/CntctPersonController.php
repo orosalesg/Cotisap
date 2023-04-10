@@ -154,7 +154,7 @@ class CntctPersonController extends Controller
 
     public function findsingleCP(Request $request){
 
-        $cp = CntctPerson::find($request->id);
+        $cp = CntctPerson::find($request->q);
 
         if(!$cp){
             return response()->json([
@@ -163,6 +163,20 @@ class CntctPersonController extends Controller
         }
 
         return response()->json($cp);
+
+    }
+
+    public static function insfindsingleCP($id){
+
+        $cp = CntctPerson::find($id);
+
+        if(!$cp){
+            return response()->json([
+                "msg" => "Sin datos"
+            ], 400);
+        }
+
+        return $cp;
 
     }
 }

@@ -21,6 +21,8 @@ use Mail;
 use App\Models\Rol;
 use App\Models\Company;
 use App\Http\Controllers\AcinfoController as Aci;
+use App\Http\Controllers\CntctPersonController as CntPrsn;
+
 
 use Illuminate\Support\Facades\Http;
 /**
@@ -121,6 +123,7 @@ class CotizacionController extends Controller
         $cotizacion->lang = $Request->datosCotizacion['language'] ? $Request->datosCotizacion['language'] : 'esp';
 
         $cotizacion->banners = isset($Request->datosCotizacion['bannersConfig']) ? $Request->datosCotizacion['bannersConfig'] : "";
+        $cotizacion->personaContacto = isset($Request->datosCotizacion['personaContacto']) ? $Request->datosCotizacion['personaContacto'] : null;
         
         if(session('domain') == 'gruposim.com'){
             //$cotizacion->autorized = $Request->datosCotizacion['autorized'] ? $Request->datosCotizacion['autorized'] : 0;
@@ -856,6 +859,8 @@ class CotizacionController extends Controller
         $ArtQuotation  = Articulo::where('numCotizacion', $Quotations[0]->numCotizacion)->orderby('numLine','ASC')->get();
 
         $Notes = Notes::find($Quotations[0]->notasCotizacion);
+
+        $CntctPrsn = CntPrsn::insfindsingleCP($Quotations[0]->personaContacto);
         
         $spectypes = SpecsType::all();
 
@@ -904,6 +909,7 @@ class CotizacionController extends Controller
         return array(
             'Quotations' => $Quotations, 
             'ArtQuotation' => $ArtQuotation,
+            'CntctPrsn' => $CntctPrsn,
             'Notes' => $Notes,
             'Specs' => $types,
         );
@@ -972,7 +978,6 @@ class CotizacionController extends Controller
     public function getEspecificaciones(){
         return Spec::all();
     } 
-
 
     /**
      * Delete Cotizacion

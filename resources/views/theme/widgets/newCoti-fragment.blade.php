@@ -160,8 +160,8 @@
                             <label for="cpEmail">{{ 'Correo' }}: </label>
                             <div class="an-input-group">
                                 <div class="an-input-group-addon"><i></i></div>
-                                <input type="text" id="cpEmail" class="an-form-control cpEmail" name="cpEmail"
-                                    data-toggle="tooltip" data-placement="top" 
+                                <input type="text" id="cpEmail1" class="an-form-control disabled cpEmail1" name="cpEmail1"
+                                    data-toggle="tooltip" data-placement="top"
                                     title="Correo" readonly>
                             </div>
                         </div>
@@ -170,7 +170,7 @@
                             <label for="cpPhone">{{ 'Telefono' }}: </label>
                             <div class="an-input-group">
                                 <div class="an-input-group-addon"><i></i></div>
-                                <input type="text" id="cpPhone" class="an-form-control cpEmail" name="cpPhone"
+                                <input type="text" id="cpPhone1" class="an-form-control disabled cpPhone1" name="cpPhone1"
                                     data-toggle="tooltip" data-placement="top" 
                                     title="{{ 'Telefono' }}" readonly>
                             </div>
@@ -1193,17 +1193,24 @@ $(document).ready(function() {
 
     $("#cpName").on("select2:select", function(e){
 
+        var data = e.params.data;
+
         $.ajax({
-            method: 'GET',
+            method: 'POST',
             url: "{{ URL::route('findsingleCP') }}",
             data: {
                 q: data.id
             },
             success: function(result) {
-                
+
+                $("#cpEmail1").val(result.email == "" ? "sin datos" : result.email);
+                $("#cpPhone1").val(result.phone == "" ? "sin datos" : result.phone);
+
             },
             error: function(result) {
-                console.log(result);
+
+                toastr["error"]("Persona de contacto", "Error al obtener informacion de persona, puede crear la cotizacion sin problema. ");
+
             }
         });
 
@@ -1222,11 +1229,13 @@ $(document).ready(function() {
                 q: data.id
             },
             success: function(result) {
-                console.log("Cargando datos clienteData");
-                console.log(result);
 
                 if(result[0][0].isSAP == 'Y'){
                     // Si es sap ocultar la seccion de personas de contacto
+                    $("#cpName").val("");
+                    $("#cpEmail1").val("");
+                    $("#cpPhone1").val("");
+
                     $("#cpContainer").hide();
                 }
                 else{
@@ -1763,7 +1772,10 @@ $(document).ready(function() {
             direccionEntrega: $("#cotiEntregaDireccion").val(),
             fleteraEntrega: $("#cotiEntregaFletera").val(),
             language: $("#langCoti").val(),
-            bannersConfig: JSON.stringify(getbanners())
+            bannersConfig: JSON.stringify(getbanners()),
+
+            // Persona de Contacto
+            personaContacto: $("#cpName").val()
         };
         console.log(datos);
 

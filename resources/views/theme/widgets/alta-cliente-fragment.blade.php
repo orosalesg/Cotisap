@@ -220,7 +220,7 @@
                             <div class="an-input-group">
                                 <div class="an-input-group-addon" id="title-icon"><i class="ion-home"></i>
                                 </div>
-                                <input id="cp_name" type="text" class="an-form-control"
+                                <input id="cp_name" type="text" class="an-form-control cpName1"
                                     placeholder="Nombre" data-toggle="tooltip" title="Nombre" />
                             </div>
                         </div>
@@ -229,19 +229,19 @@
                         <div class="col-md-6">
                             <label for="">Correo</label>
                             <div class="an-input-group">
-                                <div class="an-input-group-addon" id="title-icon"><i class="ion-home"></i>
+                                <div class="an-input-group-addon" id="title-icon"><i class="ion-at"></i>
                                 </div>
-                                <input id="cp_email" type="text" class="an-form-control"
-                                    placeholder="" data-toggle="tooltip" title="Nombre" />
+                                <input id="cp_email" type="text" class="an-form-control cpEmail1"
+                                    placeholder="Correo" data-toggle="tooltip" title="Correo" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label for="">Telefono</label>
                             <div class="an-input-group">
-                                <div class="an-input-group-addon" id="title-icon"><i class="ion-home"></i>
+                                <div class="an-input-group-addon" id="title-icon"><i class="ion-ios-telephone"></i>
                                 </div>
-                                <input id="cp_phone" type="text" class="an-form-control"
-                                    placeholder="Nombre" data-toggle="tooltip" title="Nombre" />
+                                <input id="cp_phone" type="text" class="an-form-control cpPhone1"
+                                    placeholder="Telefono" data-toggle="tooltip" title="Telefono" />
                             </div>
                         </div>
                       </div>
@@ -252,7 +252,7 @@
                         </div>
                         <div class="col-sm-7"></div>
                         <div class="col-sm-2">
-                            <button class="btn btn-sm btn-success" id="btnSaveCP">Guardar</button>
+                            <button class="btn btn-sm btn-success" id="btnSaveCP">Crear</button>
                             <img id="loader-cp" src="{{ asset('assets/img/loading.gif') }}" height="20"
                               style="display: none;" /></button>
                         </div>

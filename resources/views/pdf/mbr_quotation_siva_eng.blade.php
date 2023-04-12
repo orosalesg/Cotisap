@@ -97,8 +97,12 @@
     <td>			
     	<img width="90" src="https://account.cotisap.com/assets/img/logo-mbr.png"><br><br>
 			<font size="1">
-			    {!! $data['Cliente'][0][0]->clienteNombre ?? $data['Quotation']->nombreCliente !!} <br>
-			    {!! $data['Cliente'][0][0]->clienteRazon ?? '' !!}
+			    @if( isset($data['PContacto']->id) )
+					{!! ucfirst($data['Cliente'][0][0]->clienteNombre) ?? ucfirst($data['Quotation']->nombreCliente) !!} <br>
+					{{ ucfirst($data['PContacto']->name) }}
+				@else
+					{!! ucfirst($data['Cliente'][0][0]->clienteRazon) ?? '' !!}
+				@endif
 			 </font>
 	</td>
     <td>

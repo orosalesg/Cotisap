@@ -187,7 +187,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'rol']], functio
         // Guardar Persona de contacto
         Route::post('alta-cliente/storeCP','CntctPersonController@store')->name("storeCP");
         // Actualizar persona de contacto
-        Route::post('alta-cliente/updateCP','CntctPersonController@update')->name('updateCP');
+        Route::put('alta-cliente/updateCP','CntctPersonController@update')->name('updateCP');
         // Borrar Persona de contacto
         Route::post('alta-cliente/deleteCP','CntctPersonController@delete')->name("deleteCP");
         // Buscar por numero de cliente

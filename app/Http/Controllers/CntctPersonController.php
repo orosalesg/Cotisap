@@ -166,15 +166,17 @@ class CntctPersonController extends Controller
 
     }
 
+    public static function insfindCntctPpl($id){
+
+        $cp = CntctPerson::where('id_customer',$id)->get();
+
+        return $cp;
+
+    }
+
     public static function insfindsingleCP($id){
 
         $cp = CntctPerson::find($id);
-
-        if(!$cp){
-            return response()->json([
-                "msg" => "Sin datos"
-            ], 400);
-        }
 
         return $cp;
 

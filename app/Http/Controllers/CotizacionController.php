@@ -22,6 +22,7 @@ use App\Models\Rol;
 use App\Models\Company;
 use App\Http\Controllers\AcinfoController as Aci;
 use App\Http\Controllers\CntctPersonController as CntPrsn;
+use App\Http\Controllers\PDFController as PDFCont;
 
 
 use Illuminate\Support\Facades\Http;
@@ -860,6 +861,8 @@ class CotizacionController extends Controller
 
         $Notes = Notes::find($Quotations[0]->notasCotizacion);
 
+        $CntctpPpl = CntPrsn::insfindCntctPpl($Quotations[0]->numCliente);
+
         $CntctPrsn = CntPrsn::insfindsingleCP($Quotations[0]->personaContacto);
         
         $spectypes = SpecsType::all();
@@ -909,6 +912,7 @@ class CotizacionController extends Controller
         return array(
             'Quotations' => $Quotations, 
             'ArtQuotation' => $ArtQuotation,
+            'CntctPpl' => $CntctpPpl,
             'CntctPrsn' => $CntctPrsn,
             'Notes' => $Notes,
             'Specs' => $types,
@@ -1026,6 +1030,8 @@ class CotizacionController extends Controller
         $cotizacion->comentarios = isset($request->obtenerDatosCotizacion['comentarios']) ? $request->obtenerDatosCotizacion['comentarios'] : '' ;
 
         $cotizacion->banners = isset($request->obtenerDatosCotizacion['bannersConfig']) ? $request->obtenerDatosCotizacion['bannersConfig'] : "";
+
+        $cotizacion->personaContacto = isset($request->obtenerDatosCotizacion['personaContacto']) ? $request->obtenerDatosCotizacion['personaContacto'] : null;
 
         $cotizacion->notasCotizacion = isset($request->obtenerDatosCotizacion['notas']) ? $request->obtenerDatosCotizacion['notas'] : "";
 

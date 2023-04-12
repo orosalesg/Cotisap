@@ -28,7 +28,7 @@
         </div>
 
         <!-- Persona de contacto -->
-
+        @if( isset($cotizacion['CntctPpl']))
         <div class="row">
             <div class="col-md-12">
                 <div class="an-single-component with-shadow h-100">
@@ -41,28 +41,31 @@
 
                                 <div class="col-md-6">
                                     <label for="cpName">{{ 'Nombre' }}:</label>
-                                    <div class="an-input-group">
-                                        <select class="an-form-control" id="cpName" name="cpName">
-                                            <option value="{{ $cotizacion['CntctPrsn']->id }}" selected> {{ $cotizacion['CntctPrsn']->name }}</option>
-                                        </select>
-                                    </div>
+                                    <select class="an-form-control" id="cpName" name="cpName">
+                                        <option value="0" disabled selected>Selecciona una opcion...</option>
+                                        @foreach( $cotizacion['CntctPpl'] as $person)
+
+                                            @if( isset($cotizacion['CntctPrsn']->id ))
+                                                <option value="{{ $person->id }}" {!! $person->id == $cotizacion['CntctPrsn']->id ? 'selected' : '' !!}>{{ $person->name }}</option>
+                                            @else
+                                                <option value="{{ $person->id }}" >{{ $person->name }}</option>
+                                            @endif
+                                            
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="cpEmail">{{ 'Correo' }}: </label>
-                                    <div class="an-input-group">
-                                        <input type="text" id="cpEmail1" class="an-form-control disabled cpEmail1" name="cpEmail1"
-                                            data-toggle="tooltip" data-placement="top" value="{{ $cotizacion['CntctPrsn']->email }}"
-                                            title="{{ $cotizacion['CntctPrsn']->email }}" readonly style="padding: 5 0;">
-                                    </div>
+                                    <input type="text" id="cpEmail1" class="an-form-control disabled cpEmail1" name="cpEmail1"
+                                        data-toggle="tooltip" data-placement="top" value="{{ $cotizacion['CntctPrsn']->email ?? '' }}"
+                                        title="{{ $cotizacion['CntctPrsn']->email ?? '' }}" readonly style="padding: 5 0;">
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="cpPhone">{{ 'Telefono' }}: </label>
-                                    <div class="an-input-group">
-                                        <input type="text" id="cpPhone1" class="an-form-control disabled cpPhone1" name="cpPhone1"
-                                            data-toggle="tooltip" data-placement="top" value="{{ $cotizacion['CntctPrsn']->phone }}"
-                                            title="{{ $cotizacion['CntctPrsn']->phone }}" readonly style="padding: 5 0;">
-                                    </div>
+                                    <input type="text" id="cpPhone1" class="an-form-control disabled cpPhone1" name="cpPhone1"
+                                        data-toggle="tooltip" data-placement="top" value="{{ $cotizacion['CntctPrsn']->phone ?? '' }}"
+                                        title="{{ $cotizacion['CntctPrsn']->phone ?? '' }}" readonly style="padding: 5 0;">
                                 </div>
                                 <div class="col-md-6"></div>
 
@@ -72,6 +75,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 
     <div class="col-md-6">
@@ -1264,6 +1268,31 @@ $(document).ready(function() {
 
     var onChangeDOM = 0;
 
+    $("#cpName").on("select2:select", function(e){
+
+        var data = e.params.data;
+
+        $.ajax({
+            method: 'POST',
+            url: "{{ URL::route('findsingleCP') }}",
+            data: {
+                q: data.id
+            },
+            success: function(result) {
+
+                $("#cpEmail1").val(result.email == "" ? "sin datos" : result.email);
+                $("#cpPhone1").val(result.phone == "" ? "sin datos" : result.phone);
+
+            },
+            error: function(result) {
+
+                toastr["error"]("Persona de contacto", "Error al obtener informacion de persona, puede crear la cotizacion sin problema. ");
+
+            }
+        });
+
+    });
+
     $("input, select, textarea").on("change",document,function(){
         onChangeDOM += 1;
         $(window).bind('beforeunload', function(){
@@ -2008,7 +2037,10 @@ $(document).ready(function() {
             formato: $("#formatoCoti").val(),
             language: $("#langCoti").val(),
             notas: $("#notes").val(),
-            bannersConfig: JSON.stringify(getbanners())
+            bannersConfig: JSON.stringify(getbanners()),
+
+            // Persona de Contacto
+            personaContacto: $("#cpName").val()
         };
         return datos;
 
@@ -2235,6 +2267,11 @@ $(document).ready(function() {
 
             });
             --}}
+
+    $("#cpName").select2({
+        minimumResultsForSearch: -1,
+        language: 'es',
+    });
     
     /*** Iniciar Notas comerciales ***/
 

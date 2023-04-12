@@ -26,7 +26,14 @@ var lang_ES_EN = {
 $(document).ready(function(){
 
 	// Evento crear Persona de contacto
-	$("#btnSaveCP").on("click", storeCP );
+	$("#btnSaveCP").on("click", function(){
+		// Si es distinto a vacio (esta lleno)
+		if( !$("#clienteId").val() ){
+			updateUser();
+		}else{
+			storeCP();
+		}
+	} );
 
 	$("#btnCleanCP").on("click", clearFormCP);
 
@@ -72,11 +79,6 @@ $(document).ready(function(){
     	}
 	});
 
-
-	$("#btnSaveCP").on("click", function(){
-		updateUser();
-	});
-
 }); // End doc ready
 
 
@@ -95,6 +97,7 @@ function storeCP(){
 				"phone" : $("#cp_phone").val()
 			},
 			success : function( response ){
+				console.log(response);
 				if( response.status ){
 					Swal.fire({
 						icon: 'success',
@@ -107,7 +110,7 @@ function storeCP(){
 					// Al ejecutarse correctamente la solicitud agregamos los datos a una nueva linea de la tabla
 					var TABLE = $("#cpTable").DataTable();
 					TABLE.row.add([
-						response.id,
+						response.cp.id,
 						//  Estos input corresponden al formulario arriba de la tabla de personas de contacto
 						$("#cp_name").val(),
 						$("#cp_email").val(),
@@ -127,6 +130,7 @@ function storeCP(){
 
 function setUpdate(event){
 
+	$("#btnSaveCP").html("Actualizar");
 
 	var cpid = $(event.currentTarget).parents('tr').find(".cpid").html();
 
@@ -134,7 +138,7 @@ function setUpdate(event){
 		method: "POST",
 		url : routegetCP,
 		data: {
-			"id" : cpid, 
+			q : cpid, 
 		},
 		success : function( response ){
 			console.log(response);	
@@ -151,31 +155,46 @@ function setUpdate(event){
 // Al dar click de boton actualizar
 function updateUser(){
 	$("#loader-cp").show();
-	if( validateForm() ){
-		$.ajax({
-			method : "POST",
-			url : routeupdate,
-			data : {
-				"name" : $("#cp_name").val(),
-				"email" : $("#cp_email").val(),
-				"phone" : $("#cp_phone").val(),
-				"_method" : "PUT"
-			},
-			success : function( response ){
-				if( response.status ){
-					$("#loader-cp").hide();
-					swal("OK", "Usuario actualizada correctamente", "success");
+	$.ajax({
+		method : "POST",
+		url : routeupdate,
+		data : {
+			id: $("#cp_id").val(),
+			name : $("#cp_name").val(),
+			email : $("#cp_email").val(),
+			phone : $("#cp_phone").val(),
+			_method : "PUT"
+		},
+		success : function( response ){
+			console.log(response);
+			$("#loader-cp").hide();
+			Swal.fire({
+				icon: 'success',
+				title: 'Actualizado: Persona de contacto',
+				text: 'Actualizada correctamente',
+				showCloseButton: true,
+				showCancelButton: false,
+			});
 
-					// Ajustar a nueva forma de actualizar
-					var parents = $("#cpTable span:contains('" + $("#id").val() +  "')").parents("tr");
-					parents.find(".name").text($("#cp_name").val());
-					parents.find(".email").text($("#cp_email").val());
-					parents.find(".phone").text($("#cp_phone").val());
-					$("#close").click();
-				}
-			}
-		});
-	}
+			// Ajustar a nueva forma de actualizar
+			/*var parents = $("#cpTable span:contains('" + $("#cp_id").val() +  "')").parents("tr");
+			parents.find(".cpName1").text($("#cp_name").val());
+			parents.find(".cpEmail1").text($("#cp_email").val());
+			parents.find(".cpPhone1").text($("#cp_phone").val());*/
+			$("#close").click();
+		},
+		error : function(response) {
+			console.log(response);
+			Swal.fire({
+				icon: 'error',
+				title: 'Persona de contacto',
+				text: response,
+				showCloseButton: true,
+				showCancelButton: false,
+			});
+			$("#loader-cp").hide();
+		}
+	});
 }
 
 
@@ -207,6 +226,8 @@ function validateForm(){
 
 // Vaciar campos del formulario de personas de contacto
 function clearFormCP(){
+	$("#btnSaveCP").html("Crear");
+
 	$("#cp_id").val("");
 	$("#cp_name").val("");
 	$("#cp_email").val("");

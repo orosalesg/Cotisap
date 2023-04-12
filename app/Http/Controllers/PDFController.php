@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
 use Illuminate\View\Compilers\BladeCompiler as LaravelBladeCompiler;
 
+use App\Http\Controllers\CntctPersonController as CntPrsn;
+
 class PDFController extends Controller
 {
 
@@ -41,6 +43,9 @@ class PDFController extends Controller
         $ArtQuotation = ArtQuotation::where('numCotizacion', $numCotizacion)->get();
         $Vendedor = User::where('email', $Quotation->idVendedor)->first();   
         $Notes = Notes::find($Quotation->notasCotizacion);
+
+        $CntctPrsn = CntPrsn::insfindsingleCP($Quotation->personaContacto);
+
         $email = Auth::user()->email;
         $company = Company::where('dominio' ,explode('@', $email)[1])
                         ->get();
@@ -197,6 +202,7 @@ class PDFController extends Controller
               //'USD' => number_format($total_cotizacion_usd, 2, '.', ',')
             ],
             'rutaimg' => $rutaimg,
+            'PContacto' => $CntctPrsn,
             'Notes' => $Notes,
             'Specs' => $types
         ];
@@ -252,7 +258,7 @@ class PDFController extends Controller
         
         if(empty($data[0])){
 
-                $data[0] = Lib::querySQLMYSQL("SELECT clienteNombre, clienteRazon FROM 
+                $data[0] = Lib::querySQLMYSQL("SELECT clienteNombre, clienteRazon, 'N' as 'isSAP' FROM 
                 ".session('Company')."_customers WHERE id LIKE ? ", [ $request ]);
     
                 return $data;

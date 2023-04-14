@@ -103,9 +103,11 @@
                         <font size="1">
                             @if( isset($data['PContacto']->id) )
                                 {!! ucfirst($data['Cliente'][0][0]->clienteNombre) ?? ucfirst($data['Quotation']->nombreCliente) !!} <br>
-                                {{ ucfirst($data['PContacto']->name) }}
+                                {{ ucfirst($data['PContacto']->name) }} <br>
+                                {{ ucfirst($data['Quotation']->project) }}
                             @else
-                                {!! ucfirst($data['Cliente'][0][0]->clienteRazon) ?? '' !!}
+                                {!! ucfirst($data['Cliente'][0][0]->clienteNombre) ?? '' !!} <br>
+                                {{ ucfirst($data['Quotation']->project) ? "Proyecto: " . ucfirst($data['Quotation']->project) : "" }}
                             @endif
                         </font>
                 </td>

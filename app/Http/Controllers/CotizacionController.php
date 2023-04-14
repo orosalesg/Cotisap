@@ -125,6 +125,7 @@ class CotizacionController extends Controller
 
         $cotizacion->banners = isset($Request->datosCotizacion['bannersConfig']) ? $Request->datosCotizacion['bannersConfig'] : "";
         $cotizacion->personaContacto = isset($Request->datosCotizacion['personaContacto']) ? $Request->datosCotizacion['personaContacto'] : null;
+        $cotizacion->project = isset($Request->datosCotizacion['project']) ? $Request->datosCotizacion['project'] : null;
         
         if(session('domain') == 'gruposim.com'){
             //$cotizacion->autorized = $Request->datosCotizacion['autorized'] ? $Request->datosCotizacion['autorized'] : 0;
@@ -1030,8 +1031,8 @@ class CotizacionController extends Controller
         $cotizacion->comentarios = isset($request->obtenerDatosCotizacion['comentarios']) ? $request->obtenerDatosCotizacion['comentarios'] : '' ;
 
         $cotizacion->banners = isset($request->obtenerDatosCotizacion['bannersConfig']) ? $request->obtenerDatosCotizacion['bannersConfig'] : "";
-
         $cotizacion->personaContacto = isset($request->obtenerDatosCotizacion['personaContacto']) ? $request->obtenerDatosCotizacion['personaContacto'] : null;
+        $cotizacion->project = isset($request->obtenerDatosCotizacion['project']) ? $request->obtenerDatosCotizacion['project'] : null;
 
         $cotizacion->notasCotizacion = isset($request->obtenerDatosCotizacion['notas']) ? $request->obtenerDatosCotizacion['notas'] : "";
 

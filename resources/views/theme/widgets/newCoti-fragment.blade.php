@@ -59,6 +59,16 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
+                            <label for="CardName2">{{ 'Proyecto: ' }}: </label>
+                            <div class="an-input-group">
+                                <div class="an-input-group-addon"><i></i></div>
+                                <input type="text" id="project" class="an-form-control Project" name="project"
+                                    data-toggle="tooltip" data-placement="top" title="{{ 'Proyecto' }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
                             <a href="#" data-toggle="detalleCliente">{{ 'Más información del cliente' }}</a>
                         </div>
                     </div>
@@ -1775,7 +1785,8 @@ $(document).ready(function() {
             bannersConfig: JSON.stringify(getbanners()),
 
             // Persona de Contacto
-            personaContacto: $("#cpName").val()
+            personaContacto: $("#cpName").val(),
+            project: $("#project").val(),
         };
         console.log(datos);
 

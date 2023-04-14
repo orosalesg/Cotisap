@@ -23,12 +23,24 @@
                         <input type="text" id="CardName2" class="an-form-control CardName ok" name="CardName2"
                             value="{{ $cotizacion['Quotations'][0]->nombreCliente }}" readonly>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="CardName2">{{ 'Proyecto: ' }}: </label>
+                            <div class="an-input-group">
+                                <div class="an-input-group-addon"><i></i></div>
+                                <input type="text" id="project" class="an-form-control Project" name="project"
+                                    data-toggle="tooltip" data-placement="top" title="{{ 'Proyecto' }}"
+                                    value="{{ $cotizacion['Quotations'][0]->project }}">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Persona de contacto -->
-        @if( isset($cotizacion['CntctPpl']))
+        @if( $cotizacion['Quotations'][0]->personaContacto )
         <div class="row">
             <div class="col-md-12">
                 <div class="an-single-component with-shadow h-100">
@@ -2040,7 +2052,8 @@ $(document).ready(function() {
             bannersConfig: JSON.stringify(getbanners()),
 
             // Persona de Contacto
-            personaContacto: $("#cpName").val()
+            personaContacto: $("#cpName").val(),
+            project: $("#project").val()
         };
         return datos;
 
